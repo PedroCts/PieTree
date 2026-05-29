@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect x="0" y="0" width="1200" height="800" fill="white"/>
+  <line x1="60.0" y1="472.5" x2="60.0" y2="225.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="60.0" y1="225.0" x2="540.0" y2="225.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="60.0" y1="472.5" x2="60.0" y2="720.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="60.0" y1="720.0" x2="540.0" y2="720.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="225.0" x2="540.0" y2="60.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="60.0" x2="1020.0" y2="60.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="225.0" x2="540.0" y2="390.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="390.0" x2="1020.0" y2="390.0" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="60.0" cy="472.5" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="540.0" cy="225.0" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="1020.0" cy="60.0" r="5" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="1020.0" cy="390.0" r="5" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="540.0" cy="720.0" r="5" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1"/>
+  <text x="548.0" y="217.0" font-size="10" fill="black" text-anchor="start" opacity="1">:0.3</text>
+  <text x="1030.0" y="64.0" font-size="12" fill="black" text-anchor="start" opacity="1">A:0.1</text>
+  <text x="1030.0" y="394.0" font-size="12" fill="black" text-anchor="start" opacity="1">B:0.2</text>
+  <text x="550.0" y="724.0" font-size="12" fill="black" text-anchor="start" opacity="1">C:0.4</text>
+</svg>

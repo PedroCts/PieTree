@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PieTree"
+version = "0.1.0"
+description = "Metadata-aware phylogenetic tree rendering engine"
+authors = [{ name = "Pedro Côrtes" }]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = ["numpy", "pandas", "svgwrite", "biopython", "networkx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

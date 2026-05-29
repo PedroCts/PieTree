@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect x="0" y="0" width="1200" height="800" fill="white"/>
+  <line x1="540.0" y1="60.0" x2="60.0" y2="60.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="60.0" y1="60.0" x2="60.0" y2="720.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="60.0" x2="540.0" y2="60.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="60.0" x2="540.0" y2="280.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="540.0" y1="60.0" x2="1020.0" y2="60.0" stroke="black" stroke-width="2" opacity="1"/>
+  <line x1="1020.0" y1="60.0" x2="1020.0" y2="500.00000000000006" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="540.0" cy="60.0" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="60.0" cy="720.0" r="7" fill="red" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="540.0" cy="280.0" r="7" fill="red" stroke="black" stroke-width="2" opacity="1"/>
+  <circle cx="1020.0" cy="500.00000000000006" r="7" fill="red" stroke="black" stroke-width="2" opacity="1"/>
+  <text x="548.0" y="52.0" font-size="10" fill="black" text-anchor="start" opacity="1">Vertebrates</text>
+  <text x="60.0" y="738.0" font-size="12" fill="black" text-anchor="middle" opacity="1">Homo sapiens</text>
+  <text x="540.0" y="298.0" font-size="12" fill="black" text-anchor="middle" opacity="1">Canis lupus familiaris</text>
+  <text x="1020.0" y="518.0" font-size="12" fill="black" text-anchor="middle" opacity="1">Felis catus</text>
+</svg>

@@ -1,0 +1,406 @@
+# File: examples/example.py
+#
+# This is a full working example using the current PieTree API.
+#
+# Suggested project structure:
+#
+# pietree/
+# ├── src/
+# │   └── pietree/
+# │       ├── __init__.py
+# │       ├── tree.py
+# │       └── node.py
+# ├── examples/
+# │   └── example.py   <-- add this file here
+# └── pyproject.toml
+#
+# Run with:
+# python examples/example.py
+
+from pietree import PieTree, PieNode
+from pietree.style import (
+    StyleRule,
+    MetadataSelector,
+    StyleSheet,
+    StyleResolver,
+)
+from pietree.render.layers.highlights import Highlight
+
+
+
+# ============================================================
+# CREATE TREE
+# ============================================================
+
+# Create the root node
+root = PieNode(name="LUCA")
+
+# Create the tree
+# Depending on your implementation, this may also be:
+# tree = PieTree(root=root)
+tree = PieTree(root)
+
+
+# ============================================================
+# BUILD TREE STRUCTURE
+# ============================================================
+
+# Domains
+bacteria = PieNode(name="Bacteria")
+arch_euk_ca = PieNode(name="Archaeplastida")
+archaea = PieNode(name="Archaea")
+eukarya = PieNode(name="Eukarya")
+
+root.add_child(bacteria, length=0.1)
+root.add_child(arch_euk_ca, length=0.2)
+arch_euk_ca.add_child(eukarya, length=0.1)
+arch_euk_ca.add_child(archaea, length=0.2)
+
+
+# Eukaryotic kingdoms
+animals = PieNode(name="Animals")
+plants = PieNode(name="Plants")
+fungi = PieNode(name="Fungi")
+
+eukarya.add_child(animals, length=0.3)
+eukarya.add_child(plants, length=0.2)
+eukarya.add_child(fungi, length=0.1)
+
+
+# Animal groups
+vertebrates = PieNode(name="Vertebrates")
+arthropods = PieNode(name="Arthropods")
+
+animals.add_child(vertebrates, length=0.2)
+animals.add_child(arthropods, length=0.1)
+
+
+# Vertebrate species
+human = PieNode(name="Homo sapiens")
+dog = PieNode(name="Canis lupus familiaris")
+cat = PieNode(name="Felis catus")
+
+vertebrates.add_child(human, length=0.3)
+vertebrates.add_child(dog, length=0.1)
+vertebrates.add_child(cat, length=0.2)
+
+
+# Arthropods
+spider = PieNode(name="Phoneutria nigriventer")
+fly = PieNode(name="Drosophila melanogaster")
+
+arthropods.add_child(spider, length=0.3)
+arthropods.add_child(fly, length=0.1)
+
+
+# ============================================================
+# BASIC NODE INFORMATION
+# ============================================================
+
+print("\n=== ROOT ===")
+print(root)
+
+print("\n=== CHILDREN OF EUKARYA ===")
+for child in eukarya.children:
+    print(child)
+
+
+# ============================================================
+# TREE STATISTICS
+# ============================================================
+
+print("\n=== TREE STATS ===")
+print(f"Tips: {len(tree.tips)}")
+print(f"Nodes: {len(tree.nodes())}")
+print(f"Branches: {len(tree.branches)}")
+
+
+# ============================================================
+# NAVIGATION
+# ============================================================
+
+print("\n=== NAVIGATION ===")
+print(f"Human parent: {human.parent.name}")
+print(f"Root children: {[child.name for child in root.children]}")
+print(f"Animals children: {[child.name for child in animals.children]}")
+
+
+# ============================================================
+# TIP DETECTION
+# ============================================================
+
+print("\n=== TIPS ===")
+for node in [human, dog, cat, spider, fly, animals]:
+    print(f"{node.name}: is_tip = {node.is_tip}")
+
+
+# ============================================================
+# ITERATION EXAMPLE
+# ============================================================
+
+print("\n=== SIMPLE RECURSIVE WALK ===")
+
+def walk(node, depth=0):
+    indent = "  " * depth
+    print(f"{indent}- {node.name}")
+
+    for child in node.children:
+        walk(child, depth + 1)
+walk(root)
+
+
+# ============================================================
+# SUBTREE EXAMPLE
+# ============================================================
+
+print("\n=== VERTEBRATE CLADE TREE ===")
+
+# vertebrate_tree = vertebrates.clade_tree
+# print(vertebrate_tree)
+# walk(vertebrate_tree.root)
+
+# ============================================================
+# QUERY TREE
+# ============================================================
+
+# ============================================================
+# METADATA ANNOTATION
+# ============================================================
+
+human.metadata.update({
+    "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Primates",
+        "family": "Hominidae",
+        "genus": "Homo",
+    },
+    "country": "Global",
+    "group": "Mammal",
+})
+
+dog.metadata.update({
+    "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Canis",
+    },
+    "country": "Domestic",
+    "group": "Mammal",
+})
+
+cat.metadata.update({
+    "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": "Chordata",
+        "class": "Mammalia",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Felis",
+    },
+    "country": "Domestic",
+    "group": "Mammal",
+})
+
+spider.metadata.update({
+    "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": "Arthropoda",
+        "class": "Arachnida",
+        "order": "Araneae",
+    },
+    "country": "Brazil",
+    "group": "Arachnid",
+})
+
+fly.metadata.update({
+    "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": "Arthropoda",
+        "class": "Insecta",
+        "order": "Diptera",
+    },
+    "country": "Laboratory",
+    "group": "Insect",
+})
+
+
+# ============================================================
+# QUERY EXAMPLES
+# ============================================================
+
+print("\n=== QUERY: ALL MAMMALS ===")
+
+mammals = tree.find_nodes(
+    lambda n: n.metadata.get("group") == "Mammal"
+)
+
+for node in mammals:
+    print(node.name)
+
+
+print("\n=== QUERY: ALL BRAZILIAN SAMPLES ===")
+
+brazilian = tree.find_nodes(
+    lambda n: n.metadata.get("country") == "Brazil"
+)
+
+for node in brazilian:
+    print(node.name)
+
+
+print("\n=== QUERY: ALL CARNIVORA ===")
+
+carnivora = tree.find_nodes(
+    lambda n: (
+        n.metadata.get("taxonomy.order")
+        == "Carnivora"
+    )
+)
+
+for node in carnivora:
+    print(node.name)
+
+
+print("\n=== QUERY: ALL MAMMALIA ===")
+
+mammalia = tree.find_nodes(
+    lambda n: (
+        n.metadata.get("taxonomy.class")
+        == "Mammalia"
+    )
+)
+
+for node in mammalia:
+    print(node.name)
+
+
+print("\n=== QUERY: TIPS ONLY ===")
+
+tips = tree.find_nodes(
+    lambda n: n.is_tip
+)
+
+for node in tips:
+    print(node.name)
+
+
+print("\n=== QUERY: INTERNAL NODES ONLY ===")
+
+internal = tree.find_nodes(
+    lambda n: not n.is_tip
+)
+
+for node in internal:
+    print(node.name)
+
+
+print("\n=== QUERY: LONG BRANCHES ===")
+
+long_branches = tree.find_branches(
+    lambda b: (
+        b.length is not None
+        and b.length >= 0.3
+    )
+)
+
+for branch in long_branches:
+    print(
+        f"{branch.parent_id} -> "
+        f"{branch.child_id} "
+        f"(length={branch.length})"
+    )
+    
+# ============================================================
+# HIGHLIGHTING
+# ============================================================
+
+mammalia = tree.clade(mammals)
+
+tree.style.highlight(
+    mammalia,
+    fill="blue",
+)
+    
+# ============================================================
+# EXPORT TREE
+# ============================================================
+
+# print(vertebrate_tree.to_newick())
+
+sheet = StyleSheet([
+    (
+        MetadataSelector("group", "Mammal"),
+        StyleRule(fill="red", radius=7),
+    )
+])
+
+resolver = StyleResolver(sheet)
+
+# vertebrate_tree.to_svg(
+#     "vertebrate_tree.svg", 
+#     mode="phylogram", 
+#     orientation="vertical", 
+#     resolver=resolver
+# )
+tree.to_svg(
+    "life_tree.svg", 
+    mode="ultrametric", 
+    orientation="horizontal", 
+    resolver=resolver
+)
+print("SVGs generated!")
+
+
+# ============================================================
+# EXPECTED OUTPUT (APPROXIMATELY)
+# ============================================================
+
+# === ROOT ===
+# PieNode(name=Life, children=3)
+#
+# === CHILDREN OF EUKARYA ===
+# PieNode(name=Animals, children=2)
+# PieNode(name=Plants, children=0)
+# PieNode(name=Fungi, children=0)
+#
+# === TREE STATS ===
+# Tips: 7
+# Nodes: 12
+# Branches: 11
+#
+# === NAVIGATION ===
+# Human parent: Vertebrates
+# Root children: ['Bacteria', 'Archaea', 'Eukarya']
+# Animals children: ['Vertebrates', 'Arthropods']
+#
+# === TIPS ===
+# Homo sapiens: is_tip = True
+# Canis lupus familiaris: is_tip = True
+# Felis catus: is_tip = True
+# Phoneutria nigriventer: is_tip = True
+# Drosophila melanogaster: is_tip = True
+# Animals: is_tip = False
+#
+# === SIMPLE RECURSIVE WALK ===
+# - Life
+#   - Bacteria
+#   - Archaea
+#   - Eukarya
+#     - Animals
+#       - Vertebrates
+#         - Homo sapiens
+#         - Canis lupus familiaris
+#         - Felis catus
+#       - Arthropods
+#         - Phoneutria nigriventer
+#         - Drosophila melanogaster
+#     - Plants
+#     - Fungi
+
+# === VERTEBRATE CLADE TREE ===
+# PieTree(tips=3, internal_nodes=1, nodes=4)
