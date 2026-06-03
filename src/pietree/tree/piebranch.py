@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Optional, Dict, Any
 
 from pietree.metadata.piemeta import PieMeta
+from pietree.style.piestyle import PieStyle
 
 @dataclass
 class PieBranch:
@@ -12,7 +13,8 @@ class PieBranch:
     support: Optional[float] = None
     substitutions: Optional[int] = None
     _metadata: PieMeta = field(default_factory=PieMeta)
-    
+    style = PieStyle()
+
     @property
     def metadata(self):
         return self._metadata

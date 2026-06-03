@@ -2,29 +2,12 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 from .style import RenderStyle
-from pietree.tree.pienode import PieNode
-from pietree.tree.piebranch import PieBranch
+
 from pietree.metadata.piemeta import PieMeta
 
-@dataclass
-class RenderNode:
-    id: str
-    x: float
-    y: float
-    node: PieNode
-    label: Optional[str] = None
-    depth: Optional[int] = None
-    metadata: Optional[PieMeta] = None
-
-
-@dataclass
-class RenderEdge:
-    source: str
-    target: str
-    length: float
-    label: str
-    branch: PieBranch
-    metadata: Optional[PieMeta] = None
+from pietree.render.layers.nodes import RenderNode
+from pietree.render.layers.labels import RenderLabel
+from pietree.render.layers.branches import RenderEdge
 
 
 @dataclass
@@ -41,19 +24,5 @@ class RenderSpec:
     metadata: Optional[PieMeta] = None
     
     scale_bar: dict | None = None
-    
-class RenderLabel:
-    def __init__(self, node, text, x, y, is_tip=False, label_type="node"):
-        self.node = node
-        self.text = text
-        self.x = x
-        self.y = y
-        self.label_type = label_type
-        self.is_tip = is_tip
 
-        # computed later
-        self.final_x = x
-        self.final_y = y
-        
-        self.metadata = []
         

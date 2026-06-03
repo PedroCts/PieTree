@@ -2,6 +2,18 @@ from xml.etree.ElementTree import SubElement
 
 from pietree.style.defaults import *
 
+from pietree.tree.pienode import PieNode
+from pietree.metadata.piemeta import PieMeta
+
+@dataclass
+class RenderNode:
+    id: str
+    x: float
+    y: float
+    node: PieNode
+    label: Optional[str] = None
+    depth: Optional[int] = None
+    metadata: Optional[PieMeta] = None
 
 def render_nodes(context):
 

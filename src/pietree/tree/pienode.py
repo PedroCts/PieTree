@@ -14,6 +14,7 @@ from typing import Generator, Iterator, List, Optional, Tuple
 
 from .piebranch import PieBranch
 from pietree.metadata.piemeta import PieMeta
+from pietree.style.piestyle import PieStyle
 
 
 class PieNode:
@@ -55,6 +56,8 @@ class PieNode:
         self._parent_branch: Optional[PieBranch] = None
         self._children: List[Tuple[PieNode, PieBranch]] = []
         self._tree = None  # back-reference to the owning PieTree, if any
+        
+        self.style = PieStyle()  # visual styling for rendering (not used in tree logic)
 
     # ------------------------------------------------------------------
     # Representation

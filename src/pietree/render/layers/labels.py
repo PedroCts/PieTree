@@ -1,8 +1,23 @@
 from xml.etree.ElementTree import SubElement
 
 from pietree.style.defaults import *
-from pietree.render.spec import RenderLabel
 from pietree.render.layout import resolve_label_collisions
+
+
+class RenderLabel:
+    def __init__(self, node, text, x, y, is_tip=False, label_type="node"):
+        self.node = node
+        self.text = text
+        self.x = x
+        self.y = y
+        self.label_type = label_type
+        self.is_tip = is_tip
+
+        # computed later
+        self.final_x = x
+        self.final_y = y
+        
+        self.metadata = []
 
 
 def render_labels(context):

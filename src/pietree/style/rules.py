@@ -34,6 +34,7 @@ class StyleRule:
         
         self.visible = visible
 
+    @property
     def items(self):
         return [
             "target",

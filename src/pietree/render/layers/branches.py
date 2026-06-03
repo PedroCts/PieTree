@@ -1,7 +1,17 @@
 from xml.etree.ElementTree import SubElement
 
 from pietree.style.defaults import *
+from pietree.tree.piebranch import PieBranch
+from pietree.metadata.piemeta import PieMeta
 
+@dataclass
+class RenderEdge:
+    source: str
+    target: str
+    length: float
+    label: str
+    branch: PieBranch
+    metadata: Optional[PieMeta] = None
 
 def render_branches(context):
 

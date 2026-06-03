@@ -830,7 +830,6 @@ class PieTree:
         path: Optional[str] = None,
         mode: str = "phylogram",
         orientation: str = "vertical",
-        resolver=None,
         style: Optional[RenderStyle] = None,
     ) -> str:
         """
@@ -844,11 +843,12 @@ class PieTree:
             Layout mode (see :meth:`to_render_spec`).
         orientation : str
             ``'vertical'`` or ``'horizontal'``.
-        resolver : callable, optional
-            Optional label resolver passed to the SVG renderer.
         style : RenderStyle, optional
             Overrides ``self.style`` for this render only.
         """
+        
+        # TODO: Implement Resolver logic
+        
         spec = self.to_render_spec(mode=mode, orientation=orientation, style=style)
         svg = render_svg(spec, resolver=resolver, style=style or self.style)
 

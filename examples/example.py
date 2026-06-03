@@ -2,18 +2,6 @@
 #
 # This is a full working example using the current PieTree API.
 #
-# Suggested project structure:
-#
-# pietree/
-# ├── src/
-# │   └── pietree/
-# │       ├── __init__.py
-# │       ├── tree.py
-# │       └── node.py
-# ├── examples/
-# │   └── example.py   <-- add this file here
-# └── pyproject.toml
-#
 # Run with:
 # python examples/example.py
 
@@ -36,10 +24,7 @@ from pietree.render.layers.highlights import Highlight
 root = PieNode(name="LUCA")
 
 # Create the tree
-# Depending on your implementation, this may also be:
-# tree = PieTree(root=root)
 tree = PieTree(root)
-
 
 # ============================================================
 # BUILD TREE STRUCTURE
@@ -47,15 +32,14 @@ tree = PieTree(root)
 
 # Domains
 bacteria = PieNode(name="Bacteria")
-arch_euk_ca = PieNode(name="Archaeplastida")
+archaeplastida = PieNode(name="Archaeplastida")
 archaea = PieNode(name="Archaea")
 eukarya = PieNode(name="Eukarya")
 
 root.add_child(bacteria, length=0.1)
-root.add_child(arch_euk_ca, length=0.2)
-arch_euk_ca.add_child(eukarya, length=0.1)
-arch_euk_ca.add_child(archaea, length=0.2)
-
+root.add_child(archaeplastida, length=0.2)
+archaeplastida.add_child(eukarya, length=0.1)
+archaeplastida.add_child(archaea, length=0.2)
 
 # Eukaryotic kingdoms
 animals = PieNode(name="Animals")
@@ -66,14 +50,12 @@ eukarya.add_child(animals, length=0.3)
 eukarya.add_child(plants, length=0.2)
 eukarya.add_child(fungi, length=0.1)
 
-
 # Animal groups
 vertebrates = PieNode(name="Vertebrates")
 arthropods = PieNode(name="Arthropods")
 
 animals.add_child(vertebrates, length=0.2)
 animals.add_child(arthropods, length=0.1)
-
 
 # Vertebrate species
 human = PieNode(name="Homo sapiens")
@@ -84,14 +66,12 @@ vertebrates.add_child(human, length=0.3)
 vertebrates.add_child(dog, length=0.1)
 vertebrates.add_child(cat, length=0.2)
 
-
 # Arthropods
 spider = PieNode(name="Phoneutria nigriventer")
 fly = PieNode(name="Drosophila melanogaster")
 
 arthropods.add_child(spider, length=0.3)
 arthropods.add_child(fly, length=0.1)
-
 
 # ============================================================
 # BASIC NODE INFORMATION
@@ -104,7 +84,6 @@ print("\n=== CHILDREN OF EUKARYA ===")
 for child in eukarya.children:
     print(child)
 
-
 # ============================================================
 # TREE STATISTICS
 # ============================================================
@@ -113,7 +92,6 @@ print("\n=== TREE STATS ===")
 print(f"Tips: {len(tree.tips)}")
 print(f"Nodes: {len(tree.nodes())}")
 print(f"Branches: {len(tree.branches)}")
-
 
 # ============================================================
 # NAVIGATION
@@ -124,7 +102,6 @@ print(f"Human parent: {human.parent.name}")
 print(f"Root children: {[child.name for child in root.children]}")
 print(f"Animals children: {[child.name for child in animals.children]}")
 
-
 # ============================================================
 # TIP DETECTION
 # ============================================================
@@ -132,22 +109,6 @@ print(f"Animals children: {[child.name for child in animals.children]}")
 print("\n=== TIPS ===")
 for node in [human, dog, cat, spider, fly, animals]:
     print(f"{node.name}: is_tip = {node.is_tip}")
-
-
-# ============================================================
-# ITERATION EXAMPLE
-# ============================================================
-
-print("\n=== SIMPLE RECURSIVE WALK ===")
-
-def walk(node, depth=0):
-    indent = "  " * depth
-    print(f"{indent}- {node.name}")
-
-    for child in node.children:
-        walk(child, depth + 1)
-walk(root)
-
 
 # ============================================================
 # SUBTREE EXAMPLE
