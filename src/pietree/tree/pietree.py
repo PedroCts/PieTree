@@ -25,6 +25,8 @@ from pietree.render.style import RenderStyle
 from pietree.render.spec import RenderSpec, RenderNode, RenderEdge
 from pietree.render.svg import render_svg
 
+from pietree.query.selection import NodeSelection, BranchSelection, LabelSelection
+
 
 # Type aliases
 NodeFilter = Callable[[PieNode], bool]
@@ -134,7 +136,8 @@ class PieTree:
     def nodes(
         self,
         node_type: Literal["all", "tip", "internal"] = "all",
-    ) -> List[PieNode]:
+        **metadata_filters
+    ) -> NodeSelection:
         """
         Return nodes filtered by type.
 
@@ -144,19 +147,39 @@ class PieTree:
             Which subset to return.
         """
         if node_type == "tip":
-            return self.tips
-        if node_type == "internal":
-            return self.internal_nodes
-        return self.all_nodes
+            candidates = self.tips
+        elif node_type == "internal":
+            candidates = self.internal_nodes
+        else:
+            candidates = self.all_nodes
+
+        if metadata_filters:
+            def matches(node):
+                for key, value in metadata_filters.items():
+                    if node.get(key) != value:
+                        return False
+                return True
+            candidates = [n for n in candidates if matches(n)]
+
+        return NodeSelection(candidates)
 
     # ------------------------------------------------------------------
     # Branch access
     # ------------------------------------------------------------------
 
-    @property
-    def branches(self) -> List[PieBranch]:
-        """All branch objects in the tree (one per parent→child edge)."""
-        return list(self.iter_branches())
+    def branches(self, **metadata_filters) -> BranchSelection:
+        candidates = list(self.iter_branches())
+
+        if metadata_filters:
+            def matches(branch):
+                for key, value in metadata_filters.items():
+                    meta = branch._metadata
+                    if meta.get(key) != value:
+                        return False
+                return True
+            candidates = [b for b in candidates if matches(b)]
+
+        return BranchSelection(candidates)
 
     def iter_branches(self) -> Iterator[PieBranch]:
         """Yield every branch object in pre-order (by parent node)."""
@@ -170,6 +193,31 @@ class PieTree:
                         length=None,
                     )
                 yield branch
+                
+    # ------------------------------------------------------------------
+    # Label access
+    # ------------------------------------------------------------------
+    def labels(
+        self,
+        target: str = "all",   # "all" | "tip" | "internal"
+        **metadata_filters,
+    ) -> LabelSelection:
+        if target == "tip":
+            candidates = self.tips
+        elif target == "internal":
+            candidates = self.internal_nodes
+        else:
+            candidates = self.all_nodes
+
+        if metadata_filters:
+            def matches(node):
+                return all(node.get(k) == v for k, v in metadata_filters.items())
+            candidates = [n for n in candidates if matches(n)]
+
+        return LabelSelection(n.label for n in candidates)
+    
+    def tip_labels(self, **metadata_filters) -> LabelSelection:
+        return self.labels(target="tip", **metadata_filters)
 
     # ------------------------------------------------------------------
     # Traversal
@@ -349,6 +397,7 @@ class PieTree:
             root=root,
             nodes=[root] + root.descendants,
             tips=root.descendant_tips,
+            _highlights=self.style.highlights,   # shared reference
         )
 
     def find_tips_by_taxon(self, taxon: str) -> List[PieNode]:
@@ -807,7 +856,7 @@ class PieTree:
                 metadata=b.metadata if b.metadata else None,
                 branch=b,
             )
-            for b in self.branches
+            for b in self.branches()
         ]
 
         return RenderSpec(
@@ -829,7 +878,7 @@ class PieTree:
         self,
         path: Optional[str] = None,
         mode: str = "phylogram",
-        orientation: str = "vertical",
+        orientation: str = "horizontal",
         style: Optional[RenderStyle] = None,
     ) -> str:
         """
@@ -848,6 +897,7 @@ class PieTree:
         """
         
         # TODO: Implement Resolver logic
+        resolver = None
         
         spec = self.to_render_spec(mode=mode, orientation=orientation, style=style)
         svg = render_svg(spec, resolver=resolver, style=style or self.style)

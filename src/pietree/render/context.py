@@ -1,9 +1,12 @@
 from dataclasses import dataclass
 
+# from pietree.render.spec import RenderSpec
+
 
 @dataclass(slots=True)
 class RenderContext:
 
+    # spec: RenderSpec # Circular import if typed
     spec: object
 
     svg: object

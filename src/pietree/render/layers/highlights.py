@@ -13,13 +13,14 @@ class Highlight:
     fill: str = "#cccccc"
     opacity: float = 0.25
     padding: float = 10
-    
+
+    corner_radius: float = 5
+
     include_labels: bool = True
     
 def render_highlights(context):
 
-    if not context.highlights:
-        return
+    if not context.highlights: return
 
     spec = context.spec
     svg = context.svg
@@ -28,19 +29,15 @@ def render_highlights(context):
     for highlight in context.highlights:
 
         clade = highlight.clade
-
         tips = clade.tips
 
-        if not tips:
-            continue
+        if not tips: continue
 
         # --------------------------------------------------
         # ROOT POSITION
         # --------------------------------------------------
 
-        root_x, root_y = pos[
-            clade.root.id
-        ]
+        root_x, root_y = pos[clade.root.id]
 
         # --------------------------------------------------
         # TIP POSITIONS
@@ -51,16 +48,14 @@ def render_highlights(context):
 
         for node in tips:
 
-            if node.id not in pos:
-                continue
+            if node.id not in pos: continue
 
             x, y = pos[node.id]
 
             tip_xs.append(x)
             tip_ys.append(y)
 
-        if not tip_xs:
-            continue
+        if not tip_xs: continue
 
         # --------------------------------------------------
         # BOUNDS
@@ -68,53 +63,30 @@ def render_highlights(context):
 
         if spec.orientation == "horizontal":
 
-            min_x = (
-                root_x
-                - highlight.padding
-            )
+            min_x = root_x - highlight.padding
 
-            max_x = (
-                max(tip_xs)
-                + highlight.padding
-            )
-
-            min_y = (
-                min(tip_ys)
-                - highlight.padding
-            )
-
-            max_y = (
-                max(tip_ys)
-                + highlight.padding
-            )
-
-            # label extension
-
+            # Extend to the right edge of the label area, which occupies
+            # padding_right. Stop just before the canvas edge.
             if highlight.include_labels:
+                max_x = context.canvas_width - highlight.padding
+            else:
+                max_x = max(tip_xs) + highlight.padding
 
-                max_x += 140
+            min_y = min(tip_ys) - highlight.padding
+            max_y = max(tip_ys) + highlight.padding
 
         else:
 
-            min_x = (
-                min(tip_xs)
-                - highlight.padding
-            )
+            min_x = min(tip_xs) - highlight.padding
+            max_x = max(tip_xs) + highlight.padding
 
-            max_x = (
-                max(tip_xs)
-                + highlight.padding
-            )
+            min_y = root_y - highlight.padding
 
-            min_y = (
-                root_y
-                - highlight.padding
-            )
-
-            max_y = (
-                max(tip_ys)
-                + highlight.padding
-            )
+            # Same idea for vertical trees — labels hang below tips
+            if highlight.include_labels:
+                max_y = context.canvas_height - highlight.padding
+            else:
+                max_y = max(tip_ys) + highlight.padding
 
         # --------------------------------------------------
         # DRAW
@@ -126,19 +98,9 @@ def render_highlights(context):
             {
                 "x": str(min_x),
                 "y": str(min_y),
-
-                "width": str(
-                    max_x - min_x
-                ),
-
-                "height": str(
-                    max_y - min_y
-                ),
-
+                "width": str(max_x - min_x),
+                "height": str(max_y - min_y),
                 "fill": highlight.fill,
-
-                "opacity": str(
-                    highlight.opacity
-                ),
+                "opacity": str(highlight.opacity),
             },
         )

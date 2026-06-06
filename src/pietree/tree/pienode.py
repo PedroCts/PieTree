@@ -12,12 +12,14 @@ import json
 import uuid
 from typing import Generator, Iterator, List, Optional, Tuple
 
+from pietree.core.pieobject import PieObject 
+
 from .piebranch import PieBranch
 from pietree.metadata.piemeta import PieMeta
-from pietree.style.piestyle import PieStyle
+from pietree.style.piestyle import PieNodeStyle
 
 
-class PieNode:
+class PieNode(PieObject):
     """
     A node in a phylogenetic tree.
 
@@ -46,18 +48,22 @@ class PieNode:
         branch_length: Optional[float] = None,
         metadata: Optional[dict] = None,
     ):
+        from pietree.label.pielabel import PieLabel
+        
+        super().__init__(metadata)
+        
         self.id: str = str(uuid.uuid4())
 
         self._name: Optional[str] = name
+        self.label: PieLabel = PieLabel(text=name)
         self._branch_length: Optional[float] = branch_length  # used only at build time
-        self._metadata: PieMeta = PieMeta(metadata or {})
 
         self._parent: Optional[PieNode] = None
         self._parent_branch: Optional[PieBranch] = None
         self._children: List[Tuple[PieNode, PieBranch]] = []
         self._tree = None  # back-reference to the owning PieTree, if any
         
-        self.style = PieStyle()  # visual styling for rendering (not used in tree logic)
+        self.style = PieNodeStyle()  # visual styling for rendering (not used in tree logic)
 
     # ------------------------------------------------------------------
     # Representation
@@ -94,6 +100,7 @@ class PieNode:
     def rename(self, new_name: str) -> None:
         """Update the node's label in-place."""
         self._name = new_name
+        self.label.text = new_name
 
     # ------------------------------------------------------------------
     # Branch / distance

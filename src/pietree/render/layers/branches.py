@@ -1,5 +1,10 @@
+from platform import node
 from xml.etree.ElementTree import SubElement
 
+from typing import Callable, Dict, Iterable, Iterator, List, Literal, Optional, Union
+from dataclasses import dataclass, field
+
+from pietree.render.context import RenderContext
 from pietree.style.defaults import *
 from pietree.tree.piebranch import PieBranch
 from pietree.metadata.piemeta import PieMeta
@@ -13,7 +18,7 @@ class RenderEdge:
     branch: PieBranch
     metadata: Optional[PieMeta] = None
 
-def render_branches(context):
+def render_branches(context: RenderContext):
 
     spec = context.spec
     svg = context.svg
@@ -23,6 +28,7 @@ def render_branches(context):
     for edge in spec.edges:
 
         style = resolver.resolve(edge.branch, context)
+        edge.branch.style.apply_to_rule(style)
 
         if style.visible is False:
             continue
@@ -37,8 +43,7 @@ def render_branches(context):
         if spec.orientation == "horizontal":
 
             SubElement(
-                svg,
-                "line",
+                svg, "line",
                 {
                     "x1": str(parent_x),
                     "y1": str(parent_y),
@@ -46,17 +51,13 @@ def render_branches(context):
                     "y2": str(child_y),
 
                     "stroke": stroke,
-                    "stroke-width": str(
-                        stroke_width
-                    ),
-
+                    "stroke-width": str(stroke_width),
                     "opacity": str(opacity),
                 },
             )
 
             SubElement(
-                svg,
-                "line",
+                svg, "line",
                 {
                     "x1": str(parent_x),
                     "y1": str(child_y),
@@ -64,10 +65,7 @@ def render_branches(context):
                     "y2": str(child_y),
 
                     "stroke": stroke,
-                    "stroke-width": str(
-                        stroke_width
-                    ),
-
+                    "stroke-width": str(stroke_width),
                     "opacity": str(opacity),
                 },
             )
@@ -75,8 +73,7 @@ def render_branches(context):
         else:
 
             SubElement(
-                svg,
-                "line",
+                svg, "line",
                 {
                     "x1": str(parent_x),
                     "y1": str(parent_y),
@@ -84,17 +81,13 @@ def render_branches(context):
                     "y2": str(parent_y),
 
                     "stroke": stroke,
-                    "stroke-width": str(
-                        stroke_width
-                    ),
-
+                    "stroke-width": str(stroke_width),
                     "opacity": str(opacity),
                 },
             )
 
             SubElement(
-                svg,
-                "line",
+                svg, "line",
                 {
                     "x1": str(child_x),
                     "y1": str(parent_y),
@@ -102,10 +95,7 @@ def render_branches(context):
                     "y2": str(child_y),
 
                     "stroke": stroke,
-                    "stroke-width": str(
-                        stroke_width
-                    ),
-
+                    "stroke-width": str(stroke_width),
                     "opacity": str(opacity),
                 },
             )

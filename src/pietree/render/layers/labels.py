@@ -5,13 +5,14 @@ from pietree.render.layout import resolve_label_collisions
 
 
 class RenderLabel:
-    def __init__(self, node, text, x, y, is_tip=False, label_type="node"):
+    def __init__(self, node, text, x, y, is_tip=False, label_type="node", pie_label=None):
         self.node = node
         self.text = text
         self.x = x
         self.y = y
         self.label_type = label_type
         self.is_tip = is_tip
+        self.pie_label = pie_label 
 
         # computed later
         self.final_x = x
@@ -70,9 +71,9 @@ def render_labels(context):
                 node=node,
                 x=px,
                 y=py,
-                text=node.label,
-                # style=style,
-                is_tip=is_tip
+                text=node.node.label.text,
+                is_tip=is_tip,
+                pie_label=node.node.label
             )
         )
 
@@ -91,6 +92,8 @@ def render_labels(context):
     for label in labels:
 
         style = resolver.resolve(label, context)
+        if label.pie_label is not None:
+            label.pie_label.style.apply_to_rule(style)
         
         if style.visible is False:
             continue
@@ -98,26 +101,24 @@ def render_labels(context):
         # ----------------------------
         # base styling (unchanged)
         # ----------------------------
-        font_size = (
-            style.font_size
-            or (DEFAULT_TIP_FONT_SIZE if is_tip else DEFAULT_INTERNAL_FONT_SIZE)
-        )
-
-        font_color = (
-            style.font_color
-            or (DEFAULT_TIP_FONT_COLOR if is_tip else DEFAULT_INTERNAL_FONT_COLOR)
-        )
-
+        font_size = style.font_size or (DEFAULT_TIP_FONT_SIZE if label.is_tip else DEFAULT_INTERNAL_FONT_SIZE)
+        font_color = style.font_color or (DEFAULT_TIP_FONT_COLOR if label.is_tip else DEFAULT_INTERNAL_FONT_COLOR)
+        font_weight = style.font_weight or "normal"
+        font_style_attr = style.font_style or "normal"
+        text_decoration = style.text_decoration or "none"
         opacity = style.opacity or DEFAULT_OPACITY
 
         SubElement(
             svg,
             "text",
             {
-                "x": str(label.x),
-                "y": str(label.y),
+                "x": str(label.final_x),
+                "y": str(label.final_y),
                 "font-size": str(font_size),
                 "fill": str(font_color),
+                "font-weight": font_weight,
+                "font-style": font_style_attr,
+                "text-decoration": text_decoration,
                 "text-anchor": anchor,
                 "opacity": str(opacity),
             },

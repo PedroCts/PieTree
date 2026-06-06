@@ -5,7 +5,7 @@
 **Open-source metadata-aware phylogenetic analyser and renderer**
 
 [![Current Release](https://img.shields.io/badge/Current%20Release-0.0.1-teal.svg)](package.json)
-[![Python](https://img.shields.io/badge/Python-3.10.x-blue.svg)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.13.x-blue.svg)](https://python.org)
 
 </div>
 
@@ -19,7 +19,7 @@ flowchart TD
 %% NODES
 %% =========================================================
 
-Newick[Newick Tree]
+Newick[External Tree]
 NodeList[PieNode List]
 
 PieTree
@@ -50,7 +50,46 @@ classDef output fill:#eeeeee,stroke:#555,color:#000;
 %% =========================================================
 
 class Newick,NodeList input;
+class Export output;
+```
 
+****
+### Abstraction Layers
+
+```mermaid
+flowchart TD
+
+%% =========================================================
+%% NODES
+%% =========================================================
+
+PieObject
+Query
+
+%% =========================================================
+%% FLOW
+%% =========================================================
+
+PieObject --> PieObjectSelection
+Query --> PieObjectSelection
+
+PieObjectSelection --> RenderObject
+PieStyle --> RenderObject
+
+RenderObject --> Image
+
+%% =========================================================
+%% CLASSES
+%% =========================================================
+
+classDef input fill:#fff3b0,stroke:#b58900,color:#000;
+classDef output fill:#eeeeee,stroke:#555,color:#000;
+
+%% =========================================================
+%% CLASS ASSIGNMENTS
+%% =========================================================
+
+class Newick,NodeList input;
 class Export output;
 ```
 ****

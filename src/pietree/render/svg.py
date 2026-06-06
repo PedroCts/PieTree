@@ -23,9 +23,7 @@ def _prettify(svg_element):
         encoding="unicode",
     )
 
-    return minidom.parseString(
-        rough
-    ).toprettyxml(indent="  ")
+    return minidom.parseString(rough).toprettyxml(indent="  ")
 
 def render_svg(spec, resolver=None, style=None):
 
@@ -33,19 +31,12 @@ def render_svg(spec, resolver=None, style=None):
         resolver = StyleResolver(StyleSheet([]))
 
     canvas = build_canvas(spec)
-
-    sources = {
-        e.source
-        for e in spec.edges
-    }
+    sources = {e.source for e in spec.edges}
 
     context = RenderContext(
         spec=spec,
-
         svg=canvas["svg"],
-
         resolver=resolver,
-
         pos=canvas["pos"],
 
         canvas_width=canvas["canvas_width"],

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 from .style import RenderStyle
@@ -19,8 +19,8 @@ class RenderSpec:
 
     mode: str = "phylogram"
     orientation: str = "horizontal"
-    style: RenderStyle = RenderStyle()
-    
+    style: RenderStyle = field(default_factory=RenderStyle)
+
     metadata: Optional[PieMeta] = None
     
     scale_bar: dict | None = None

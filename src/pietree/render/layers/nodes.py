@@ -1,5 +1,9 @@
 from xml.etree.ElementTree import SubElement
 
+from typing import Callable, Dict, Iterable, Iterator, List, Literal, Optional, Union
+from dataclasses import dataclass, field
+
+from pietree.render.context import RenderContext
 from pietree.style.defaults import *
 
 from pietree.tree.pienode import PieNode
@@ -15,7 +19,7 @@ class RenderNode:
     depth: Optional[int] = None
     metadata: Optional[PieMeta] = None
 
-def render_nodes(context):
+def render_nodes(context: RenderContext):
 
     spec = context.spec
     svg = context.svg
@@ -30,6 +34,7 @@ def render_nodes(context):
         is_tip = node.id not in sources
 
         style = resolver.resolve(node.node, context)
+        node.node.style.apply_to_rule(style)
 
         if style.visible is False:
             continue
