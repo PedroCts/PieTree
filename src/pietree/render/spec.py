@@ -13,6 +13,7 @@ from pietree.render.layers.panels import PanelLayer
 
 @dataclass
 class RenderSpec:
+    
     width: float
     height: float
     
@@ -33,5 +34,7 @@ class RenderSpec:
     metadata: Optional[PieMeta] = None
     
     scale_bar: dict | None = None
+    
+    canvas_size: tuple[int, int] = (1000, 1000)
 
         

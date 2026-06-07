@@ -55,14 +55,13 @@ def _estimate_panel_budget(spec) -> float:
 
 
 def build_canvas(spec):
+    
+    canvas_width, canvas_height = spec.canvas_size
 
     padding_left   = 50.0
     padding_top    = 50.0
     padding_bottom = 50.0
     padding_margin = 20.0  # minimum right margin after all content
-
-    canvas_width  = 1000
-    canvas_height = 1000
 
     # --------------------------------------------------
     # Compute content budgets

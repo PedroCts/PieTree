@@ -918,6 +918,7 @@ class PieTree:
         mode: str = "phylogram",
         orientation: str = "vertical",
         options: Optional[RenderOptions] = None,
+        canvas_size: tuple = (1000, 1000)
     ) -> RenderSpec:
         """
         Build a :class:`RenderSpec` — the intermediate representation used by
@@ -967,7 +968,6 @@ class PieTree:
             orientation=orientation,
             options=options,
             scale_bar={
-                "length": 0.1,
                 "position": "bottom_left",
                 "padding": 30
             },
@@ -975,6 +975,7 @@ class PieTree:
             panels=self._panels,
             meta_labels=self._meta_labels,
             registry=self._meta_registry,
+            canvas_size=canvas_size
         )
 
     def to_svg(
@@ -982,6 +983,7 @@ class PieTree:
         path: Optional[str] = None,
         mode: str = "phylogram",
         orientation: str = "horizontal",
+        canvas_size=(1000, 1000),
         **kwargs
     ) -> str:
         """
@@ -1003,7 +1005,7 @@ class PieTree:
         resolver = None
         
         render_options = RenderOptions(**kwargs) if kwargs else self.render_options
-        spec = self.to_render_spec(mode=mode, orientation=orientation, options=render_options)
+        spec = self.to_render_spec(mode=mode, orientation=orientation, options=render_options, canvas_size=canvas_size)
         svg = render_svg(spec, resolver=resolver)
 
         if path:
