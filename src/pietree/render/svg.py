@@ -14,6 +14,7 @@ from .layers.branches import render_branches
 from .layers.nodes import render_nodes
 from .layers.labels import render_labels
 from .layers.highlights import render_highlights
+from pietree.render.layers.panels import render_panels
 from .layers.scale import render_scale
 
 def _prettify(svg_element):
@@ -25,7 +26,7 @@ def _prettify(svg_element):
 
     return minidom.parseString(rough).toprettyxml(indent="  ")
 
-def render_svg(spec, resolver=None, style=None):
+def render_svg(spec, resolver=None):
 
     if resolver is None:
         resolver = StyleResolver(StyleSheet([]))
@@ -48,8 +49,11 @@ def render_svg(spec, resolver=None, style=None):
         padding_bottom=canvas["padding_bottom"],
 
         sources=sources,
-        
-        highlights=style.highlights if style is not None else []
+
+        highlights=spec.highlights,
+
+        tip_edge=canvas["tip_edge"],
+        label_edge=canvas["label_edge"],
     )
 
     render_background(context)
@@ -57,6 +61,7 @@ def render_svg(spec, resolver=None, style=None):
     render_branches(context)
     render_nodes(context)
     render_labels(context)
+    render_panels(context)
     render_scale(context)
 
     return _prettify(context.svg)

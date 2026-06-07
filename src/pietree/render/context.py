@@ -24,5 +24,8 @@ class RenderContext:
     padding_bottom: float
 
     sources: set
+
+    tip_edge:   float = 0.0   # screen coord of rightmost/bottommost tip node
+    label_edge: float = 0.0   # screen coord where tip labels end → panels start
     
     highlights: list | None = None

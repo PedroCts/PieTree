@@ -13,6 +13,8 @@ from typing import Callable, Dict, Iterable, Iterator, List, Literal, Optional, 
 
 import pandas as pd
 
+from pietree.render.layers.panels import PanelLayer
+
 from .pienode import PieNode
 from .piebranch import PieBranch
 from .pieclade import PieClade
@@ -21,7 +23,7 @@ from pietree.io.treeio import parse_newick, build_newick
 from pietree.metadata.piemeta import PieMeta
 
 from pietree.render.layout import build_layout
-from pietree.render.style import RenderStyle
+from pietree.render.options import RenderOptions
 from pietree.render.spec import RenderSpec, RenderNode, RenderEdge
 from pietree.render.svg import render_svg
 
@@ -64,8 +66,10 @@ class PieTree:
     def __init__(self, root: PieNode, metadata: Optional[dict] = None):
         self.root: PieNode = root
         self._metadata: PieMeta = PieMeta(metadata or {})
-        self.style: RenderStyle = RenderStyle()
-
+        # Rendering
+        self.render_options: RenderOptions = RenderOptions()
+        self._highlights: list = []
+        self._panels: list = []
         # Wire every reachable node back to this tree
         self._register_tree(root)
 
@@ -104,24 +108,33 @@ class PieTree:
     # Metadata
     # ------------------------------------------------------------------
 
-    @property
-    def metadata(self) -> PieMeta:
-        """Tree-level metadata (not node-level)."""
-        return self._metadata
+    def metadata(self, field: Optional[str] = None):
+        """
+        With no argument: return the raw PieMeta object (tree-level metadata).
+        With a field name: return a MetadataView for that field across all nodes.
+
+        Usage:
+            tree.metadata()            # → PieMeta
+            tree.metadata("taxonomy")  # → MetadataView
+        """
+        if field is None:
+            return self._metadata
+        from pietree.metadata.piemeta import MetadataView
+        return MetadataView(tree=self, field=field)
 
     # ------------------------------------------------------------------
     # Node access
     # ------------------------------------------------------------------
 
     @property
-    def all_nodes(self) -> List[PieNode]:
+    def all_nodes(self) -> NodeSelection:
         """All nodes in pre-order traversal (root first)."""
-        return list(self.traverse())
+        return NodeSelection(list(self.traverse()), highlights=self._highlights)
 
     @property
-    def tips(self) -> List[PieNode]:
+    def tips(self) -> NodeSelection:
         """All tip (leaf) nodes."""
-        return [n for n in self.traverse() if n.is_tip]
+        return NodeSelection([n for n in self.traverse() if n.is_tip], highlights=self._highlights)
 
     @property
     def tip_names(self) -> List[Optional[str]]:
@@ -129,9 +142,9 @@ class PieTree:
         return [n.name for n in self.tips]
 
     @property
-    def internal_nodes(self) -> List[PieNode]:
+    def internal_nodes(self) -> NodeSelection:
         """All internal (non-leaf) nodes."""
-        return [n for n in self.traverse() if n.is_internal]
+        return NodeSelection([n for n in self.traverse() if n.is_internal], highlights=self._highlights)
 
     def nodes(
         self,
@@ -161,7 +174,7 @@ class PieTree:
                 return True
             candidates = [n for n in candidates if matches(n)]
 
-        return NodeSelection(candidates)
+        return NodeSelection(candidates, highlights=self._highlights)
 
     # ------------------------------------------------------------------
     # Branch access
@@ -397,7 +410,7 @@ class PieTree:
             root=root,
             nodes=[root] + root.descendants,
             tips=root.descendant_tips,
-            _highlights=self.style.highlights,   # shared reference
+            highlights=self._highlights,
         )
 
     def find_tips_by_taxon(self, taxon: str) -> List[PieNode]:
@@ -504,6 +517,33 @@ class PieTree:
                 grandparent.add_child(only_child, length=new_bl)
 
     # ------------------------------------------------------------------
+    # Access highlights and panels
+    # ------------------------------------------------------------------
+    @property
+    def highlights(self) -> list:
+        return self._highlights
+
+    @property
+    def panels(self) -> list[PanelLayer]:
+        return self._panels
+
+    def panel(self, field: str, values: None | list[str], **kwargs) -> PanelLayer:
+        """
+        Register a metadata side panel for the given field.
+
+        Each call adds one panel column. Columns are automatically
+        indexed left to right in registration order.
+
+        Usage:
+            tree.panel("taxonomy")
+            tree.panel("clade", color="steelblue", font_size=10)
+        """
+        from pietree.render.layers.panels import PanelLayer
+        p = PanelLayer(field=field, index=len(self._panels), values=values, **kwargs)
+        self._panels.append(p)
+        return p
+    
+    # ------------------------------------------------------------------
     # Rerooting
     # ------------------------------------------------------------------
 
@@ -596,38 +636,63 @@ class PieTree:
         metadata_df: pd.DataFrame,
         on: str = "name",
         overwrite: bool = True,
-    ) -> None:
+    ) -> "PieTree":
         """
         Annotate tree nodes from a :class:`pandas.DataFrame`.
 
-        Each row is matched to a node using the column named *on*, then all
-        remaining columns are attached as node metadata.
+        Each row is matched to a node by comparing the *on* column value
+        against each node's ``name`` (default), ``id``, or any metadata
+        field already stored on the node.
 
         Parameters
         ----------
         metadata_df : DataFrame
             Must contain a column named *on*. All other columns become
-            metadata keys.
+            node metadata keys.
         on : str
-            Column used to match rows to nodes. Currently ``'name'`` or ``'id'``.
+            The DataFrame column whose values are matched against node
+            names.  Pass ``"name"`` (default) to match against
+            ``node.name``; pass ``"id"`` to match against the UUID;
+            or pass any other column name (e.g. ``"mitogenome_id"``) to
+            match against a metadata field of the same name already
+            stored on each node **or** against ``node.name`` when the
+            column name happens to equal ``"name"``.
+
+            The most common pattern — where the join column is whatever
+            the newick tip labels are — works with any column name:
+
+                tree.annotate(samples, on="mitogenome_id")
+
         overwrite : bool
             Whether incoming values overwrite existing metadata keys.
+
+        Returns
+        -------
+        PieTree
+            ``self``, for optional method chaining.
         """
+        if on not in metadata_df.columns:
+            raise ValueError(
+                f"Column '{on}' not found in DataFrame. "
+                f"Available columns: {list(metadata_df.columns)}"
+            )
+
         mapping: Dict[str, dict] = {}
         for _, row in metadata_df.iterrows():
             row_dict = row.to_dict()
-            key = row_dict.pop(on, None)
+            key = row_dict.get(on, None)
             if key is not None:
                 mapping[str(key)] = row_dict
 
         self.annotate_dict(mapping, on=on, overwrite=overwrite)
+        return self
 
     def annotate_dict(
         self,
         metadata: Dict[str, dict],
         on: str = "name",
         overwrite: bool = True,
-    ) -> None:
+    ) -> "PieTree":
         """
         Annotate tree nodes from a plain dictionary.
 
@@ -644,27 +709,50 @@ class PieTree:
                 }
 
         on : str
-            Matching field — ``'name'`` (default) or ``'id'``.
+            The field used to look up nodes.
+
+            * ``"name"`` (default) — match against ``node.name``.
+            * ``"id"`` — match against the node's UUID string.
+            * Any other string — match against a metadata field of that
+              name already stored on each node (e.g. ``"mitogenome_id"``
+              or ``"accession"``).
+
         overwrite : bool
             Whether incoming values overwrite existing metadata keys.
 
-        Raises
-        ------
-        ValueError
-            If *on* is not ``'name'`` or ``'id'``.
+        Returns
+        -------
+        PieTree
+            ``self``, for optional method chaining.
         """
-        if on not in {"name", "id"}:
-            raise ValueError(f"Unsupported annotation key '{on}'. Use 'name' or 'id'.")
-
         lookup: Dict[str, PieNode] = {}
+        named_nodes: List[PieNode] = []  # candidates for substring fallback
         for node in self.traverse():
-            if on == "name" and node.name is not None:
-                lookup[node.name] = node
+            if on == "name":
+                if node.name is not None:
+                    lookup[node.name] = node
             elif on == "id":
                 lookup[node.id] = node
+            else:
+                # Arbitrary metadata field — e.g. "mitogenome_id"
+                val = node.get(on)
+                if val is not None:
+                    lookup[str(val)] = node
+                elif node.name is not None:
+                    # Collect for substring fallback: newick labels often
+                    # embed the join value as a token, e.g.
+                    # "Agelena silvatica NC_033971.1" contains "NC_033971.1"
+                    named_nodes.append(node)
 
         for key, values in metadata.items():
             node = lookup.get(str(key))
+            if node is None and named_nodes:
+                # Substring fallback
+                for candidate in named_nodes:
+                    if str(key) in candidate.name:
+                        node = candidate
+                        lookup[str(key)] = candidate  # cache hit
+                        break
             if node is None:
                 continue
             if overwrite:
@@ -673,6 +761,8 @@ class PieTree:
                 for k, v in values.items():
                     if k not in node.metadata:
                         node.metadata[k] = v
+
+        return self
 
     def annotate_all(
         self,
@@ -738,6 +828,11 @@ class PieTree:
     def n_nodes(self) -> int:
         """Total number of nodes (tips + internal)."""
         return len(self.all_nodes)
+    
+    @property
+    def n_branches(self) -> int:
+        """Number of branches."""
+        return len(self.branches())
 
     @property
     def max_depth(self) -> int:
@@ -818,7 +913,7 @@ class PieTree:
         self,
         mode: str = "phylogram",
         orientation: str = "vertical",
-        style: Optional[RenderStyle] = None,
+        options: Optional[RenderOptions] = None,
     ) -> RenderSpec:
         """
         Build a :class:`RenderSpec` — the intermediate representation used by
@@ -830,11 +925,11 @@ class PieTree:
             Layout algorithm (e.g. ``'phylogram'``, ``'cladogram'``).
         orientation : str
             ``'vertical'`` or ``'horizontal'``.
-        style : RenderStyle, optional
-            Visual style; falls back to ``self.style``.
+        options : RenderOptions, optional
+            Visual style; falls back to ``self.render_options``.
         """
         coords: dict = build_layout(self, mode=mode, orientation=orientation)
-        style = style or self.style
+        options = options or self.render_options
 
         nodes = [
             RenderNode(
@@ -866,12 +961,14 @@ class PieTree:
             height=max(y for _, y in coords.values()) + 1,
             mode=mode,
             orientation=orientation,
-            style=style,
+            options=options,
             scale_bar={
                 "length": 0.1,
                 "position": "bottom_left",
                 "padding": 30
-            }
+            },
+            highlights=self._highlights,
+            panels=self._panels,
         )
 
     def to_svg(
@@ -879,7 +976,7 @@ class PieTree:
         path: Optional[str] = None,
         mode: str = "phylogram",
         orientation: str = "horizontal",
-        style: Optional[RenderStyle] = None,
+        **kwargs
     ) -> str:
         """
         Render this tree as an SVG string.
@@ -892,15 +989,16 @@ class PieTree:
             Layout mode (see :meth:`to_render_spec`).
         orientation : str
             ``'vertical'`` or ``'horizontal'``.
-        style : RenderStyle, optional
-            Overrides ``self.style`` for this render only.
+        options : RenderOptions, optional
+            Overrides ``self.render_options`` for this render only.
         """
         
         # TODO: Implement Resolver logic
         resolver = None
         
-        spec = self.to_render_spec(mode=mode, orientation=orientation, style=style)
-        svg = render_svg(spec, resolver=resolver, style=style or self.style)
+        render_options = RenderOptions(**kwargs) if kwargs else self.render_options
+        spec = self.to_render_spec(mode=mode, orientation=orientation, options=render_options)
+        svg = render_svg(spec, resolver=resolver)
 
         if path:
             with open(path, "w") as fh:

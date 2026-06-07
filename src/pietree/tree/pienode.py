@@ -471,6 +471,19 @@ class PieNode(PieObject):
     def clear_metadata(self) -> None:
         """Remove all metadata entries from this node."""
         self._metadata.clear()
+        
+    def infer(self, field):
+        """Infer a metadata value for the given field."""
+        if self.is_internal:
+            from pietree.metadata.inference import infer_node
+            if field in self._inference_cache:
+                return self._inference_cache[field]
+            result = infer_node(self, field)
+            self._inference_cache[field] = result
+
+            return result
+        else:
+            return self.metadata.get(field)
 
     # ------------------------------------------------------------------
     # Serialisation helpers

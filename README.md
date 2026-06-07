@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**Open-source metadata-aware phylogenetic analyser and renderer**
+**Open-source fluent metadata-aware phylogenetic analyser and renderer**
 
 [![Current Release](https://img.shields.io/badge/Current%20Release-0.0.1-teal.svg)](package.json)
 [![Python](https://img.shields.io/badge/Python-3.13.x-blue.svg)](https://python.org)

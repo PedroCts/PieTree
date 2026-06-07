@@ -4,26 +4,26 @@ from pietree import *
 samples = pd.read_csv("data/spider_samples.csv", sep=";")
 tree = PieTree.from_newick(path="data/spiders.newick")
 
-for _, sample in samples.iterrows():
-    tip = tree.find_tip(sample["mitogenome_id"])
-    tip.rename(f"{sample['species']} {sample['mitogenome_id']}")
-    if not tip: continue
-    for column in sample.index:
-        tip.annotate(column, sample[column])
+tree.annotate(samples, on="mitogenome_id")
 
-tree.nodes(group="this_study").style(fill="red", radius=7)
-tree.branches(group="this_study").style(stroke_width=5)
+tree.nodes(node_type="tip").rename("{species} {mitogenome_id}")
+tree.nodes(node_type="tip", group="this_study").suffix(" *")
+
+tree.nodes(group="this_study").style(fill="red", radius=5)
 tree.tip_labels(group="this_study").style(font_weight="bold")
 
-for taxon, color in [("Lycosoidea", "blue"), 
-                     ("Dictynoidea", "grey"), 
-                     ("Araneoidea", "pink"), 
-                     ("Dysderoidea", "yellow"), 
-                     ("Scytodoidea", "green"), 
-                     ("Pholcoidea", "red")]:
-    tree.clade_by_taxon(taxon).highlight(fill=color)
+for taxon, color in [("Lycosoidea", "blue"),
+                    ("Dictynoidea", "grey"), 
+                    ("Araneoidea", "pink"), 
+                    ("Dysderoidea", "yellow"), 
+                    ("Scytodoidea", "green"), 
+                    ("Pholcoidea", "red")]:
+    tree.clade_by_taxon(taxon).highlight(fill=color, label=taxon)
+
+# tree.metadata("taxonomy").highlight(values=["Lycosoidea", "Dictynoidea", "Araneoidea", "Dysderoidea", "Scytodoidea", "Pholcoidea"])
+# tree.metadata("group").panel(values=["outgroup"])
+tree.metadata("group").panel()
 
 tree.to_svg(
-    "spiders_tree.svg", 
-    mode="ultrametric"
+    "spiders_tree.svg"
 )

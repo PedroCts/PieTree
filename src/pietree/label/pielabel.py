@@ -18,3 +18,15 @@ class PieLabel:
 
     def __bool__(self):
         return bool(self.text)
+    
+    def __eq__(self, value):
+        if not self.text:
+            return False
+        return self.text == value
+
+    def __iadd__(self, other: str):
+        if not self.text:
+            self.text = other
+        else:
+            self.text += f" {other}"
+        return self

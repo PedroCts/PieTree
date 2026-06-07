@@ -5,16 +5,7 @@
 # Run with:
 # python examples/example.py
 
-from pietree import PieTree, PieNode
-from pietree.style import (
-    StyleRule,
-    MetadataSelector,
-    StyleSheet,
-    StyleResolver,
-)
-from pietree.render.layers.highlights import Highlight
-
-
+from pietree import *
 
 # ============================================================
 # CREATE TREE
@@ -89,9 +80,9 @@ for child in eukarya.children:
 # ============================================================
 
 print("\n=== TREE STATS ===")
-print(f"Tips: {len(tree.tips)}")
-print(f"Nodes: {len(tree.nodes())}")
-print(f"Branches: {len(tree.branches)}")
+print(f"Tips: {tree.n_tips}")
+print(f"Nodes: {tree.n_nodes}")
+print(f"Branches: {tree.n_branches}")
 
 # ============================================================
 # NAVIGATION
@@ -196,19 +187,13 @@ fly.metadata.update({
 
 print("\n=== QUERY: ALL MAMMALS ===")
 
-mammals = tree.find_nodes(
-    lambda n: n.metadata.get("group") == "Mammal"
-)
-
+mammals = tree.nodes(group="Mammal")
 for node in mammals:
     print(node.name)
 
 
 print("\n=== QUERY: ALL BRAZILIAN SAMPLES ===")
-
-brazilian = tree.find_nodes(
-    lambda n: n.metadata.get("country") == "Brazil"
-)
+brazilian = tree.nodes(country="Brazil")
 
 for node in brazilian:
     print(node.name)
@@ -216,59 +201,38 @@ for node in brazilian:
 
 print("\n=== QUERY: ALL CARNIVORA ===")
 
+# TODO: Include nodes.where("Carnivora in taxonomy") syntax
 carnivora = tree.find_nodes(
-    lambda n: (
-        n.metadata.get("taxonomy.order")
-        == "Carnivora"
-    )
+    lambda n: "Carnivora" in n.metadata.get("taxonomy", [])
 )
-
 for node in carnivora:
     print(node.name)
 
-
 print("\n=== QUERY: ALL MAMMALIA ===")
-
 mammalia = tree.find_nodes(
-    lambda n: (
-        n.metadata.get("taxonomy.class")
-        == "Mammalia"
-    )
+    lambda n: "Mammalia" in n.metadata.get("taxonomy", [])
 )
-
 for node in mammalia:
     print(node.name)
 
-
 print("\n=== QUERY: TIPS ONLY ===")
 
-tips = tree.find_nodes(
-    lambda n: n.is_tip
-)
-
-for node in tips:
-    print(node.name)
-
+for tip in tree.tips:
+    print(tip.name)
 
 print("\n=== QUERY: INTERNAL NODES ONLY ===")
 
-internal = tree.find_nodes(
-    lambda n: not n.is_tip
-)
-
-for node in internal:
+for node in tree.nodes("internal"):
     print(node.name)
 
-
 print("\n=== QUERY: LONG BRANCHES ===")
-
+# TODO: Implement something better here
 long_branches = tree.find_branches(
     lambda b: (
         b.length is not None
         and b.length >= 0.3
     )
 )
-
 for branch in long_branches:
     print(
         f"{branch.parent_id} -> "
@@ -281,11 +245,7 @@ for branch in long_branches:
 # ============================================================
 
 mammalia = tree.clade(mammals)
-
-tree.style.highlight(
-    mammalia,
-    fill="blue",
-)
+mammalia.highlight(fill="blue")
     
 # ============================================================
 # EXPORT TREE
@@ -293,32 +253,23 @@ tree.style.highlight(
 
 # print(vertebrate_tree.to_newick())
 
-sheet = StyleSheet([
-    (
-        MetadataSelector("group", "Mammal"),
-        StyleRule(fill="red", radius=7),
-    )
-])
-
-resolver = StyleResolver(sheet)
+mammals.style(fill="red", radius=7)
 
 # vertebrate_tree.to_svg(
 #     "vertebrate_tree.svg", 
 #     mode="phylogram", 
-#     orientation="vertical", 
-#     resolver=resolver
+#     orientation="vertical"
 # )
+
 tree.to_svg(
     "life_tree.svg", 
-    mode="ultrametric", 
-    orientation="horizontal", 
-    resolver=resolver
+    mode="ultrametric"
 )
 print("SVGs generated!")
 
 
 # ============================================================
-# EXPECTED OUTPUT (APPROXIMATELY)
+# EXPECTED OUTPUT
 # ============================================================
 
 # === ROOT ===

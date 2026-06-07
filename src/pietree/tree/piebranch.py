@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Optional, Dict, Any
 
 from pietree.core.pieobject import PieObject
-
+from pietree.label.pielabel import PieLabel
 from pietree.style.piestyle import PieBranchStyle
 
 class PieBranch(PieObject):
@@ -12,6 +12,6 @@ class PieBranch(PieObject):
         self.parent_id = parent_id
         self.child_id = child_id
         self.length = length
-        self.label = label
         self.support = support
+        self.label = PieLabel(text=label or support)
         self.style = PieBranchStyle()
