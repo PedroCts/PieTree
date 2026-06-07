@@ -28,4 +28,5 @@ class RenderContext:
     tip_edge:   float = 0.0   # screen coord of rightmost/bottommost tip node
     label_edge: float = 0.0   # screen coord where tip labels end → panels start
     
+    registry: object = None
     highlights: list | None = None

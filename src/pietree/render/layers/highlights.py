@@ -28,7 +28,7 @@ class RenderHighlight:
     # Label
     # --------------------------------------------------
     label: Optional[str] = None
-    label_position: LabelPosition = "upper_right"
+    label_position: LabelPosition | None = "upper_right"
     font_size: float = 11
     font_color: str = "#444444"
     font_weight: str = "bold"
@@ -185,7 +185,7 @@ def render_highlights(context):
         # --------------------------------------------------
         # DRAW LABEL
         # --------------------------------------------------
-
+    
         label_text = highlight.label
         if not label_text:
             continue

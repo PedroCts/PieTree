@@ -1,254 +1,268 @@
 <?xml version="1.0" ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
-  <rect x="0" y="0" width="800" height="1200" fill="white"/>
-  <rect x="337.654412531312" y="124.61538461538461" width="400.345587468688" height="104.61538461538461" fill="blue" rx="5" ry="5" opacity="0.25"/>
-  <text x="728.0" y="145.6153846153846" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Lycosoidea</text>
-  <rect x="330.29795242317863" y="378.46153846153845" width="407.70204757682137" height="316.1538461538461" fill="pink" rx="5" ry="5" opacity="0.25"/>
-  <text x="728.0" y="399.46153846153845" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Araneoidea</text>
-  <rect x="367.5517058095501" y="716.9230769230769" width="370.4482941904499" height="62.30769230769238" fill="green" rx="5" ry="5" opacity="0.25"/>
-  <text x="728.0" y="737.9230769230769" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Scytodoidea</text>
-  <rect x="461.5994293644544" y="801.5384615384615" width="276.4005706355456" height="62.307692307692264" fill="red" rx="5" ry="5" opacity="0.25"/>
-  <text x="728.0" y="822.5384615384615" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Pholcoidea</text>
-  <line x1="50.0" y1="1032.400590945513" x2="50.0" y2="902.9710036057693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="50.0" y1="902.9710036057693" x2="162.2574322358853" y2="902.9710036057693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="50.0" y1="1032.400590945513" x2="50.0" y2="1065.3846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="50.0" y1="1065.3846153846155" x2="102.47560550094195" y2="1065.3846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="50.0" y1="1032.400590945513" x2="50.0" y2="1128.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="50.0" y1="1128.8461538461538" x2="61.61029044646053" y2="1128.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="162.2574322358853" y1="902.9710036057693" x2="162.2574322358853" y2="782.8650841346155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="162.2574322358853" y1="782.8650841346155" x2="261.62556615930055" y2="782.8650841346155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="162.2574322358853" y1="902.9710036057693" x2="162.2574322358853" y2="1023.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="162.2574322358853" y1="1023.0769230769231" x2="412.042101025064" y2="1023.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="261.62556615930055" y1="782.8650841346155" x2="261.62556615930055" y2="606.1147836538462" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="261.62556615930055" y1="606.1147836538462" x2="274.19158809724144" y2="606.1147836538462" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="261.62556615930055" y1="782.8650841346155" x2="261.62556615930055" y2="959.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="261.62556615930055" y1="959.6153846153845" x2="285.27258242573157" y2="959.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="274.19158809724144" y1="606.1147836538462" x2="274.19158809724144" y2="368.96033653846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="274.19158809724144" y1="368.96033653846155" x2="299.9546674480976" y2="368.96033653846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="274.19158809724144" y1="606.1147836538462" x2="274.19158809724144" y2="843.2692307692307" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="274.19158809724144" y1="843.2692307692307" x2="290.70594125193753" y2="843.2692307692307" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="299.9546674480976" y1="368.96033653846155" x2="299.9546674480976" y2="155.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="299.9546674480976" y1="155.76923076923077" x2="321.23818872501835" y2="155.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="299.9546674480976" y1="368.96033653846155" x2="299.9546674480976" y2="582.1514423076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="299.9546674480976" y1="582.1514423076923" x2="340.29795242317863" y2="582.1514423076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="321.23818872501835" y1="155.76923076923077" x2="321.23818872501835" y2="71.15384615384616" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="321.23818872501835" y1="71.15384615384616" x2="328.311188637697" y2="71.15384615384616" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="321.23818872501835" y1="155.76923076923077" x2="321.23818872501835" y2="240.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="321.23818872501835" y1="240.3846153846154" x2="327.15656752105207" y2="240.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="328.311188637697" y1="71.15384615384616" x2="328.311188637697" y2="50.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="328.311188637697" y1="50.0" x2="389.22064070589687" y2="50.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="328.311188637697" y1="71.15384615384616" x2="328.311188637697" y2="92.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="328.311188637697" y1="92.3076923076923" x2="386.6204088873844" y2="92.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="327.15656752105207" y1="240.3846153846154" x2="327.15656752105207" y2="187.5" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="327.15656752105207" y1="187.5" x2="347.654412531312" y2="187.5" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="327.15656752105207" y1="240.3846153846154" x2="327.15656752105207" y2="293.2692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="327.15656752105207" y1="293.2692307692308" x2="359.6109989942265" y2="293.2692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="347.654412531312" y1="187.5" x2="347.654412531312" y2="155.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="347.654412531312" y1="155.76923076923077" x2="397.55580974819264" y2="155.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="347.654412531312" y1="187.5" x2="347.654412531312" y2="219.23076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="347.654412531312" y1="219.23076923076923" x2="386.4651554410556" y2="219.23076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="397.55580974819264" y1="155.76923076923077" x2="397.55580974819264" y2="134.6153846153846" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="397.55580974819264" y1="134.6153846153846" x2="410.48980635886153" y2="134.6153846153846" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="397.55580974819264" y1="155.76923076923077" x2="397.55580974819264" y2="176.92307692307693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="397.55580974819264" y1="176.92307692307693" x2="419.70700816687" y2="176.92307692307693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="359.6109989942265" y1="293.2692307692308" x2="359.6109989942265" y2="261.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="359.6109989942265" y1="261.53846153846155" x2="411.19847950088075" y2="261.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="359.6109989942265" y1="293.2692307692308" x2="359.6109989942265" y2="325.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="359.6109989942265" y1="325.0" x2="366.98500374156134" y2="325.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="366.98500374156134" y1="325.0" x2="366.98500374156134" y2="303.84615384615387" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="366.98500374156134" y1="303.84615384615387" x2="410.07913523984934" y2="303.84615384615387" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="366.98500374156134" y1="325.0" x2="366.98500374156134" y2="346.15384615384613" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="366.98500374156134" y1="346.15384615384613" x2="410.8257096295605" y2="346.15384615384613" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="340.29795242317863" y1="582.1514423076923" x2="340.29795242317863" y2="479.6875" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="340.29795242317863" y1="479.6875" x2="352.52301769731497" y2="479.6875" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="340.29795242317863" y1="582.1514423076923" x2="340.29795242317863" y2="684.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="340.29795242317863" y1="684.6153846153845" x2="386.2327191517518" y2="684.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="352.52301769731497" y1="479.6875" x2="352.52301769731497" y2="388.46153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="352.52301769731497" y1="388.46153846153845" x2="406.6415354916698" y2="388.46153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="352.52301769731497" y1="479.6875" x2="352.52301769731497" y2="570.9134615384615" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="352.52301769731497" y1="570.9134615384615" x2="357.3167039624319" y2="570.9134615384615" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="357.3167039624319" y1="570.9134615384615" x2="357.3167039624319" y2="499.5192307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="357.3167039624319" y1="499.5192307692308" x2="363.5195692241935" y2="499.5192307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="357.3167039624319" y1="570.9134615384615" x2="357.3167039624319" y2="642.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="357.3167039624319" y1="642.3076923076923" x2="404.50961458932437" y2="642.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="363.5195692241935" y1="499.5192307692308" x2="363.5195692241935" y2="451.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="363.5195692241935" y1="451.9230769230769" x2="369.7602555010418" y2="451.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="363.5195692241935" y1="499.5192307692308" x2="363.5195692241935" y2="547.1153846153846" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="363.5195692241935" y1="547.1153846153846" x2="379.0323478728235" y2="547.1153846153846" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="369.7602555010418" y1="451.9230769230769" x2="369.7602555010418" y2="430.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="369.7602555010418" y1="430.7692307692308" x2="398.87442610724855" y2="430.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="369.7602555010418" y1="451.9230769230769" x2="369.7602555010418" y2="473.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="369.7602555010418" y1="473.0769230769231" x2="424.62341136136644" y2="473.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="379.0323478728235" y1="547.1153846153846" x2="379.0323478728235" y2="515.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="379.0323478728235" y1="515.3846153846154" x2="400.64778517747123" y2="515.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="379.0323478728235" y1="547.1153846153846" x2="379.0323478728235" y2="578.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="379.0323478728235" y1="578.8461538461538" x2="387.35231095615376" y2="578.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="387.35231095615376" y1="578.8461538461538" x2="387.35231095615376" y2="557.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="387.35231095615376" y1="557.6923076923077" x2="404.7449360773399" y2="557.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="387.35231095615376" y1="578.8461538461538" x2="387.35231095615376" y2="600.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="387.35231095615376" y1="600.0" x2="404.4880524876292" y2="600.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="290.70594125193753" y1="843.2692307692307" x2="290.70594125193753" y2="790.3846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="290.70594125193753" y1="790.3846153846155" x2="303.4633315768897" y2="790.3846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="290.70594125193753" y1="843.2692307692307" x2="290.70594125193753" y2="896.1538461538462" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="290.70594125193753" y1="896.1538461538462" x2="424.19383106338876" y2="896.1538461538462" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="303.4633315768897" y1="790.3846153846155" x2="303.4633315768897" y2="748.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="303.4633315768897" y1="748.0769230769231" x2="377.5517058095501" y2="748.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="303.4633315768897" y1="790.3846153846155" x2="303.4633315768897" y2="832.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="303.4633315768897" y1="832.6923076923077" x2="471.5994293644544" y2="832.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="377.5517058095501" y1="748.0769230769231" x2="377.5517058095501" y2="726.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="377.5517058095501" y1="726.9230769230769" x2="459.49646546019807" y2="726.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="377.5517058095501" y1="748.0769230769231" x2="377.5517058095501" y2="769.2307692307693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="377.5517058095501" y1="769.2307692307693" x2="457.83822655491514" y2="769.2307692307693" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="471.5994293644544" y1="832.6923076923077" x2="471.5994293644544" y2="811.5384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="471.5994293644544" y1="811.5384615384615" x2="471.5998814863314" y2="811.5384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="471.5994293644544" y1="832.6923076923077" x2="471.5994293644544" y2="853.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="471.5994293644544" y1="853.8461538461538" x2="471.6" y2="853.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="285.27258242573157" y1="959.6153846153845" x2="285.27258242573157" y2="938.4615384615385" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="285.27258242573157" y1="938.4615384615385" x2="440.2608412364725" y2="938.4615384615385" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="285.27258242573157" y1="959.6153846153845" x2="285.27258242573157" y2="980.7692307692307" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="285.27258242573157" y1="980.7692307692307" x2="410.3321459118579" y2="980.7692307692307" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="61.61029044646053" y1="1128.8461538461538" x2="61.61029044646053" y2="1107.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="61.61029044646053" y1="1107.6923076923076" x2="96.80010084406723" y2="1107.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="61.61029044646053" y1="1128.8461538461538" x2="61.61029044646053" y2="1150.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="61.61029044646053" y1="1150.0" x2="103.15769309746275" y2="1150.0" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="50.0" cy="1032.400590945513" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="162.2574322358853" cy="902.9710036057693" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="261.62556615930055" cy="782.8650841346155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="274.19158809724144" cy="606.1147836538462" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="299.9546674480976" cy="368.96033653846155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="321.23818872501835" cy="155.76923076923077" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="328.311188637697" cy="71.15384615384616" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="389.22064070589687" cy="50.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="386.6204088873844" cy="92.3076923076923" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="327.15656752105207" cy="240.3846153846154" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="347.654412531312" cy="187.5" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="397.55580974819264" cy="155.76923076923077" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="410.48980635886153" cy="134.6153846153846" r="5" fill="red" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="419.70700816687" cy="176.92307692307693" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="386.4651554410556" cy="219.23076923076923" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="359.6109989942265" cy="293.2692307692308" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="411.19847950088075" cy="261.53846153846155" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="366.98500374156134" cy="325.0" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="410.07913523984934" cy="303.84615384615387" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="410.8257096295605" cy="346.15384615384613" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="340.29795242317863" cy="582.1514423076923" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="352.52301769731497" cy="479.6875" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="406.6415354916698" cy="388.46153846153845" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="357.3167039624319" cy="570.9134615384615" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="363.5195692241935" cy="499.5192307692308" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="369.7602555010418" cy="451.9230769230769" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="398.87442610724855" cy="430.7692307692308" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="424.62341136136644" cy="473.0769230769231" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="379.0323478728235" cy="547.1153846153846" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="400.64778517747123" cy="515.3846153846154" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="387.35231095615376" cy="578.8461538461538" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="404.7449360773399" cy="557.6923076923077" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="404.4880524876292" cy="600.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="404.50961458932437" cy="642.3076923076923" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="386.2327191517518" cy="684.6153846153845" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="290.70594125193753" cy="843.2692307692307" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="303.4633315768897" cy="790.3846153846155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="377.5517058095501" cy="748.0769230769231" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="459.49646546019807" cy="726.9230769230769" r="5" fill="red" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="457.83822655491514" cy="769.2307692307693" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="471.5994293644544" cy="832.6923076923077" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="471.5998814863314" cy="811.5384615384615" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="471.6" cy="853.8461538461538" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="424.19383106338876" cy="896.1538461538462" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="285.27258242573157" cy="959.6153846153845" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="440.2608412364725" cy="938.4615384615385" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="410.3321459118579" cy="980.7692307692307" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="412.042101025064" cy="1023.0769230769231" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="102.47560550094195" cy="1065.3846153846155" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="61.61029044646053" cy="1128.8461538461538" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="96.80010084406723" cy="1107.6923076923076" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <circle cx="103.15769309746275" cy="1150.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
-  <line x1="399.22064070589687" y1="50.0" x2="471.6" y2="50.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="396.6204088873844" y1="92.3076923076923" x2="471.6" y2="92.3076923076923" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="420.48980635886153" y1="134.6153846153846" x2="471.6" y2="134.6153846153846" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="429.70700816687" y1="176.92307692307693" x2="471.6" y2="176.92307692307693" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="396.4651554410556" y1="219.23076923076923" x2="471.6" y2="219.23076923076923" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="421.19847950088075" y1="261.53846153846155" x2="471.6" y2="261.53846153846155" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="420.07913523984934" y1="303.84615384615387" x2="471.6" y2="303.84615384615387" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="420.8257096295605" y1="346.15384615384613" x2="471.6" y2="346.15384615384613" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="416.6415354916698" y1="388.46153846153845" x2="471.6" y2="388.46153846153845" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="408.87442610724855" y1="430.7692307692308" x2="471.6" y2="430.7692307692308" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="434.62341136136644" y1="473.0769230769231" x2="471.6" y2="473.0769230769231" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="410.64778517747123" y1="515.3846153846154" x2="471.6" y2="515.3846153846154" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="414.7449360773399" y1="557.6923076923077" x2="471.6" y2="557.6923076923077" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="414.4880524876292" y1="600.0" x2="471.6" y2="600.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="414.50961458932437" y1="642.3076923076923" x2="471.6" y2="642.3076923076923" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="396.2327191517518" y1="684.6153846153845" x2="471.6" y2="684.6153846153845" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="469.49646546019807" y1="726.9230769230769" x2="471.6" y2="726.9230769230769" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="467.83822655491514" y1="769.2307692307693" x2="471.6" y2="769.2307692307693" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="481.5998814863314" y1="811.5384615384615" x2="471.6" y2="811.5384615384615" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="481.6" y1="853.8461538461538" x2="471.6" y2="853.8461538461538" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="434.19383106338876" y1="896.1538461538462" x2="471.6" y2="896.1538461538462" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="450.2608412364725" y1="938.4615384615385" x2="471.6" y2="938.4615384615385" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="420.3321459118579" y1="980.7692307692307" x2="471.6" y2="980.7692307692307" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="422.042101025064" y1="1023.0769230769231" x2="471.6" y2="1023.0769230769231" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="112.47560550094195" y1="1065.3846153846155" x2="471.6" y2="1065.3846153846155" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="106.80010084406723" y1="1107.6923076923076" x2="471.6" y2="1107.6923076923076" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <line x1="113.15769309746275" y1="1150.0" x2="471.6" y2="1150.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
-  <text x="170.2574322358853" y="906.9710036057693" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="269.62556615930055" y="786.8650841346155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="282.19158809724144" y="610.1147836538462" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">97.8/98</text>
-  <text x="307.9546674480976" y="372.96033653846155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="329.23818872501835" y="159.76923076923077" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="336.311188637697" y="75.15384615384616" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">95.2/90</text>
-  <text x="481.6" y="54.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Agelena silvatica NC_033971.1</text>
-  <text x="481.6" y="96.3076923076923" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Desis jiaxiangi NC_060386.1</text>
-  <text x="335.15656752105207" y="244.3846153846154" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">62.7/72</text>
-  <text x="355.654412531312" y="191.5" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="405.55580974819264" y="159.76923076923077" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="138.6153846153846" font-size="12" fill="black" font-weight="bold" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Phoneutria sp. OP271741.1 *</text>
-  <text x="481.6" y="180.92307692307693" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Phoneutria boliviensis NC_058921.1</text>
-  <text x="481.6" y="223.23076923076923" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Dolomedes angustivirgatus NC_031355.1</text>
-  <text x="367.6109989942265" y="297.2692307692308" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="265.53846153846155" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Carrhotus xanthogramma NC_027492.1</text>
-  <text x="374.98500374156134" y="329.0" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">88.2/90</text>
-  <text x="481.6" y="307.84615384615387" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cheliceroides longipalpis NC_041120.1</text>
-  <text x="481.6" y="350.15384615384613" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Epeus alboguttatus NC_042829.1</text>
-  <text x="348.29795242317863" y="586.1514423076923" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="360.52301769731497" y="483.6875" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="392.46153846153845" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Araneus angulatus NC_032402.1</text>
-  <text x="365.3167039624319" y="574.9134615384615" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">89.5/82</text>
-  <text x="371.5195692241935" y="503.5192307692308" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">97.7/74</text>
-  <text x="377.7602555010418" y="455.9230769230769" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">22.6/45</text>
-  <text x="481.6" y="434.7692307692308" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Argiope perforata NC_044695.1</text>
-  <text x="481.6" y="477.0769230769231" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyclosa japonica NC_044696.1</text>
-  <text x="387.0323478728235" y="551.1153846153846" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="519.3846153846154" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona adianta NC_029756.1</text>
-  <text x="395.35231095615376" y="582.8461538461538" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="561.6923076923077" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona multiplicans NC_044653.1</text>
-  <text x="481.6" y="604.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona scylla NC_044101.1</text>
-  <text x="481.6" y="646.3076923076923" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Hypsosinga pygmaea NC_028078.1</text>
-  <text x="481.6" y="688.6153846153845" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyrtarachne nagasakiensis NC_028077.1</text>
-  <text x="298.70594125193753" y="847.2692307692307" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">99.7/100</text>
-  <text x="311.4633315768897" y="794.3846153846155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">49/75</text>
-  <text x="385.5517058095501" y="752.0769230769231" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="730.9230769230769" font-size="12" fill="black" font-weight="bold" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Loxosceles laeta OP271740.1 *</text>
-  <text x="481.6" y="773.2307692307693" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Loxosceles similis NC_042902.1</text>
-  <text x="479.5994293644544" y="836.6923076923077" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
-  <text x="481.6" y="815.5384615384615" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mesabolivar sp. ITV1036I1 NC_040859.1</text>
-  <text x="481.6" y="857.8461538461538" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mesabolivar sp. ITV1036I3 NC_040861.1</text>
-  <text x="481.6" y="900.1538461538462" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Harpactocrates apennicola NC_044081.1</text>
-  <text x="293.27258242573157" y="963.6153846153845" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">99.5/100</text>
-  <text x="481.6" y="942.4615384615385" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Atypus karschi NC_059873.1</text>
-  <text x="481.6" y="984.7692307692307" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyriopagopus hainanus NC_053738.1</text>
-  <text x="481.6" y="1027.076923076923" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Liphistius erawan NC_020323.1</text>
-  <text x="481.6" y="1069.3846153846155" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Scorpiops tibetanus NC_053569.1</text>
-  <text x="69.61029044646054" y="1132.8461538461538" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">92.7/97</text>
-  <text x="481.6" y="1111.6923076923076" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Uroctonus mordax NC_010782.1</text>
-  <text x="481.6" y="1154.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Vaejovis smithi NC_035567.1</text>
-  <line x1="762.0" y1="50.0" x2="762.0" y2="50.0" stroke="#555555" stroke-width="4.0" stroke-linecap="round"/>
-  <text x="777.0" y="50.0" font-size="11.0" fill="#333333" text-anchor="middle" dominant-baseline="auto" transform="rotate(-90, 777.0, 50.0)">reference</text>
-  <line x1="762.0" y1="92.3076923076923" x2="762.0" y2="1023.0769230769231" stroke="#555555" stroke-width="4.0" stroke-linecap="round"/>
-  <text x="777.0" y="557.6923076923077" font-size="11.0" fill="#333333" text-anchor="middle" dominant-baseline="auto" transform="rotate(-90, 777.0, 557.6923076923077)">other_spiders</text>
-  <line x1="762.0" y1="134.6153846153846" x2="762.0" y2="726.9230769230769" stroke="#555555" stroke-width="4.0" stroke-linecap="round"/>
-  <text x="777.0" y="430.7692307692308" font-size="11.0" fill="#333333" text-anchor="middle" dominant-baseline="auto" transform="rotate(-90, 777.0, 430.7692307692308)">this_study</text>
-  <line x1="762.0" y1="1065.3846153846155" x2="762.0" y2="1150.0" stroke="#555555" stroke-width="4.0" stroke-linecap="round"/>
-  <text x="777.0" y="1107.6923076923076" font-size="11.0" fill="#333333" text-anchor="middle" dominant-baseline="auto" transform="rotate(-90, 777.0, 1107.6923076923076)">outgroup</text>
-  <line x1="30" y1="1170" x2="64.36780198438129" y2="1170" stroke="black" stroke-width="2"/>
-  <text x="47.183900992190644" y="1185" text-anchor="middle" font-size="12" fill="black">0.1</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <rect x="0" y="0" width="1000" height="1000" fill="white"/>
+  <rect x="478.85669551580537" y="109.23076923076924" width="459.14330448419463" height="89.23076923076924" fill="#2ca02c" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="157.69615384615386" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Lycosoidea</text>
+  <rect x="496.48528694215184" y="213.0769230769231" width="441.51471305784816" height="89.23076923076917" fill="#d62728" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="261.5423076923077" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Dionycha</text>
+  <rect x="468.01045357269413" y="316.92307692307696" width="469.98954642730587" height="262.3076923076922" fill="#9467bd" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="451.9269230769231" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Araneoidea</text>
+  <rect x="522.9367654914998" y="593.8461538461539" width="415.06323450850016" height="54.61538461538453" fill="#8c564b" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="625.0038461538462" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Scytodoidea</text>
+  <rect x="661.5991586644802" y="663.0769230769231" width="276.4008413355198" height="54.61538461538453" fill="#e377c2" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="694.2346153846154" font-size="11" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">Pholcoidea</text>
+  <rect x="571.5001509313764" y="109.23076923076924" width="366.4998490686236" height="19.999999999999986" fill="#7e7e7e" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="122.03076923076922" font-size="8" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">This study</text>
+  <rect x="643.7547507828726" y="593.8461538461539" width="294.24524921712737" height="20.0" fill="#7e7e7e" rx="5" ry="5" opacity="0.25"/>
+  <text x="928.0" y="606.6461538461539" font-size="8" fill="#444444" font-weight="bold" text-anchor="end" opacity="1">This study</text>
+  <line x1="50.0" y1="853.7823016826924" x2="50.0" y2="747.8853665865385" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="50.0" y1="747.8853665865385" x2="215.51048358118192" y2="747.8853665865385" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="50.0" y1="853.7823016826924" x2="50.0" y2="880.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="50.0" y1="880.7692307692308" x2="127.36915649759374" y2="880.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="50.0" y1="853.7823016826924" x2="50.0" y2="932.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="50.0" y1="932.6923076923076" x2="67.11801836223877" y2="932.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="215.51048358118192" y1="747.8853665865385" x2="215.51048358118192" y2="649.6168870192308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="215.51048358118192" y1="649.6168870192308" x2="362.0172009597277" y2="649.6168870192308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="215.51048358118192" y1="747.8853665865385" x2="215.51048358118192" y2="846.1538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="215.51048358118192" y1="846.1538461538461" x2="583.7888282665555" y2="846.1538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="362.0172009597277" y1="649.6168870192308" x2="362.0172009597277" y2="505.0030048076923" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="362.0172009597277" y1="505.0030048076923" x2="380.5443338739214" y2="505.0030048076923" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="362.0172009597277" y1="649.6168870192308" x2="362.0172009597277" y2="794.2307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="362.0172009597277" y1="794.2307692307692" x2="396.8819668781659" y2="794.2307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="380.5443338739214" y1="505.0030048076923" x2="380.5443338739214" y2="310.96754807692304" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="380.5443338739214" y1="310.96754807692304" x2="418.5289878693963" y2="310.96754807692304" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="380.5443338739214" y1="505.0030048076923" x2="380.5443338739214" y2="699.0384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="380.5443338739214" y1="699.0384615384615" x2="404.8928204037105" y2="699.0384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="418.5289878693963" y1="310.96754807692304" x2="418.5289878693963" y2="136.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="418.5289878693963" y1="136.53846153846155" x2="449.9090562416305" y2="136.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="418.5289878693963" y1="310.96754807692304" x2="418.5289878693963" y2="485.3966346153846" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="418.5289878693963" y1="485.3966346153846" x2="478.01045357269413" y2="485.3966346153846" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="449.9090562416305" y1="136.53846153846155" x2="449.9090562416305" y2="67.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="449.9090562416305" y1="67.3076923076923" x2="460.33736920586443" y2="67.3076923076923" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="449.9090562416305" y1="136.53846153846155" x2="449.9090562416305" y2="205.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="449.9090562416305" y1="205.76923076923077" x2="458.63501511168397" y2="205.76923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="460.33736920586443" y1="67.3076923076923" x2="460.33736920586443" y2="50.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="460.33736920586443" y1="50.0" x2="550.1412482513888" y2="50.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="460.33736920586443" y1="67.3076923076923" x2="460.33736920586443" y2="84.61538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="460.33736920586443" y1="84.61538461538461" x2="546.3075098776046" y2="84.61538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="458.63501511168397" y1="205.76923076923077" x2="458.63501511168397" y2="162.5" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="458.63501511168397" y1="162.5" x2="488.85669551580537" y2="162.5" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="458.63501511168397" y1="205.76923076923077" x2="458.63501511168397" y2="249.03846153846152" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="458.63501511168397" y1="249.03846153846152" x2="506.48528694215184" y2="249.03846153846152" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="488.85669551580537" y1="162.5" x2="488.85669551580537" y2="136.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="488.85669551580537" y1="136.53846153846155" x2="562.4304823042612" y2="136.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="488.85669551580537" y1="162.5" x2="488.85669551580537" y2="188.46153846153848" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="488.85669551580537" y1="188.46153846153848" x2="546.0786067888049" y2="188.46153846153848" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="562.4304823042612" y1="136.53846153846155" x2="562.4304823042612" y2="119.23076923076924" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="562.4304823042612" y1="119.23076923076924" x2="581.5001509313764" y2="119.23076923076924" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="562.4304823042612" y1="136.53846153846155" x2="562.4304823042612" y2="153.84615384615387" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="562.4304823042612" y1="153.84615384615387" x2="595.089839365575" y2="153.84615384615387" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="506.48528694215184" y1="249.03846153846152" x2="506.48528694215184" y2="223.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="506.48528694215184" y1="223.0769230769231" x2="582.5450067783383" y2="223.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="506.48528694215184" y1="249.03846153846152" x2="506.48528694215184" y2="275.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="506.48528694215184" y1="275.0" x2="517.3573964083362" y2="275.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="517.3573964083362" y1="275.0" x2="517.3573964083362" y2="257.69230769230774" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="517.3573964083362" y1="257.69230769230774" x2="580.8946642910113" y2="257.69230769230774" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="517.3573964083362" y1="275.0" x2="517.3573964083362" y2="292.30769230769226" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="517.3573964083362" y1="292.30769230769226" x2="581.995401104684" y2="292.30769230769226" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="478.01045357269413" y1="485.3966346153846" x2="478.01045357269413" y2="401.5625" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="478.01045357269413" y1="401.5625" x2="496.0348856751683" y2="401.5625" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="478.01045357269413" y1="485.3966346153846" x2="478.01045357269413" y2="569.2307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="478.01045357269413" y1="569.2307692307692" x2="545.7359066051445" y2="569.2307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="496.0348856751683" y1="401.5625" x2="496.0348856751683" y2="326.92307692307696" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="496.0348856751683" y1="326.92307692307696" x2="575.8263246243405" y2="326.92307692307696" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="496.0348856751683" y1="401.5625" x2="496.0348856751683" y2="476.20192307692304" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="496.0348856751683" y1="476.20192307692304" x2="503.1026166580827" y2="476.20192307692304" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="503.1026166580827" y1="476.20192307692304" x2="503.1026166580827" y2="417.78846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="503.1026166580827" y1="417.78846153846155" x2="512.2480176227673" y2="417.78846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="503.1026166580827" y1="476.20192307692304" x2="503.1026166580827" y2="534.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="503.1026166580827" y1="534.6153846153845" x2="572.6830560453606" y2="534.6153846153845" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="512.2480176227673" y1="417.78846153846155" x2="512.2480176227673" y2="378.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="512.2480176227673" y1="378.8461538461538" x2="521.4491812605493" y2="378.8461538461538" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="512.2480176227673" y1="417.78846153846155" x2="512.2480176227673" y2="456.7307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="512.2480176227673" y1="456.7307692307692" x2="535.1197994253962" y2="456.7307692307692" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="521.4491812605493" y1="378.8461538461538" x2="521.4491812605493" y2="361.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="521.4491812605493" y1="361.53846153846155" x2="564.3746282454119" y2="361.53846153846155" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="521.4491812605493" y1="378.8461538461538" x2="521.4491812605493" y2="396.1538461538462" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="521.4491812605493" y1="396.1538461538462" x2="602.3385021400032" y2="396.1538461538462" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="535.1197994253962" y1="456.7307692307692" x2="535.1197994253962" y2="430.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="535.1197994253962" y1="430.7692307692308" x2="566.9892392464803" y2="430.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="535.1197994253962" y1="456.7307692307692" x2="535.1197994253962" y2="482.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="535.1197994253962" y1="482.6923076923077" x2="547.3866140662835" y2="482.6923076923077" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="547.3866140662835" y1="482.6923076923077" x2="547.3866140662835" y2="465.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="547.3866140662835" y1="465.3846153846154" x2="573.0300101178237" y2="465.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="547.3866140662835" y1="482.6923076923077" x2="547.3866140662835" y2="500.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="547.3866140662835" y1="500.0" x2="572.6512652426716" y2="500.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="404.8928204037105" y1="699.0384615384615" x2="404.8928204037105" y2="655.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="404.8928204037105" y1="655.7692307692308" x2="423.70210367218846" y2="655.7692307692308" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="404.8928204037105" y1="699.0384615384615" x2="404.8928204037105" y2="742.3076923076924" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="404.8928204037105" y1="742.3076923076924" x2="601.7051361219224" y2="742.3076923076924" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="423.70210367218846" y1="655.7692307692308" x2="423.70210367218846" y2="621.1538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="423.70210367218846" y1="621.1538461538461" x2="532.9367654914998" y2="621.1538461538461" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="423.70210367218846" y1="655.7692307692308" x2="423.70210367218846" y2="690.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="423.70210367218846" y1="690.3846153846154" x2="671.5991586644802" y2="690.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="532.9367654914998" y1="621.1538461538461" x2="532.9367654914998" y2="603.8461538461539" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="532.9367654914998" y1="603.8461538461539" x2="653.7547507828726" y2="603.8461538461539" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="532.9367654914998" y1="621.1538461538461" x2="532.9367654914998" y2="638.4615384615385" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="532.9367654914998" y1="638.4615384615385" x2="651.3098710306814" y2="638.4615384615385" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="671.5991586644802" y1="690.3846153846154" x2="671.5991586644802" y2="673.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="671.5991586644802" y1="673.0769230769231" x2="671.599825265426" y2="673.0769230769231" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="671.5991586644802" y1="690.3846153846154" x2="671.5991586644802" y2="707.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="671.5991586644802" y1="707.6923076923076" x2="671.6" y2="707.6923076923076" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="396.8819668781659" y1="794.2307692307692" x2="396.8819668781659" y2="776.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="396.8819668781659" y1="776.9230769230769" x2="625.394067629486" y2="776.9230769230769" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="396.8819668781659" y1="794.2307692307692" x2="396.8819668781659" y2="811.5384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="396.8819668781659" y1="811.5384615384615" x2="581.2676990009745" y2="811.5384615384615" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="67.11801836223877" y1="932.6923076923076" x2="67.11801836223877" y2="915.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="67.11801836223877" y1="915.3846153846154" x2="119.00128720273291" y2="915.3846153846154" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="67.11801836223877" y1="932.6923076923076" x2="67.11801836223877" y2="950.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="67.11801836223877" y1="950.0" x2="128.374815060206" y2="950.0" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="50.0" cy="853.7823016826924" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="215.51048358118192" cy="747.8853665865385" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="362.0172009597277" cy="649.6168870192308" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="380.5443338739214" cy="505.0030048076923" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="418.5289878693963" cy="310.96754807692304" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="449.9090562416305" cy="136.53846153846155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="460.33736920586443" cy="67.3076923076923" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="550.1412482513888" cy="50.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="546.3075098776046" cy="84.61538461538461" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="458.63501511168397" cy="205.76923076923077" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="488.85669551580537" cy="162.5" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="562.4304823042612" cy="136.53846153846155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="581.5001509313764" cy="119.23076923076924" r="5" fill="red" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="595.089839365575" cy="153.84615384615387" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="546.0786067888049" cy="188.46153846153848" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="506.48528694215184" cy="249.03846153846152" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="582.5450067783383" cy="223.0769230769231" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="517.3573964083362" cy="275.0" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="580.8946642910113" cy="257.69230769230774" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="581.995401104684" cy="292.30769230769226" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="478.01045357269413" cy="485.3966346153846" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="496.0348856751683" cy="401.5625" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="575.8263246243405" cy="326.92307692307696" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="503.1026166580827" cy="476.20192307692304" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="512.2480176227673" cy="417.78846153846155" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="521.4491812605493" cy="378.8461538461538" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="564.3746282454119" cy="361.53846153846155" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="602.3385021400032" cy="396.1538461538462" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="535.1197994253962" cy="456.7307692307692" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="566.9892392464803" cy="430.7692307692308" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="547.3866140662835" cy="482.6923076923077" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="573.0300101178237" cy="465.3846153846154" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="572.6512652426716" cy="500.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="572.6830560453606" cy="534.6153846153845" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="545.7359066051445" cy="569.2307692307692" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="404.8928204037105" cy="699.0384615384615" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="423.70210367218846" cy="655.7692307692308" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="532.9367654914998" cy="621.1538461538461" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="653.7547507828726" cy="603.8461538461539" r="5" fill="red" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="651.3098710306814" cy="638.4615384615385" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="671.5991586644802" cy="690.3846153846154" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="671.599825265426" cy="673.0769230769231" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="671.6" cy="707.6923076923076" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="601.7051361219224" cy="742.3076923076924" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="396.8819668781659" cy="794.2307692307692" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="625.394067629486" cy="776.9230769230769" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="581.2676990009745" cy="811.5384615384615" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="583.7888282665555" cy="846.1538461538461" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="127.36915649759374" cy="880.7692307692308" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="67.11801836223877" cy="932.6923076923076" r="3" fill="#999" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="119.00128720273291" cy="915.3846153846154" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <circle cx="128.374815060206" cy="950.0" r="4" fill="#4C78A8" stroke="black" stroke-width="2" opacity="1.0"/>
+  <line x1="560.1412482513888" y1="50.0" x2="671.6" y2="50.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="556.3075098776046" y1="84.61538461538461" x2="671.6" y2="84.61538461538461" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="591.5001509313764" y1="119.23076923076924" x2="671.6" y2="119.23076923076924" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="605.089839365575" y1="153.84615384615387" x2="671.6" y2="153.84615384615387" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="556.0786067888049" y1="188.46153846153848" x2="671.6" y2="188.46153846153848" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="592.5450067783383" y1="223.0769230769231" x2="671.6" y2="223.0769230769231" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="590.8946642910113" y1="257.69230769230774" x2="671.6" y2="257.69230769230774" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="591.995401104684" y1="292.30769230769226" x2="671.6" y2="292.30769230769226" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="585.8263246243405" y1="326.92307692307696" x2="671.6" y2="326.92307692307696" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="574.3746282454119" y1="361.53846153846155" x2="671.6" y2="361.53846153846155" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="612.3385021400032" y1="396.1538461538462" x2="671.6" y2="396.1538461538462" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="576.9892392464803" y1="430.7692307692308" x2="671.6" y2="430.7692307692308" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="583.0300101178237" y1="465.3846153846154" x2="671.6" y2="465.3846153846154" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="582.6512652426716" y1="500.0" x2="671.6" y2="500.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="582.6830560453606" y1="534.6153846153845" x2="671.6" y2="534.6153846153845" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="555.7359066051445" y1="569.2307692307692" x2="671.6" y2="569.2307692307692" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="663.7547507828726" y1="603.8461538461539" x2="671.6" y2="603.8461538461539" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="661.3098710306814" y1="638.4615384615385" x2="671.6" y2="638.4615384615385" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="681.599825265426" y1="673.0769230769231" x2="671.6" y2="673.0769230769231" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="681.6" y1="707.6923076923076" x2="671.6" y2="707.6923076923076" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="611.7051361219224" y1="742.3076923076924" x2="671.6" y2="742.3076923076924" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="635.394067629486" y1="776.9230769230769" x2="671.6" y2="776.9230769230769" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="591.2676990009745" y1="811.5384615384615" x2="671.6" y2="811.5384615384615" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="593.7888282665555" y1="846.1538461538461" x2="671.6" y2="846.1538461538461" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="137.36915649759374" y1="880.7692307692308" x2="671.6" y2="880.7692307692308" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="129.0012872027329" y1="915.3846153846154" x2="671.6" y2="915.3846153846154" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <line x1="138.374815060206" y1="950.0" x2="671.6" y2="950.0" stroke="#888888" stroke-width="2.0" stroke-dasharray="4,4"/>
+  <text x="223.51048358118192" y="751.8853665865385" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="370.0172009597277" y="653.6168870192308" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="388.5443338739214" y="509.0030048076923" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">97.8/98</text>
+  <text x="426.5289878693963" y="314.96754807692304" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="457.9090562416305" y="140.53846153846155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="468.33736920586443" y="71.3076923076923" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">95.2/90</text>
+  <text x="681.6" y="54.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Agelena silvatica NC_033971.1</text>
+  <text x="681.6" y="88.61538461538461" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Desis jiaxiangi NC_060386.1</text>
+  <text x="466.63501511168397" y="209.76923076923077" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">62.7/72</text>
+  <text x="496.85669551580537" y="166.5" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="570.4304823042612" y="140.53846153846155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="123.23076923076924" font-size="12" fill="black" font-weight="bold" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Phoneutria sp. OP271741.1 *</text>
+  <text x="681.6" y="157.84615384615387" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Phoneutria boliviensis NC_058921.1</text>
+  <text x="681.6" y="192.46153846153848" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Dolomedes angustivirgatus NC_031355.1</text>
+  <text x="514.4852869421518" y="253.03846153846152" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="227.0769230769231" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Carrhotus xanthogramma NC_027492.1</text>
+  <text x="525.3573964083362" y="279.0" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">88.2/90</text>
+  <text x="681.6" y="261.69230769230774" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cheliceroides longipalpis NC_041120.1</text>
+  <text x="681.6" y="296.30769230769226" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Epeus alboguttatus NC_042829.1</text>
+  <text x="486.01045357269413" y="489.3966346153846" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="504.0348856751683" y="405.5625" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="330.92307692307696" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Araneus angulatus NC_032402.1</text>
+  <text x="511.1026166580827" y="480.20192307692304" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">89.5/82</text>
+  <text x="520.2480176227673" y="421.78846153846155" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">97.7/74</text>
+  <text x="529.4491812605493" y="382.8461538461538" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">22.6/45</text>
+  <text x="681.6" y="365.53846153846155" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Argiope perforata NC_044695.1</text>
+  <text x="681.6" y="400.1538461538462" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyclosa japonica NC_044696.1</text>
+  <text x="543.1197994253962" y="460.7307692307692" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="434.7692307692308" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona adianta NC_029756.1</text>
+  <text x="555.3866140662835" y="486.6923076923077" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="469.3846153846154" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona multiplicans NC_044653.1</text>
+  <text x="681.6" y="504.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona scylla NC_044101.1</text>
+  <text x="681.6" y="538.6153846153845" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Hypsosinga pygmaea NC_028078.1</text>
+  <text x="681.6" y="573.2307692307692" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyrtarachne nagasakiensis NC_028077.1</text>
+  <text x="412.8928204037105" y="703.0384615384615" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">99.7/100</text>
+  <text x="431.70210367218846" y="659.7692307692308" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">49/75</text>
+  <text x="540.9367654914998" y="625.1538461538461" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="607.8461538461539" font-size="12" fill="black" font-weight="bold" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Loxosceles laeta OP271740.1 *</text>
+  <text x="681.6" y="642.4615384615385" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Loxosceles similis NC_042902.1</text>
+  <text x="679.5991586644802" y="694.3846153846154" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">100/100</text>
+  <text x="681.6" y="677.0769230769231" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mesabolivar sp. ITV1036I1 NC_040859.1</text>
+  <text x="681.6" y="711.6923076923076" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mesabolivar sp. ITV1036I3 NC_040861.1</text>
+  <text x="681.6" y="746.3076923076924" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Harpactocrates apennicola NC_044081.1</text>
+  <text x="404.8819668781659" y="798.2307692307692" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">99.5/100</text>
+  <text x="681.6" y="780.9230769230769" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Atypus karschi NC_059873.1</text>
+  <text x="681.6" y="815.5384615384615" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Cyriopagopus hainanus NC_053738.1</text>
+  <text x="681.6" y="850.1538461538461" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Liphistius erawan NC_020323.1</text>
+  <text x="681.6" y="884.7692307692308" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Scorpiops tibetanus NC_053569.1</text>
+  <text x="75.11801836223877" y="936.6923076923076" font-size="10" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">92.7/97</text>
+  <text x="681.6" y="919.3846153846154" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Uroctonus mordax NC_010782.1</text>
+  <text x="681.6" y="954.0" font-size="12" fill="black" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Vaejovis smithi NC_035567.1</text>
+  <text x="58.0" y="847.7823016826924" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Arachnida</text>
+  <text x="223.51048358118192" y="741.8853665865385" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Araneae</text>
+  <text x="388.5443338739214" y="499.0030048076923" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Araneomorphae</text>
+  <text x="426.5289878693963" y="304.96754807692304" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Entelegynae</text>
+  <text x="496.85669551580537" y="156.5" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Lycosoidea</text>
+  <text x="570.4304823042612" y="130.53846153846155" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Phoneutria</text>
+  <text x="514.4852869421518" y="243.03846153846152" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Salticoida</text>
+  <text x="486.01045357269413" y="479.3966346153846" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Araneidae</text>
+  <text x="543.1197994253962" y="450.7307692307692" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Neoscona</text>
+  <text x="412.8928204037105" y="693.0384615384615" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Haplogynae</text>
+  <text x="540.9367654914998" y="615.1538461538461" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Loxosceles</text>
+  <text x="679.5991586644802" y="684.3846153846154" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mesabolivar</text>
+  <text x="404.8819668781659" y="788.2307692307692" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Mygalomorphae</text>
+  <text x="75.11801836223877" y="926.6923076923076" font-size="10" fill="#444444" font-weight="normal" font-style="normal" text-decoration="none" text-anchor="start" opacity="1.0">Chactoidea</text>
+  <line x1="962.0" y1="880.7692307692308" x2="962.0" y2="950.0" stroke="#555555" stroke-width="4.0" stroke-linecap="round"/>
+  <text x="977.0" y="915.3846153846155" font-size="11.0" fill="#333333" text-anchor="middle" dominant-baseline="auto" transform="rotate(-90, 977.0, 915.3846153846155)">Outgroup</text>
+  <line x1="30" y1="970" x2="69.41467512068496" y2="970" stroke="black" stroke-width="2"/>
+  <text x="49.70733756034248" y="985" text-anchor="middle" font-size="12" fill="black">0.1</text>
 </svg>

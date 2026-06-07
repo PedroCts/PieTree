@@ -19,8 +19,11 @@ class RenderSpec:
     nodes: List[RenderNode]
     edges: List[RenderEdge]
     
+    registry: object = None
+    
     highlights: list = field(default_factory=list)
     panels: list[PanelLayer] = field(default_factory=list)
+    meta_labels: list = field(default_factory=list)
 
     mode: str = "phylogram"
     orientation: str = "horizontal"

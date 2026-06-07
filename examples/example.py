@@ -119,7 +119,7 @@ print("\n=== VERTEBRATE CLADE TREE ===")
 # METADATA ANNOTATION
 # ============================================================
 
-human.metadata.update({
+human.annotate({
     "taxonomy": {
         "kingdom": "Animalia",
         "phylum": "Chordata",
@@ -132,7 +132,7 @@ human.metadata.update({
     "group": "Mammal",
 })
 
-dog.metadata.update({
+dog.annotate({
     "taxonomy": {
         "kingdom": "Animalia",
         "phylum": "Chordata",
@@ -145,7 +145,7 @@ dog.metadata.update({
     "group": "Mammal",
 })
 
-cat.metadata.update({
+cat.annotate({
     "taxonomy": {
         "kingdom": "Animalia",
         "phylum": "Chordata",
@@ -158,7 +158,7 @@ cat.metadata.update({
     "group": "Mammal",
 })
 
-spider.metadata.update({
+spider.annotate({
     "taxonomy": {
         "kingdom": "Animalia",
         "phylum": "Arthropoda",
@@ -169,7 +169,7 @@ spider.metadata.update({
     "group": "Arachnid",
 })
 
-fly.metadata.update({
+fly.annotate({
     "taxonomy": {
         "kingdom": "Animalia",
         "phylum": "Arthropoda",

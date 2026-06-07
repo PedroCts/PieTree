@@ -124,9 +124,40 @@ class BranchSelection(PieObjectSelection):
 
 class LabelSelection(PieObjectSelection):
     """A filtered list of PieLabels with fluent styling."""
-
+    
     def rename(self, new_name: str) -> "LabelSelection":
         """Update the label's text in-place."""
         for obj in self._objs:
             obj.text = new_name
+        return self
+
+    def suffix(self, text: str) -> "LabelSelection":
+        """
+        Append *text* to every selected label.
+
+        Labels with no text are skipped.
+
+        Examples
+        --------
+        ## Mark all this-study tips with an asterisk
+        ```tree.tip_labels(group="this_study").suffix(" *")
+        """
+        for obj in self._objs:
+            if obj.text is not None:
+                obj.text += text
+        return self
+
+    def prefix(self, text: str) -> "LabelSelection":
+        """
+        Prepend *text* to every selected label.
+
+        Labels with no text are skipped.
+
+        Examples
+        --------
+        ```tree.tip_labels(group="outgroup").prefix("[OG] ")
+        """
+        for obj in self._objs:
+            if obj.text is not None:
+                obj.text = text + obj.text
         return self

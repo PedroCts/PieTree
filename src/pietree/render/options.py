@@ -33,3 +33,10 @@ class RenderOptions:
     panel_font_size: float = 11.0
     panel_color: str = "#555555"
     panel_font_color: str = "#333333"
+    panel_line_cap: str = "round"        # already in panels
+    meta_label_offset_x: float = 6.0    # breathing room for node labels
+    meta_label_offset_y: float = -8.0
+    
+    # Highlights
+    highlight_opacity: float = 0.18      # softer default for print
+    highlight_corner_radius: float = 4.0

@@ -12,6 +12,8 @@ class PanelLayer:
     field: str                          # metadata key to group by
     values: None | list[str] = None     # if given, only render these values
     index: int = 0                      # column index (0 = leftmost panel)
+    
+    show_duplicates: bool = True        # if False, only show values not already shown by highlights or label_nodes
 
     line_width: float = 4.0
     color: Optional[str] = None         # falls back to options.panel_color
@@ -86,6 +88,9 @@ def render_panels(context):
         for value, node_ids in groups.items():
 
             if panel.values and value not in panel.values:
+                continue
+            
+            if not panel.show_duplicates and context.registry and context.registry.is_claimed(panel.field, value):
                 continue
 
             if spec.orientation == "horizontal":

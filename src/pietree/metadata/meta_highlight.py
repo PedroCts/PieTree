@@ -26,17 +26,21 @@ def highlight_metadata(
     tree: "PieTree",
     field: str,
     *,
+    show_duplicates=True,
     depth: Optional[int] = None,
     values: Optional[List[str]] = None,
     palette: str = "tab20",
     colors: Optional[Dict[str, str]] = None,
     opacity: float = 0.25,
+    label: str | bool = True,
+    scattered_label: bool = True,
     label_position: str = "upper_right",
     font_size: float = 11,
     font_color: str = "#444444",
     font_weight: str = "bold",
     padding: float = 10,
     corner_radius: float = 5,
+    allow_single_tip: bool = False,
     **highlight_kwargs,
 ) -> List:
     """
@@ -86,65 +90,57 @@ def highlight_metadata(
     from pietree.render.layers.highlights import RenderHighlight
 
     # ------------------------------------------------------------------
-    # 1. Run inference once for the whole tree
+    # 1. Collect tips, handling both flat and hierarchical field values
     # ------------------------------------------------------------------
-    inferred: Dict[str, Optional[List]] = infer_tree(tree, field)
-
-    # ------------------------------------------------------------------
-    # 2. Collect all tips and their inferred paths
-    # ------------------------------------------------------------------
-    tip_paths: Dict[str, List] = {}   # node_id → inferred path
+    tip_paths: Dict[str, List] = {}
+    tip_flat: Dict[str, str] = {}
 
     for node in tree.tips:
-        path = inferred.get(node.id)
-        if path:
-            tip_paths[node.id] = path
+        value = node.get(field)
+        if isinstance(value, list) and value:
+            tip_paths[node.id] = value
+        elif isinstance(value, str) and value:
+            tip_flat[node.id] = value
 
-    if not tip_paths:
+    is_flat = not tip_paths and bool(tip_flat)
+
+    if not tip_paths and not tip_flat:
         return []
 
     # ------------------------------------------------------------------
-    # 3. Determine the depth slice we are highlighting
-    #
-    #    depth=None  → group by the *full inferred path* of each MRCA
-    #                  (i.e. whatever the MRCA's inferred value is).
-    #    depth=N     → group by path[N] (the element at position N).
+    # 2. Build groups {taxon_name → [tip_node, ...]}
     # ------------------------------------------------------------------
-
-    # Build {taxon_name → [tip_node, ...]}
     groups: Dict[str, List] = {}
-
     all_tip_nodes = {n.id: n for n in tree.tips}
+    _values_set = set(values) if values is not None else None
 
-    for tip_id, path in tip_paths.items():
-        tip_node = all_tip_nodes[tip_id]
-
-        if depth is not None:
-            if depth >= len(path):
-                # This tip's path doesn't reach the requested depth — skip.
+    if is_flat:
+        for tip_id, value in tip_flat.items():
+            if _values_set is not None and value not in _values_set:
                 continue
-            key = path[depth]
-        else:
-            # Use the most specific (last) element of the inferred path.
-            key = path[-1]
+            groups.setdefault(value, []).append(all_tip_nodes[tip_id])
+    else:
+        for tip_id, path in tip_paths.items():
+            tip_node = all_tip_nodes[tip_id]
+            if depth is not None:
+                if depth >= len(path):
+                    continue
+                key = path[depth]
+            else:
+                if _values_set is not None:
+                    key = next((p for p in path if p in _values_set), path[-1])
+                else:
+                    key = path[-1]
+            groups.setdefault(key, []).append(tip_node)
 
-        groups.setdefault(key, []).append(tip_node)
+        if values is not None:
+            groups = {k: v for k, v in groups.items() if k in _values_set}
 
     if not groups:
         return []
 
     # ------------------------------------------------------------------
-    # 4. Apply the `values` filter
-    # ------------------------------------------------------------------
-    if values is not None:
-        values_set = set(values)
-        groups = {k: v for k, v in groups.items() if k in values_set}
-
-    if not groups:
-        return []
-
-    # ------------------------------------------------------------------
-    # 5. Assign colors
+    # 3. Assign colors
     # ------------------------------------------------------------------
     color_map = assign_colors(
         labels=list(groups.keys()),
@@ -153,23 +149,24 @@ def highlight_metadata(
     )
 
     # ------------------------------------------------------------------
-    # 6. Build one PieClade + RenderHighlight per group
+    # 4. Build RenderHighlights
     # ------------------------------------------------------------------
     created = []
 
-    for taxon, tip_nodes in groups.items():
-
-        if not tip_nodes:
-            continue
-
-        # MRCA of the tips in this group
-        clade = tree.clade(tip_nodes)   # returns PieClade, shares tree._highlights
+    def _make_highlight(clade, taxon, label=label):
+        
+        if label and isinstance(label, str):
+            label_text = label
+        elif label and isinstance(label, bool):
+            label_text = taxon
+        else:
+            label_text = None
 
         h = RenderHighlight(
             clade=clade,
             fill=color_map[taxon],
             opacity=opacity,
-            label=taxon,
+            label=label_text,
             label_position=label_position,
             font_size=font_size,
             font_color=font_color,
@@ -178,8 +175,31 @@ def highlight_metadata(
             corner_radius=corner_radius,
             **highlight_kwargs,
         )
-
         tree._highlights.append(h)
         created.append(h)
+
+    for taxon, tip_nodes in groups.items():
+        if not tip_nodes:
+            continue
+
+        if not show_duplicates:
+            if not tree._meta_registry.claim(field, taxon, "highlight"):
+                continue
+
+        if is_flat:
+            # Check if MRCA clade is pure (all its tips share this taxon value)
+            clade = tree.clade(tip_nodes, allow_single_tip=allow_single_tip)
+            all_tips_match = all(n.get(field) == taxon for n in clade.tips)
+
+            if all_tips_match:
+                _make_highlight(clade, taxon, label=label)
+            else:
+                # Scattered tips — highlight each individually, label only the first
+                for i, tip_node in enumerate(tip_nodes):
+                    tip_clade = tree.clade(tip_node, allow_single_tip=True)
+                    _make_highlight(tip_clade, taxon, label=(label if scattered_label else (label and i == 0)))
+        else:
+            clade = tree.clade(tip_nodes, allow_single_tip=allow_single_tip)
+            _make_highlight(clade, taxon, label=label)
 
     return created

@@ -76,9 +76,9 @@ class MetadataView:
     # Panel
     # --------------------------------------------------
 
-    def panel(self, values=None, **kwargs):
+    def panel(self, values=None, show_duplicates: bool = True, **kwargs):
         """Register a side panel for this metadata field on the owning tree."""
-        return self._tree.panel(self._field, values=values, **kwargs)
+        return self._tree.panel(self._field, show_duplicates=show_duplicates, values=values, **kwargs)
 
     # --------------------------------------------------
     # Highlighting
@@ -86,18 +86,22 @@ class MetadataView:
 
     def highlight(
         self,
-        *,
+        *, 
+        show_duplicates: bool = True,
         depth: Optional[int] = None,
         values: Optional[List[str]] = None,
         palette: str = "tab20",
         colors: Optional[Dict[str, str]] = None,
         opacity: float = 0.25,
+        label: str | bool = True,
+        scattered_label: bool = True,
         label_position: str = "upper_right",
         font_size: float = 11,
         font_color: str = "#444444",
         font_weight: str = "bold",
         padding: float = 10,
         corner_radius: float = 5,
+        allow_single_tip: bool = False,
         **kwargs,
     ) -> list:
         """
@@ -150,30 +154,44 @@ class MetadataView:
         return highlight_metadata(
             self._tree,
             self._field,
+            show_duplicates=show_duplicates,
             depth=depth,
             values=values,
             palette=palette,
             colors=colors,
             opacity=opacity,
+            label=label,
+            scattered_label=scattered_label,
             label_position=label_position,
             font_size=font_size,
             font_color=font_color,
             font_weight=font_weight,
             padding=padding,
             corner_radius=corner_radius,
+            allow_single_tip=allow_single_tip,
             **kwargs,
         )
 
     # --------------------------------------------------
-    # Node labels (not yet implemented)
+    # Node labels
     # --------------------------------------------------
 
-    def label_nodes(self, **kwargs):
-        """
-        Annotate node labels with values from this metadata field.
-        Not yet implemented.
-        """
-        raise NotImplementedError("MetadataView.label_nodes() is not yet implemented.")
+    def label_nodes(
+        self,
+        *,
+        show_duplicates: bool = True,
+        depth: Optional[int] = None,
+        values: Optional[List[str]] = None,
+        font_size: float = 10,
+        font_color: str = "#444444",
+    ) -> list:
+        from pietree.metadata.meta_label import label_nodes_metadata
+        return label_nodes_metadata(
+            self._tree, self._field,
+            show_duplicates=show_duplicates,
+            depth=depth, values=values,
+            font_size=font_size, font_color=font_color,
+        )
 
 
 @dataclass

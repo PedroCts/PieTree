@@ -61,8 +61,8 @@ def build_canvas(spec):
     padding_bottom = 50.0
     padding_margin = 20.0  # minimum right margin after all content
 
-    canvas_width  = 800
-    canvas_height = 1200
+    canvas_width  = 1000
+    canvas_height = 1000
 
     # --------------------------------------------------
     # Compute content budgets

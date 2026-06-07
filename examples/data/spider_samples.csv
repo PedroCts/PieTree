@@ -1,8 +1,8 @@
 mitogenome_id;group;species;taxonomy
 NC_033971.1;reference;Agelena silvatica;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Araneae","Araneomorphae","Entelegynae","Agelenidae","Agelena"]
-NC_053569.1;outgroup;Scorpiops tibetanus;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Euscorpiidae","Scorpiopinae","Scorpiopini","Scorpiops"]
-NC_010782.1;outgroup;Uroctonus mordax;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Chactidae","Uroctoninae","Uroctonus"]
-NC_035567.1;outgroup;Vaejovis smithi;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Vaejovidae","Vaejovis"]
+NC_053569.1;Outgroup;Scorpiops tibetanus;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Euscorpiidae","Scorpiopinae","Scorpiopini","Scorpiops"]
+NC_010782.1;Outgroup;Uroctonus mordax;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Chactidae","Uroctoninae","Uroctonus"]
+NC_035567.1;Outgroup;Vaejovis smithi;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Scorpiones","Iurida","Chactoidea","Vaejovidae","Vaejovis"]
 OP271740.1;this_study;Loxosceles laeta;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Araneae","Araneomorphae","Haplogynae","Scytodoidea","Sicariidae","Loxosceles"]
 OP271741.1;this_study;Phoneutria sp.;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Araneae","Araneomorphae","Entelegynae","Lycosoidea","Ctenidae","Phoneutria"]
 NC_032402.1;other_spiders;Araneus angulatus;["Eukaryota","Metazoa","Ecdysozoa","Arthropoda","Chelicerata","Arachnida","Araneae","Araneomorphae","Entelegynae","Araneoidea","Araneidae","Araneus"]

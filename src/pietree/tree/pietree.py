@@ -21,6 +21,7 @@ from .pieclade import PieClade
 
 from pietree.io.treeio import parse_newick, build_newick
 from pietree.metadata.piemeta import PieMeta
+from pietree.metadata.registry import MetadataRegistry
 
 from pietree.render.layout import build_layout
 from pietree.render.options import RenderOptions
@@ -70,6 +71,8 @@ class PieTree:
         self.render_options: RenderOptions = RenderOptions()
         self._highlights: list = []
         self._panels: list = []
+        self._meta_labels: list = []   # ephemeral; set by metadata().label_nodes()
+        self._meta_registry: MetadataRegistry = MetadataRegistry()
         # Wire every reachable node back to this tree
         self._register_tree(root)
 
@@ -394,7 +397,7 @@ class PieTree:
     # Clade / subtree
     # ------------------------------------------------------------------
 
-    def clade(self, nodes: Union[PieNode, List[PieNode]]) -> PieClade:
+    def clade(self, nodes: Union[PieNode, List[PieNode]], allow_single_tip: bool = False) -> PieClade:
         """
         Return the clade (subtree) defined by *nodes*.
 
@@ -406,10 +409,15 @@ class PieTree:
         nodes : PieNode or list of PieNode
         """
         root = self.mrca(nodes) if isinstance(nodes, list) else nodes
+        if allow_single_tip:  
+            tips = [root] if root.is_tip else root.descendant_tips
+        else:
+            tips = root.descendant_tips
+        
         return PieClade(
             root=root,
             nodes=[root] + root.descendants,
-            tips=root.descendant_tips,
+            tips=tips,
             highlights=self._highlights,
         )
 
@@ -755,12 +763,8 @@ class PieTree:
                         break
             if node is None:
                 continue
-            if overwrite:
-                node.metadata.update(values)
-            else:
-                for k, v in values.items():
-                    if k not in node.metadata:
-                        node.metadata[k] = v
+            for k, v in values.items():
+                node.annotate(k, v, overwrite=overwrite)
 
         return self
 
@@ -969,6 +973,8 @@ class PieTree:
             },
             highlights=self._highlights,
             panels=self._panels,
+            meta_labels=self._meta_labels,
+            registry=self._meta_registry,
         )
 
     def to_svg(

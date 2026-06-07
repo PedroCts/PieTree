@@ -106,6 +106,30 @@ def render_labels(context):
                 pie_label=node.node.label,
             )
         )
+        
+    # --------------------------------------------------
+    # META NODE LABELS (from metadata().label_nodes())
+    # --------------------------------------------------
+    meta_label_index = {ml.node_id: ml for ml in getattr(spec, "meta_labels", [])}
+
+    for node in spec.nodes:
+        if node.id not in meta_label_index:
+            continue
+        if node.id not in sources:
+            continue  # skip tips
+
+        ml = meta_label_index[node.id]
+        cx, cy = pos[node.id]
+
+        if spec.orientation == "horizontal":
+            px, py, anchor = cx + 8, cy - 6, "start"
+        else:
+            px, py, anchor = cx + 5, cy - 8, "start"
+
+        rl = RenderLabel(node=node, text=ml.text, x=px, y=py, is_tip=False)
+        rl._meta_font_size = ml.font_size
+        rl._meta_font_color = ml.font_color
+        labels.append(rl)
 
     # --------------------------------------------------
     # COLLISION RESOLUTION
@@ -188,8 +212,8 @@ def render_labels(context):
         if style.visible is False:
             continue
 
-        font_size = style.font_size or (DEFAULT_TIP_FONT_SIZE if label.is_tip else DEFAULT_INTERNAL_FONT_SIZE)
-        font_color = style.font_color or (DEFAULT_TIP_FONT_COLOR if label.is_tip else DEFAULT_INTERNAL_FONT_COLOR)
+        font_size =  getattr(label, "_meta_font_size", None) or style.font_size or (DEFAULT_TIP_FONT_SIZE if label.is_tip else DEFAULT_INTERNAL_FONT_SIZE)
+        font_color = getattr(label, "_meta_font_color", None) or style.font_color or (DEFAULT_TIP_FONT_COLOR if label.is_tip else DEFAULT_INTERNAL_FONT_COLOR)
         font_weight = style.font_weight or "normal"
         font_style_attr = style.font_style or "normal"
         text_decoration = style.text_decoration or "none"
