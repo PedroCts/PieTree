@@ -60,7 +60,7 @@ tree.metadata("group").highlight(
 )
 tree.metadata("group").panel(values=["Outgroup"])
 
-tree.to_svg("spiders_tree.svg")
+tree.savefig("spiders_tree.svg")
 ```
 
 ---
