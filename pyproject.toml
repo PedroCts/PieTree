@@ -1,14 +1,17 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "PieTree"
 version = "0.0.1"
 description = "Metadata-aware phylogenetic tree analysis and rendering engine"
-authors = [{ name = "Pedro Côrtes" }]
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
+authors = [
+    { name = "Pedro Côrtes" }
+]
 
 dependencies = [
     "numpy",
