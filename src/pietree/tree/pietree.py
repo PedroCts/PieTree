@@ -19,7 +19,6 @@ from .pienode import PieNode
 from .piebranch import PieBranch
 from .pieclade import PieClade
 
-from pietree.io.treeio import parse_newick, build_newick
 from pietree.metadata.piemeta import PieMeta
 from pietree.metadata.registry import MetadataRegistry
 
@@ -790,35 +789,6 @@ class PieTree:
         for node in self.nodes(node_type):
             node.clear_metadata()
 
-    def to_dataframe(
-        self,
-        node_type: Literal["all", "tip", "internal"] = "tip",
-        include_topology: bool = True,
-    ) -> pd.DataFrame:
-        """
-        Export node metadata (and optionally topology fields) to a DataFrame.
-
-        Parameters
-        ----------
-        node_type : {'all', 'tip', 'internal'}
-            Which nodes to include (default: tips only).
-        include_topology : bool
-            If ``True``, prepend columns: ``id``, ``name``, ``depth``,
-            ``branch_length``, ``is_tip``.
-        """
-        rows = []
-        for node in self.nodes(node_type):
-            row: dict = {}
-            if include_topology:
-                row["id"] = node.id
-                row["name"] = node.name
-                row["depth"] = node.depth
-                row["branch_length"] = node.branch_length
-                row["is_tip"] = node.is_tip
-            row.update(dict(node.metadata))
-            rows.append(row)
-        return pd.DataFrame(rows)
-
     # ------------------------------------------------------------------
     # Statistics / summary
     # ------------------------------------------------------------------
@@ -880,34 +850,40 @@ class PieTree:
     # ------------------------------------------------------------------
 
     @classmethod
-    def from_newick(
-        cls,
-        newick_str: Optional[str] = None,
-        path: Optional[str] = None,
-    ) -> PieTree:
-        """
-        Parse a Newick string or file into a :class:`PieTree`.
+    def from_newick(cls, newick_str=None, path=None) -> "PieTree":
+        from pietree.io.io import parse_newick
+        source = path or newick_str
+        return parse_newick(source)
 
-        Parameters
-        ----------
-        newick_str : str, optional
-            A Newick-formatted string.
-        path : str, optional
-            Path to a file containing a Newick string.
-        """
-        root = parse_newick(newick_str=newick_str, path=path)
-        return cls(root)  # __init__ calls _register_tree
+    @classmethod
+    def from_nexus(cls, source) -> "PieTree":
+        from pietree.io.io import parse_nexus
+        return parse_nexus(source)
 
-    def to_newick(self, path: Optional[str] = None) -> str:
-        """
-        Serialise this tree to a Newick string.
+    @classmethod
+    def from_phyloxml(cls, source) -> "PieTree":
+        from pietree.io.io import parse_phyloxml
+        return parse_phyloxml(source)
 
-        Parameters
-        ----------
-        path : str, optional
-            If given, also write the string to this file path.
-        """
-        return build_newick(self, path=path)
+    def to_newick(self, path=None) -> str:
+        from pietree.io.io import to_newick
+        return to_newick(self, dest=path)
+
+    def to_nexus(self, path=None) -> str:
+        from pietree.io.io import to_nexus
+        return to_nexus(self, dest=path)
+
+    def to_phyloxml(self, path=None) -> str:
+        from pietree.io.io import to_phyloxml
+        return to_phyloxml(self, dest=path)
+
+    def savefig(self, path: str, **kwargs) -> None:
+        from pietree.io.io import savefig
+        savefig(self, path, **kwargs)
+
+    def to_dataframe(self, node_type="tip", include_topology=True) -> pd.DataFrame:
+        from pietree.io.io import to_dataframe
+        return to_dataframe(self, node_type=node_type, include_topology=include_topology)
 
     # ------------------------------------------------------------------
     # Rendering
@@ -916,7 +892,7 @@ class PieTree:
     def to_render_spec(
         self,
         mode: str = "phylogram",
-        orientation: str = "vertical",
+        orientation: str = "horizontal",
         options: Optional[RenderOptions] = None,
         canvas_size: tuple = (1000, 1000)
     ) -> RenderSpec:

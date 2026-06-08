@@ -10,7 +10,18 @@ authors = [{ name = "Pedro Côrtes" }]
 readme = "README.md"
 requires-python = ">=3.10"
 
-dependencies = ["numpy", "pandas", "svgwrite", "biopython"]
+dependencies = [
+    "numpy",
+    "pandas", 
+    "svgwrite",
+    "biopython",
+    "cairosvg",      # PDF, PNG, JPEG, TIFF rasterisation
+    "Pillow",        # image format handling
+    "psd-tools",     # layered PSD export
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.scripts]
+pietree = "pietree.cli.main:main"
