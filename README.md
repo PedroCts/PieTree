@@ -83,22 +83,6 @@ The clade is inferred from hierarchical metadata via longest-common-prefix, styl
 
 ## Core Concepts
 
-### The Abstraction Stack
-
-```mermaid
-flowchart TD
-    A[PieObject
-    Tree topology and metadata] --> B
-    B[MetadataView
-    Field-scoped queries] --> C
-    C[ObjectSelection
-    Filtered, fluent selections] --> D
-    D[RenderSpec
-    Layout-independent render options] --> E
-    E[SVG Output
-    Layer-based rendering]
-```
-
 ### The Rendering Pipeline
 
 ```mermaid

@@ -16,4 +16,5 @@ tree.metadata("taxonomy").label_nodes(show_duplicates=False)
 tree.metadata("group").highlight(values=["this_study"], font_size=8, label_position="center_right", label="This study", colors={"this_study": "#7e7e7e"})
 tree.metadata("group").panel(values=["Outgroup"])
 
-tree.to_svg("spiders_tree.svg", canvas_size=(900, 900), font_size=12, panel_spacing=5)
+tree.to_svg("spiders_tree.svg", canvas_size=(900, 900))
+
