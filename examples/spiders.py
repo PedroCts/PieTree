@@ -20,7 +20,7 @@ tree.metadata("group").panel(values=["Outgroup"])
 tree.savefig("spiders_tree.svg", size=(900, 900))
 tree.to_dataframe().to_csv("spiders_tree.csv", index=False)
 
-# Legenda
+# Legend Prototype
 mode = "phylogram"
 alignment_mode = "concatenated alignment of 13 mitochondrial PCGs"
 

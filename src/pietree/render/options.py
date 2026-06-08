@@ -32,7 +32,7 @@ class RenderOptions:
     show_support: bool = True
     support_threshold: float = 0.0
     support_keys: list[str] | None = None
-    support_placement: str = "branch"         # "node" | "branch"
+    support_placement: str = "node"         # "node" | "branch"
     
     # General Style
     branch_color: str = "#888"
