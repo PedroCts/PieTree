@@ -1001,7 +1001,7 @@ class PieTree:
             Overrides ``self.render_options`` for this render only.
         """
         
-        # TODO: Implement Resolver logic
+        # TODO: Implement Resolver logic? For now, we can just pass None to render_svg and it will use the default resolver that looks up metadata directly on nodes and branches.
         resolver = None
         
         render_options = RenderOptions(**kwargs) if kwargs else self.render_options
