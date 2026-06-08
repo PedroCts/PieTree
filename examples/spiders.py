@@ -2,7 +2,8 @@ import pandas as pd
 from pietree import PieTree
 
 samples = pd.read_csv("data/spider_samples.csv", sep=";")
-tree = PieTree.from_newick(path="data/spiders.newick")
+tree = PieTree.from_newick(path="data/spiders.newick", 
+                           support_format="{bootstrap}/{alrt}")
 
 tree.annotate(samples, on="mitogenome_id")
 tree.tips.rename("{species} {mitogenome_id}")

@@ -5,17 +5,26 @@ Unified label rendering for pietree.
 
 Label types
 -----------
-tip         : species/sequence names — always right of tip, aligned
-node        : internal node names — smart placement around node
-support     : branch support values — near the parent-corner of the branch
-branch      : branch length / annotation — mid-span of the horizontal run
-meta        : metadata-derived labels (from metadata().label_nodes())
+tip            : species/sequence names — always right of tip, aligned
+node           : internal node names — smart placement around node
+support        : branch support values — near node (placement="node") or
+                 mid-branch (placement="branch")
+branch         : arbitrary branch annotations (PieBranch.label.text)
+branch_length  : numeric branch length values
+meta           : metadata-derived labels (from metadata().label_nodes())
 
 Multiple labels per object
 --------------------------
 Each type can contribute independently.  They are collected into a flat
 list of RenderLabel objects, each carrying its own (px, py, text_anchor)
 already resolved by the time drawing starts.
+
+Node-group stacking order (top → bottom)
+-----------------------------------------
+  1. node name
+  2. support  (when support_placement="node")
+  3. branch length  (when branch_length_placement="node")
+  4. meta label
 
 Smart placement
 ---------------
@@ -68,7 +77,7 @@ class RenderLabel:
     text_anchor: str = "start"
 
     # classification
-    label_type: str = "node"   # "tip" | "node" | "support" | "branch" | "meta"
+    label_type: str = "node"   # "tip" | "node" | "support" | "branch" | "branch_length" | "meta"
     is_tip: bool = False
     slot_index: int = 0        # stacking index when multiple labels share an object
 
@@ -134,6 +143,14 @@ def _extract_style(pie_label, resolver, context, label_type, is_tip):
     )
 
 
+def _format_branch_length(value: float, precision: int) -> str:
+    """Format a branch length for display, trimming unnecessary trailing zeros."""
+    formatted = f"{value:.{precision}f}"
+    if "." in formatted:
+        formatted = formatted.rstrip("0").rstrip(".")
+    return formatted
+
+
 # ---------------------------------------------------------------------------
 # Tip labels  (no smart placement — always right-aligned)
 # ---------------------------------------------------------------------------
@@ -178,20 +195,16 @@ def _collect_tip_labels(spec, pos, sources, resolver, context, align_anchor) -> 
 # Unified per-node label group placement
 # ---------------------------------------------------------------------------
 #
-# Labels that share the same node (node-name, support, meta) are placed as
-# a vertical stack in the single best direction rather than placed
-# independently (which can cause one label to fall into a branch while
-# another sits cleanly on the other side).
+# Labels that share the same node (node-name, support, branch-length, meta)
+# are placed as a vertical stack in the single best direction rather than
+# placed independently (which can cause one label to fall into a branch
+# while another sits cleanly on the other side).
 #
 # Priority within each stack (top → bottom):
 #   1. node-name label
-#   2. support value label
-#   3. meta label(s)
-#
-# Support labels are special: their "natural" point is the elbow corner
-# (parent_x, child_y), not the child node centre.  When grouped with a node
-# label we anchor the whole stack on the child node centre so everything
-# stays together.
+#   2. support value  (when support_placement="node")
+#   3. branch length  (when branch_length_placement="node")
+#   4. meta label(s)
 
 _STACK_GAP = 0.0   # px between stacked labels (advance-based, so visually tight)
 
@@ -200,14 +213,14 @@ def _collect_node_group_labels(
     spec, pos, sources, resolver, context, segments, placed_boxes
 ) -> List[RenderLabel]:
     """
-    Collect node-name, support, and meta labels together and place each
-    node's group as a unit (vertical stack in the best direction).
+    Collect node-name, support, branch-length, and meta labels together and
+    place each node's group as a unit (vertical stack in the best direction).
     """
     options = spec.options
     meta_labels_src = getattr(spec, "meta_labels", [])
     meta_index = {ml.node_id: ml for ml in meta_labels_src}
 
-    # Build edge lookup: child_node_id → edge  (for support)
+    # Build edge lookup: child_node_id → edge  (for support + branch length)
     edge_by_child = {e.target: e for e in spec.edges}
 
     output: List[RenderLabel] = []
@@ -221,7 +234,9 @@ def _collect_node_group_labels(
         # --------------------------------------------------
         # 1. Gather candidate label specs for this node
         # --------------------------------------------------
-        group_specs = []   # [(text, font_size, font_color, font_weight, font_style, text_dec, opacity, label_type, pie_label)]
+        # Each entry: (text, font_size, font_color, font_weight, font_style,
+        #              text_decoration, opacity, label_type, pie_label)
+        group_specs = []
 
         # Node-name label
         if options.show_node_labels and node.label:
@@ -236,26 +251,37 @@ def _collect_node_group_labels(
                     "node", pie_label,
                 ))
 
-        # Support label
-        if options.show_support:
+        # Support label — only when placement is "node"
+        if options.show_support and options.support_placement == "node":
             edge = edge_by_child.get(node.id)
             if edge is not None:
                 branch = edge.branch
                 support_val = getattr(branch, "support", None)
-                if support_val is not None and support_val >= options.support_threshold:
-                    text = (
-                        f"{support_val:.0f}"
-                        if isinstance(support_val, float) and support_val > 1
-                        else f"{support_val:.2f}".rstrip("0").rstrip(".")
-                    )
-                    font_size = options.font_size * 0.85
-                    pie_label = getattr(branch, "label", None)
-                    group_specs.append((
-                        text,
-                        font_size, options.color, "normal",
-                        "normal", "none", DEFAULT_OPACITY,
-                        "support", pie_label,
-                    ))
+                if support_val:
+                    keys = options.support_keys
+                    vals = [support_val[k] for k in keys if k in support_val] if keys else list(support_val.values())
+                    if vals and vals[0] >= options.support_threshold:
+                        text = "/".join(
+                            f"{v:.0f}" if v > 1 else f"{v:.2f}".rstrip("0").rstrip(".")
+                            for v in vals
+                        )
+                        font_size = options.font_size * 0.85
+                        pie_label = getattr(branch, "label", None)
+                        group_specs.append((
+                            text, font_size, options.color, "normal",
+                            "normal", "none", DEFAULT_OPACITY, "support", pie_label,
+                        ))
+
+        # Branch length label — only when placement is "node"
+        if options.show_branch_lengths and options.branch_length_placement == "node":
+            edge = edge_by_child.get(node.id)
+            if edge is not None and edge.length is not None:
+                text = _format_branch_length(edge.length, options.branch_length_precision)
+                font_size = options.font_size * 0.80
+                group_specs.append((
+                    text, font_size, options.branch_length_color, "normal",
+                    "italic", "none", DEFAULT_OPACITY, "branch_length", None,
+                ))
 
         # Meta label
         if node.id in meta_index:
@@ -297,10 +323,7 @@ def _collect_node_group_labels(
             zip(group_specs, sizes, item_positions)
         ):
             text, font_size, font_color, font_weight, font_style, text_dec, opacity, ltype, pie_label = gs
-            half_h = th / 2
 
-            # Left-justify within the group: all items share the same x start.
-            # For "end" anchor they share the same right edge.
             if anchor == "start":
                 px = group_x0
             elif anchor == "end":
@@ -331,60 +354,135 @@ def _collect_node_group_labels(
 
 
 # ---------------------------------------------------------------------------
-# Branch annotation labels  (smart placement at horizontal-run midpoint)
+# Branch-segment labels  (support, branch annotations, branch lengths)
 # ---------------------------------------------------------------------------
+#
+# All three types share the same midpoint-anchor logic.  They are placed
+# independently (not stacked) because they live on the branch line itself
+# rather than next to a node — crowding is rare in practice.
+#
+# Bug fix: the original code gated the entire function on show_branch_labels,
+# which silently suppressed support-on-branch and branch-length-on-branch
+# when only those options were enabled.  The early-return now checks all
+# three independently.
 
 def _collect_branch_labels(
     spec, pos, resolver, context, segments, placed_boxes
 ) -> List[RenderLabel]:
     labels = []
     options = spec.options
-    if not options.show_branch_labels:
+
+    want_annotations   = options.show_branch_labels
+    want_support       = options.show_support and options.support_placement == "branch"
+    want_branch_length = options.show_branch_lengths and options.branch_length_placement == "branch"
+
+    if not (want_annotations or want_support or want_branch_length):
         return labels
 
     for edge in spec.edges:
         branch = edge.branch
-        pie_label = getattr(branch, "label", None)
-        if not pie_label or not pie_label.text:
-            continue
-
-        text = pie_label.text
-        style = _extract_style(pie_label, resolver, context, "branch", False)
-        if not style["visible"]:
-            continue
 
         px_parent, py_parent = pos[edge.source]
-        px_child, py_child = pos[edge.target]
+        px_child,  py_child  = pos[edge.target]
 
         if spec.orientation == "horizontal":
-            # midpoint of horizontal run
-            cx = (px_parent + px_child) / 2
-            cy = py_child
-            cands = _BRANCH_H_CANDIDATES
+            # Midpoint of the horizontal child-run segment
+            mid_cx = (px_parent + px_child) / 2
+            mid_cy = py_child
+            cands  = _BRANCH_H_CANDIDATES
         else:
-            # midpoint of vertical run
-            cx = px_child
-            cy = (py_parent + py_child) / 2
-            cands = _BRANCH_V_CANDIDATES
+            # Midpoint of the vertical child-run segment
+            mid_cx = px_child
+            mid_cy = (py_parent + py_child) / 2
+            cands  = _BRANCH_V_CANDIDATES
 
-        tw, th = estimate_text_size(text, style["font_size"])
-        px, py, anchor, box = find_best_slot(
-            cx, cy, tw, th, _LABEL_GAP * 0.5,
-            cands, segments, placed_boxes,
-        )
-        placed_boxes.append(box)
+        # --------------------------------------------------
+        # Arbitrary branch annotation  (PieBranch.label.text)
+        # --------------------------------------------------
+        if want_annotations:
+            pie_label = getattr(branch, "label", None)
+            if pie_label and pie_label.text:
+                text  = pie_label.text
+                style = _extract_style(pie_label, resolver, context, "branch", False)
+                if style["visible"]:
+                    tw, th = estimate_text_size(text, style["font_size"])
+                    px, py, anchor, box = find_best_slot(
+                        mid_cx, mid_cy, tw, th, _LABEL_GAP * 0.5,
+                        cands, segments, placed_boxes,
+                    )
+                    placed_boxes.append(box)
+                    labels.append(RenderLabel(
+                        node=None, text=text,
+                        x=px, y=py, text_anchor=anchor,
+                        label_type="branch", is_tip=False,
+                        pie_label=pie_label,
+                        **{k: v for k, v in style.items() if k != "visible"},
+                    ))
 
-        labels.append(RenderLabel(
-            node=None, text=text,
-            x=px, y=py, text_anchor=anchor,
-            label_type="branch", is_tip=False,
-            pie_label=pie_label,
-            **{k: v for k, v in style.items() if k != "visible"},
-        ))
+        # --------------------------------------------------
+        # Support value on branch
+        # --------------------------------------------------
+        if want_support:
+            support_val = getattr(branch, "support", None)
+            if support_val:
+                keys = options.support_keys
+                vals = (
+                    [support_val[k] for k in keys if k in support_val]
+                    if keys
+                    else list(support_val.values())
+                )
+                if vals and vals[0] >= options.support_threshold:
+                    text = "/".join(
+                        f"{v:.0f}" if v > 1 else f"{v:.2f}".rstrip("0").rstrip(".")
+                        for v in vals
+                    )
+                    font_size = options.font_size * 0.85
+                    tw, th = estimate_text_size(text, font_size)
+                    px, py, anchor, box = find_best_slot(
+                        mid_cx, mid_cy, tw, th, _LABEL_GAP * 0.5,
+                        cands, segments, placed_boxes,
+                    )
+                    placed_boxes.append(box)
+                    labels.append(RenderLabel(
+                        node=None, text=text,
+                        x=px, y=py, text_anchor=anchor,
+                        label_type="support", is_tip=False,
+                        font_size=font_size,
+                        font_color=options.color,
+                        font_weight="normal",
+                        font_style="normal",
+                        text_decoration="none",
+                        opacity=DEFAULT_OPACITY,
+                    ))
+
+        # --------------------------------------------------
+        # Branch length value on branch
+        # --------------------------------------------------
+        if want_branch_length and edge.length is not None:
+            text = _format_branch_length(edge.length, options.branch_length_precision)
+            font_size = options.font_size * 0.80
+            tw, th = estimate_text_size(text, font_size)
+            px, py, anchor, box = find_best_slot(
+                mid_cx, mid_cy, tw, th, _LABEL_GAP * 0.5,
+                cands, segments, placed_boxes,
+            )
+            placed_boxes.append(box)
+            labels.append(RenderLabel(
+                node=None, text=text,
+                x=px, y=py, text_anchor=anchor,
+                label_type="branch_length", is_tip=False,
+                font_size=font_size,
+                font_color=options.branch_length_color,
+                font_weight="normal",
+                font_style="italic",
+                text_decoration="none",
+                opacity=DEFAULT_OPACITY,
+            ))
+
     return labels
 
 
-# (meta labels are now handled inside _collect_node_group_labels)
+# (meta labels are handled inside _collect_node_group_labels)
 
 
 # ---------------------------------------------------------------------------

@@ -7,7 +7,16 @@ from pietree.style.piestyle import PieBranchStyle
 
 class PieBranch(PieObject):
 
-    def __init__(self, parent_id: str, child_id: str, length: Optional[float] = None, label: Optional[str] = None, support: Optional[float] = None, metadata: Optional[dict] = None):
+    def __init__(
+        self, 
+        parent_id: str, 
+        child_id: str, 
+        length: Optional[float] = None, 
+        label: Optional[str] = None, 
+        support: Optional[Dict[str, float]] = None, 
+        metadata: Optional[dict] = None
+        ):
+        
         super().__init__(metadata)
         self.parent_id = parent_id
         self.child_id = child_id

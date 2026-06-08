@@ -34,7 +34,7 @@ from __future__ import annotations
 
 import io
 import os
-import re
+import re as _re
 import textwrap
 from pathlib import Path
 from typing import IO, Optional, Union
@@ -92,7 +92,7 @@ def _write_dest(content: str, dest: PathLike | None) -> str | None:
 # BioPython ↔ PieTree conversion
 # ---------------------------------------------------------------------------
 
-def _biopython_to_pietree(bio_tree):
+def _biopython_to_pietree(bio_tree, support_format: str | None = None):
     """
     Convert a Bio.Phylo.BaseTree.Tree to a PieTree instance.
 
@@ -106,39 +106,41 @@ def _biopython_to_pietree(bio_tree):
     from pietree.tree.pietree import PieTree
 
     node_map: dict = {}   # id(bio_clade) → PieNode
+    
+    field_names = _parse_support_format(support_format) if support_format else None
 
     def _convert(bio_clade, parent_pie: PieNode | None, parent_id: str | None):
         name = bio_clade.name or None
-
-        # Metadata: confidence → support on the branch
         confidence = getattr(bio_clade, "confidence", None)
         branch_length = getattr(bio_clade, "branch_length", None)
         
-        # Newick support values are often stored as the node name
-        # e.g. "100", "100/100", "95.0/98"
         support = None
         if confidence is not None:
-            support = float(confidence)
-        elif name is not None and not bio_clade.clades:  # don't strip tip names
-            pass
-        elif name is not None:
-            # Try to parse "100", "100/100", "95.0/98" patterns
-            import re
-            m = re.match(r'^(\d+(?:\.\d+)?)(?:/\d+(?:\.\d+)?)?$', name.strip())
-            if m:
-                support = float(m.group(1))
-                name = None  # clear the name — it was a support value
-                
+            raw = str(confidence)
+            if field_names:
+                support = _parse_support_string(raw, field_names)
+            else:
+                try:
+                    support = {"support": float(raw)}
+                except ValueError:
+                    pass
+        elif name is not None and bio_clade.clades:
+            # internal node — name may be a support string
+            if field_names:
+                parsed = _parse_support_string(name, field_names)
+            else:
+                m = _re.match(r'^(\d+(?:\.\d+)?)$', name.strip())
+                parsed = {"support": float(m.group(1))} if m else None
+            if parsed:
+                support = parsed
+                name = None
+        
         pie = PieNode(name=name)
         node_map[id(bio_clade)] = pie
         
         if parent_pie is not None:
-            branch = PieBranch(
-                parent_id=parent_id,
-                child_id=pie.id,
-                length=branch_length,
-                support=float(support) if support is not None else None,
-            )
+            branch = PieBranch(parent_id=parent_id, child_id=pie.id,
+                               length=branch_length, support=support)
             parent_pie._children.append((pie, branch))
             pie._parent = parent_pie
 
@@ -183,7 +185,7 @@ def _pietree_to_biopython(tree):
 # Parsers
 # ---------------------------------------------------------------------------
 
-def _parse_bio(source: PathLike, fmt: str):
+def _parse_bio(source: PathLike, fmt: str, support_format=None):
     """Parse source with BioPython Phylo and return the first tree."""
     from Bio import Phylo
     fh, should_close = _open_source(source)
@@ -201,10 +203,10 @@ def _parse_bio(source: PathLike, fmt: str):
             "Use parse_multi() to load all.",
             stacklevel=3,
         )
-    return _biopython_to_pietree(trees[0])
+    return _biopython_to_pietree(trees[0], support_format=support_format)
 
 
-def _parse_bio_multi(source: PathLike, fmt: str) -> list:
+def _parse_bio_multi(source: PathLike, fmt: str, support_format=None) -> list:
     """Parse all trees from source."""
     from Bio import Phylo
     fh, should_close = _open_source(source)
@@ -213,12 +215,29 @@ def _parse_bio_multi(source: PathLike, fmt: str) -> list:
     finally:
         if should_close:
             fh.close()
-    return [_biopython_to_pietree(t) for t in trees]
+    return [_biopython_to_pietree(t, support_format=support_format) for t in trees]
 
+def _parse_support_format(fmt: str) -> list[str]:
+    """Extract field names from a format like '{bootstrap}/{alrt}'."""
+    return _re.findall(r'\{(\w+)\}', fmt)
 
-def parse_newick(source: PathLike):
+def _parse_support_string(raw: str, field_names: list[str]) -> dict | None:
+    """
+    Split raw support string by non-numeric separators and map to field_names.
+    Returns None if parsing fails or token count doesn't match.
+    """
+    tokens = _re.split(r'[^0-9.]+', raw.strip())
+    tokens = [t for t in tokens if t]
+    if len(tokens) != len(field_names):
+        return None
+    try:
+        return {k: float(v) for k, v in zip(field_names, tokens)}
+    except ValueError:
+        return None
+
+def parse_newick(source: PathLike, support_format=None):
     """Parse a Newick string, path, or file-like object → PieTree."""
-    return _parse_bio(source, "newick")
+    return _parse_bio(source, "newick", support_format=support_format)
 
 def parse_nexus(source: PathLike):
     """Parse a NEXUS string, path, or file-like object → PieTree."""
@@ -511,7 +530,7 @@ def to_svg(tree, dest: PathLike | None = None, *, spec=None, **render_kwargs) ->
 # to_dataframe
 # ---------------------------------------------------------------------------
 
-def to_dataframe(tree, **kwargs):
+def to_dataframe(tree, include_topology: bool = True, infer_taxonomy: bool = True, **kwargs):
     """
     Return a pandas DataFrame with one row per node.
 
@@ -539,6 +558,13 @@ def to_dataframe(tree, **kwargs):
     for node in tree.traverse():
         if hasattr(node, "metadata") and node.metadata:
             all_meta_keys.update(node.metadata.data.keys())
+            
+    # Pre-compute inferred taxonomy for all nodes
+    inferred_taxonomy: dict = {}
+    if infer_taxonomy:
+        from pietree.metadata.inference import infer_tree
+        inferred_taxonomy = infer_tree(tree, "taxonomy")
+        all_meta_keys.add("inferred_taxonomy")
 
     def _depth(node):
         d = 0
@@ -557,7 +583,12 @@ def to_dataframe(tree, **kwargs):
                     parent_branch = branch
                     break
 
-        meta = node.metadata.data if hasattr(node, "metadata") and node.metadata else {}
+        meta = dict(node.metadata.data) if hasattr(node, "metadata") and node.metadata else {}
+        if infer_taxonomy and "taxonomy" not in meta:
+            inferred = inferred_taxonomy.get(node.id)
+            if inferred is not None:
+                meta["inferred_taxonomy"] = inferred
+                
         descendants = list(node.descendants) if hasattr(node, "descendants") else []
         desc_tips   = [n for n in descendants if n.is_tip]
 

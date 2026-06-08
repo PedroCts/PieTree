@@ -850,10 +850,10 @@ class PieTree:
     # ------------------------------------------------------------------
 
     @classmethod
-    def from_newick(cls, newick_str=None, path=None) -> "PieTree":
+    def from_newick(cls, newick_str=None, path=None, support_format=None) -> "PieTree":
         from pietree.io.io import parse_newick
         source = path or newick_str
-        return parse_newick(source)
+        return parse_newick(source, support_format=support_format)
 
     @classmethod
     def from_nexus(cls, source) -> "PieTree":
@@ -881,9 +881,9 @@ class PieTree:
         from pietree.io.io import savefig
         savefig(self, path, **kwargs)
 
-    def to_dataframe(self, node_type="tip", include_topology=True) -> pd.DataFrame:
+    def to_dataframe(self, node_type="tip", include_topology=True, infer_taxonomy=True) -> pd.DataFrame:
         from pietree.io.io import to_dataframe
-        return to_dataframe(self, node_type=node_type, include_topology=include_topology)
+        return to_dataframe(self, node_type=node_type, include_topology=include_topology, infer_taxonomy=infer_taxonomy)
 
     # ------------------------------------------------------------------
     # Rendering
