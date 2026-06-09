@@ -27,16 +27,18 @@ alignment_mode = "concatenated alignment of 13 mitochondrial PCGs"
 tree_inference = {
     "software": "IQTree",
     "method": "Maximum Likelihood",
-    "model": "GTR + I",
+    "model": "GTR+F+I+R3",
     "bootstrap_mode": "ultrafast bootstrap",
-    "bootstrap": 1000,
-    "alrt": 1000
+    "support": {
+        "bootstrap": 1000,
+        "alrt": 1000
+    }
 }
 
-pietree_credits = "Figure drawn using PieTree (https://github.com/PedroCts/PieTree)."
+pietree_credits = "Figure generated using PieTree (https://github.com/PedroCts/PieTree)."
 
 legend = f"""
-{mode.capitalize()} of {len(samples)} arachnid species (accession numbers in Supplementary Table 1) based on the {alignment_mode}. The tree was inferred using {tree_inference["method"]} with the {tree_inference["model"]} substitution model with {tree_inference["bootstrap"]} {tree_inference["bootstrap_mode"]} replicates and {tree_inference["alrt"]} aLRT values. Spiders analyzed in this study (Phoneutria sp., and Loxosceles laeta) grouped within their respective clades, Entelegynae and Haplogynae, as part of the suborder Araneomorphae. Scorpions served as an outgroup. Bootstrap values highlight strong support for spider monophyly (100) and instances of paraphyly in Dictynoidea and Hypochylus thorelli. {pietree_credits}
+{mode.capitalize()} of {len(samples)} arachnid species (accession numbers in Supplementary Table 1) based on the {alignment_mode}. The tree was inferred on {tree_inference['software']} by {tree_inference["method"]} using the {tree_inference["model"]} substitution model with {tree_inference["support"]["bootstrap"]} {tree_inference["bootstrap_mode"]} replicates and {tree_inference["support"]["alrt"]} aLRT values. Spiders analyzed in this study (Phoneutria sp., and Loxosceles laeta) grouped within their respective clades, Entelegynae and Haplogynae, as part of the suborder Araneomorphae. Scorpions served as an outgroup. Bootstrap values highlight strong support for spider monophyly (100/100). {pietree_credits}
 """
 
 print(legend)
