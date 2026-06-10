@@ -367,7 +367,7 @@ If you use PieTree in your research, please cite:
 @software{pietree,
   author = {Pedro Côrtes},
   title = {PieTree: Metadata-aware phylogenetic tree visualization},
-  year = {2024},
+  year = {2026},
   url = {https://github.com/pedrocortes/pietree}
 }
 ```
@@ -382,12 +382,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-Built with ❤️ using:
-- [NumPy](https://numpy.org/) - Numerical computing
-- [Pandas](https://pandas.pydata.org/) - Data manipulation
-- [Biopython](https://biopython.org/) - Tree parsing
-- [svgwrite](https://github.com/mozman/svgwrite) - SVG generation
-- [CairoSVG](https://cairosvg.org/) - Rasterization
+Built with ❤️ by Pedro Côrtes
 
 ---
 
