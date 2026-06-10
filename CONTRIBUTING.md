@@ -19,7 +19,7 @@ Thank you for your interest in contributing to PieTree! This document provides g
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.10 or higher
 - Git
 - pip or poetry for package management
 
