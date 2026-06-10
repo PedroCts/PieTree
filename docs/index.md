@@ -152,7 +152,7 @@ If you use PieTree in your research, please cite:
 @software{pietree,
   author = {Pedro Côrtes},
   title = {PieTree: Metadata-aware phylogenetic tree visualization},
-  year = {2024},
+  year = {2026},
   url = {https://github.com/pedrocortes/pietree}
 }
 ```
