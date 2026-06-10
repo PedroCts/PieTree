@@ -1,4 +1,3 @@
-```gitignore
 # Virtual environments
 .venv/
 
@@ -17,4 +16,6 @@ dist/
 
 # OS
 .DS_Store
-```
+
+# Claude
+.claude/
