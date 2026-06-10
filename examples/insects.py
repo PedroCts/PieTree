@@ -12,14 +12,13 @@ tree.tips.rename("{species} {mitogenome_id}")
 
 # tree.metadata("taxonomy").highlight(values=["Apis"], allow_single_tip=True, label_position="center_right", palette="tab10")
 # tree.metadata("taxonomy").highlight(values=["Pheidole"], label_position="center_right", palette="tab10")
-tree.metadata("taxonomy").highlight(depth=17, label_position="center_right", palette="tab10")
-tree.metadata("taxonomy").highlight(values=["Scymnus"], label_position="center_right", palette="tab10")
+tree.metadata("geo").highlight(label_position="center_right", palette="tab10", allow_single_tip=True)
 
 tree.metadata("taxonomy").label_nodes(show_duplicates=False)
 
 tree.metadata("group").panel(values=["control"])
 
-tree.savefig("insects_tree.png", size=(1200, 1200))
+tree.savefig("insects_tree.png", size=(1000, 1200))
 
 tree.to_dataframe().to_csv("insects_tree.csv", index=False)
 
