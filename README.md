@@ -41,7 +41,7 @@ pip install pietree
 ### From Source
 
 ```bash
-git clone https://github.com/pedrocortes/pietree.git
+git clone https://github.com/PedroCts/pietree.git
 cd pietree
 pip install -e .
 ```
@@ -332,7 +332,7 @@ Quick start for contributors:
 
 ```bash
 # Clone and setup
-git clone https://github.com/pedrocortes/pietree.git
+git clone https://github.com/PedroCts/pietree.git
 cd pietree
 pip install -e .
 pip install pytest pytest-cov
@@ -355,7 +355,7 @@ If you use PieTree in your research, please cite:
   author = {Pedro Côrtes},
   title = {PieTree: Metadata-aware phylogenetic tree visualization},
   year = {2026},
-  url = {https://github.com/pedrocortes/pietree}
+  url = {https://github.com/PedroCts/pietree}
 }
 ```
 
