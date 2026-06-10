@@ -195,7 +195,7 @@ class TestInferTree:
         a = tip("A", ["Animalia", "Chordata", "Mammalia"])
         b = tip("B", ["Animalia", "Chordata", "Amphibia"])
         attach(root, a, b)
-        return _Tree(root), root, a, b
+        return PieTree(root), root, a, b
 
     def test_returns_all_node_ids(self):
         tree, root, a, b = self._build_simple_tree()
@@ -242,7 +242,7 @@ class TestInferTree:
         root = internal("root")
         attach(root, clade1, clade2)
 
-        result = infer_tree(_Tree(root), "taxonomy")
+        result = infer_tree(PieTree(root), "taxonomy")
 
         assert result[clade1.id] == ["Eukaryota", "Animalia", "Chordata"]
         assert result[clade2.id] == ["Eukaryota", "Animalia", "Arthropoda"]
@@ -251,5 +251,5 @@ class TestInferTree:
     def test_missing_field_throughout(self):
         root = internal("root")
         attach(root, PieNode(name="X"), PieNode(name="Y"))
-        result = infer_tree(_Tree(root), "taxonomy")
+        result = infer_tree(PieTree(root), "taxonomy")
         assert all(v is None for v in result.values())
