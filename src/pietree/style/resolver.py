@@ -8,7 +8,7 @@ class StyleResolver:
 
     def resolve(self, obj, context=None) -> StyleRule:
         computed = StyleRule()
-        
+
         for selector_group, styles in self.stylesheet.rules:
 
             match = any(
@@ -18,7 +18,7 @@ class StyleResolver:
 
             if not match:
                 continue
-            
+
             for style in styles:
                     for field in style.items():
                         value = getattr(style, field)

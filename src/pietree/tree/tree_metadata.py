@@ -159,7 +159,6 @@ class TreeMetadataMixin:
         ... }
         >>> tree.annotate_dict(metadata)
         """
-        from pietree.tree.pienode import PieNode
 
         lookup: Dict[str, "PieNode"] = {}
         named_nodes: List["PieNode"] = []  # candidates for substring fallback

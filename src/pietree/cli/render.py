@@ -5,7 +5,6 @@ CLI command for rendering phylogenetic trees to image files.
 """
 
 import sys
-import json
 from pathlib import Path
 
 
@@ -99,7 +98,6 @@ def run(args):
     """Execute the render command."""
     try:
         from pietree.io import parse_newick
-        from pietree.tree.pietree import PieTree
         import pandas as pd
 
         # Load tree

@@ -233,7 +233,7 @@ class TestPalette:
 # We import highlight_metadata directly and monkey-patch the
 # pietree imports it uses so we don't need the full package.
 
-import importlib, types
+import types
 
 # Build a minimal fake pietree package tree so meta_highlight.py can import
 # without the real package installed.
@@ -255,8 +255,6 @@ sys.modules["pietree.render.layers"]            = _hl_layers
 sys.modules["pietree.render.layers.highlights"] = _hl_mod
 
 # inject real implementations
-from .inference import infer_tree
-from .palette   import assign_colors
 _infer_mod.infer_tree    = infer_tree
 _pal_mod.assign_colors   = assign_colors
 

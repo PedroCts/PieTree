@@ -13,7 +13,6 @@ from typing import Optional
 from pietree.render.layers.panels import PanelLayer
 
 from .pienode import PieNode
-from .piebranch import PieBranch
 
 # Import mixins
 from .tree_ops import TreeOpsMixin

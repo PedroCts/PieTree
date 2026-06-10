@@ -55,7 +55,7 @@ def _estimate_panel_budget(spec) -> float:
 
 
 def build_canvas(spec):
-    
+
     canvas_width, canvas_height = spec.canvas_size
 
     padding_left   = 50.0

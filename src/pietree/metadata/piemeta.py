@@ -86,7 +86,7 @@ class MetadataView:
 
     def highlight(
         self,
-        *, 
+        *,
         show_duplicates: bool = True,
         depth: Optional[int] = None,
         values: Optional[List[str]] = None,

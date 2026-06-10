@@ -1,8 +1,7 @@
-from platform import node
 from xml.etree.ElementTree import SubElement
 
-from typing import Callable, Dict, Iterable, Iterator, List, Literal, Optional, Union
-from dataclasses import dataclass, field
+from typing import Optional
+from dataclasses import dataclass
 
 from pietree.render.context import RenderContext
 from pietree.style.defaults import *
@@ -35,7 +34,7 @@ def render_branches(context: RenderContext):
 
         parent_x, parent_y = pos[edge.source]
         child_x, child_y = pos[edge.target]
-        
+
         stroke = (style.stroke or DEFAULT_STROKE)
         stroke_width = (style.stroke_width or DEFAULT_STROKE_WIDTH)
         opacity = (style.opacity or DEFAULT_OPACITY)

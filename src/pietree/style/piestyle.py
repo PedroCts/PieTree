@@ -1,4 +1,4 @@
-from dataclasses import asdict, dataclass, fields
+from dataclasses import dataclass, fields
 
 @dataclass
 class PieStyle:
@@ -6,7 +6,7 @@ class PieStyle:
     opacity: float = 1.0
     visible: bool = True
     orientation: int = 0
-    
+
     def __call__(self, **kwargs):
         for key, value in kwargs.items():
             if not hasattr(self, key):
@@ -15,7 +15,7 @@ class PieStyle:
                 )
             setattr(self, key, value)
         return self
-    
+
     def apply_to_rule(self, rule):
         """Merge this PieStyle's non-None values onto a StyleRule, as final overrides."""
         for field in fields(self):
@@ -23,24 +23,24 @@ class PieStyle:
             if value is not None:
                 setattr(rule, field.name, value)
         return rule
-    
+
 @dataclass
-class PieNodeStyle(PieStyle):   
+class PieNodeStyle(PieStyle):
     fill: str | None = None
     radius: float | None = None
     width: float | None = None
     stroke: str | None = None
     stroke_width: float | None = None
-    
+
     def __call__(self, **kwargs):
         super().__call__(**kwargs)
         return self
 
 @dataclass
-class PieBranchStyle(PieStyle):   
+class PieBranchStyle(PieStyle):
     stroke: str | None = None
     stroke_width: float | None = None
-    
+
     def __call__(self, **kwargs):
         super().__call__(**kwargs)
         return self

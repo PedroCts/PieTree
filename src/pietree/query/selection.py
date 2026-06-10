@@ -1,4 +1,3 @@
-from ast import List
 from typing import Optional
 
 from pietree.tree.pienode import PieNode
@@ -124,7 +123,7 @@ class BranchSelection(PieObjectSelection):
 
 class LabelSelection(PieObjectSelection):
     """A filtered list of PieLabels with fluent styling."""
-    
+
     def rename(self, new_name: str) -> "LabelSelection":
         """Update the label's text in-place."""
         for obj in self._objs:

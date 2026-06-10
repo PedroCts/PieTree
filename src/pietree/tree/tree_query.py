@@ -12,7 +12,6 @@ from __future__ import annotations
 from typing import List, Literal, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pietree.tree.pietree import PieTree
     from pietree.query.selection import NodeSelection, BranchSelection, LabelSelection
     from pietree.render.layers.panels import PanelLayer
 

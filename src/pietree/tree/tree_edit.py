@@ -50,7 +50,6 @@ class TreeEditMixin:
         This operation modifies the tree in-place. After pruning, some
         internal nodes may be collapsed to maintain a bifurcating structure.
         """
-        from pietree.tree.pienode import PieNode
 
         resolved: List["PieNode"] = []
         for item in tips:
@@ -116,7 +115,6 @@ class TreeEditMixin:
         Rerooting changes the direction of edges along the path from new_root
         to the old root, but preserves all topology and branch lengths.
         """
-        from pietree.tree.pienode import PieNode
         from pietree.tree.piebranch import PieBranch
 
         if new_root is None:

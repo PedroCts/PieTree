@@ -18,7 +18,6 @@ from typing import Dict, List, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from pietree.tree.pietree import PieTree
 
-from pietree.metadata.inference import infer_tree
 from pietree.metadata.palette import assign_colors
 
 
@@ -154,7 +153,7 @@ def highlight_metadata(
     created = []
 
     def _make_highlight(clade, taxon, label=label):
-        
+
         if label and isinstance(label, str):
             label_text = label
         elif label and isinstance(label, bool):

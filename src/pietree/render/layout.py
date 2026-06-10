@@ -229,7 +229,7 @@ def resolve_label_collisions(labels, nodes, branches, pos, max_shift=10):
             break
 
     return labels
-     
+
 def compute_repulsion_vector(collisions):
 
     dx, dy = 0, 0

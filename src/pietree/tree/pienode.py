@@ -12,7 +12,7 @@ import json
 import uuid
 from typing import Generator, Iterator, List, Optional, Tuple
 
-from pietree.core.pieobject import PieObject 
+from pietree.core.pieobject import PieObject
 
 from .piebranch import PieBranch
 from pietree.metadata.piemeta import PieMeta
@@ -49,9 +49,9 @@ class PieNode(PieObject):
         metadata: Optional[dict] = None,
     ):
         from pietree.label.pielabel import PieLabel
-        
+
         super().__init__(metadata)
-        
+
         self.id: str = str(uuid.uuid4())
 
         self._name: Optional[str] = name
@@ -62,7 +62,7 @@ class PieNode(PieObject):
         self._parent_branch: Optional[PieBranch] = None
         self._children: List[Tuple[PieNode, PieBranch]] = []
         self._tree = None  # back-reference to the owning PieTree, if any
-        
+
         self.style = PieNodeStyle()  # visual styling for rendering (not used in tree logic)
 
     # ------------------------------------------------------------------
@@ -471,7 +471,7 @@ class PieNode(PieObject):
     def clear_metadata(self) -> None:
         """Remove all metadata entries from this node."""
         self._metadata.clear()
-        
+
     def infer(self, field):
         """Infer a metadata value for the given field."""
         if self.is_internal:

@@ -19,14 +19,14 @@ class MetaNodeLabel:
 def label_nodes_metadata(
     tree: "PieTree",
     field: str,
-    *, 
+    *,
     show_duplicates=True,
     depth: Optional[int] = None,
     values: Optional[List[str]] = None,
     font_size: float = 10,
     font_color: str = "#444444",
 ) -> List[MetaNodeLabel]:
-    
+
     tree._meta_labels = []
 
     inferred: Dict = infer_tree(tree, field)
@@ -57,14 +57,14 @@ def label_nodes_metadata(
             font_size=font_size,
             font_color=font_color,
         )
-        
+
         if not show_duplicates and tree._meta_registry.is_claimed(field, text):
             continue
         tree._meta_registry.claim(field, text, "label_nodes")
-        
+
         tree._meta_labels.append(label)
         created.append(label)
-        
+
     # Remove redundant ancestor labels: if a node and an ancestor share the
     # same label text, keep only the ancestor.
     labeled_ids = {ml.node_id: ml for ml in created}

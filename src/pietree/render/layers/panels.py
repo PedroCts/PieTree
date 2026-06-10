@@ -1,5 +1,5 @@
 from xml.etree.ElementTree import SubElement
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
 
@@ -12,7 +12,7 @@ class PanelLayer:
     field: str                          # metadata key to group by
     values: None | list[str] = None     # if given, only render these values
     index: int = 0                      # column index (0 = leftmost panel)
-    
+
     show_duplicates: bool = True        # if False, only show values not already shown by highlights or label_nodes
 
     line_width: float = 4.0
@@ -43,7 +43,7 @@ def render_panels(context):
 
     # Right edge where tip labels end (same anchor used by highlights)
     label_right = context.label_edge
-    
+
     panel_label_padding = 4
 
     for panel in spec.panels:
@@ -89,7 +89,7 @@ def render_panels(context):
 
             if panel.values and value not in panel.values:
                 continue
-            
+
             if not panel.show_duplicates and context.registry and context.registry.is_claimed(panel.field, value):
                 continue
 

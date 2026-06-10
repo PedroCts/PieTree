@@ -185,7 +185,7 @@ def render_highlights(context):
         # --------------------------------------------------
         # DRAW LABEL
         # --------------------------------------------------
-    
+
         label_text = highlight.label
         if not label_text:
             continue

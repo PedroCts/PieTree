@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import Optional, Literal
 
 class StyleRule:
@@ -20,12 +19,12 @@ class StyleRule:
         visible: Optional[bool] = True
     ):
         self.target = target
-        
+
         self.fill = fill
-        
+
         self.radius = radius
         self.width = width
-        
+
         self.stroke = stroke
         self.stroke_width = stroke_width
 

@@ -1,7 +1,7 @@
 class Selector:
     def match(self, branch) -> bool:
         raise NotImplementedError
-    
+
 class MetadataSelector(Selector):
 
     def __init__(self, key, value):

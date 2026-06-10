@@ -52,7 +52,7 @@ def render_svg(spec, resolver=None):
 
         registry=spec.registry,
         highlights=spec.highlights,
-        
+
         tip_edge=canvas["tip_edge"],
         label_edge=canvas["label_edge"],
     )

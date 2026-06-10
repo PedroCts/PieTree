@@ -18,7 +18,7 @@ class PieLabel:
 
     def __bool__(self):
         return bool(self.text)
-    
+
     def __eq__(self, value):
         if not self.text:
             return False
