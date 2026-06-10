@@ -49,7 +49,7 @@ pip install -e .
 ### Requirements
 
 - Python 3.10+
-- numpy, pandas, svgwrite, biopython, cairosvg
+- numpy, pandas, biopython, cairosvg
 
 ---
 
@@ -310,31 +310,12 @@ Key design principles:
 **Current Version:** 0.1.0  
 **Status:** Active development
 
-### Recent Changes
-
-**Phase 3 - CLI Implementation ✅**
-- Complete CLI with 6 commands
-- Comprehensive error handling
-- Multiple output formats
-
-**Phase 2 - Testing Infrastructure ✅**
-- 111 tests covering core functionality
-- 50% overall coverage
-- Continuous integration ready
-
-**Phase 1 - Code Organization ✅**
-- Modular architecture
-- All files <450 lines
-- Clean separation of concerns
-
 ### Roadmap
-
-- [ ] **Phase 4** - Documentation (in progress)
-- [ ] **Phase 5** - Polish (type hints, linting)
-- [ ] PyPI publication
 - [ ] Additional file formats (BEAST, MrBayes)
 - [ ] Interactive visualizations
 - [ ] Performance optimization
+- [ ] Standalone application
+- [ ] GUI support
 
 ---
 

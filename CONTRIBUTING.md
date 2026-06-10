@@ -63,9 +63,8 @@ pip install pytest pytest-cov ruff mypy
 Core dependencies (see `pyproject.toml`):
 - `numpy` - Numerical operations
 - `pandas` - Metadata handling
-- `svgwrite` - SVG generation
 - `biopython` - Tree parsing (Newick, NEXUS)
-- `cairosvg` - Rasterization (PNG, PDF, JPEG)
+- `cairosvg` - Rasterization (PNG, PDF, JPEG, SVG)
 
 ---
 

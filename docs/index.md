@@ -42,7 +42,7 @@ pip install -e .
 ### Requirements
 
 - Python 3.10+
-- numpy, pandas, svgwrite, biopython, cairosvg
+- numpy, pandas, biopython, cairosvg
 
 ---
 

@@ -15,8 +15,7 @@ authors = [
 
 dependencies = [
     "numpy",
-    "pandas", 
-    "svgwrite",
+    "pandas",
     "biopython",
     "cairosvg",      # PDF, PNG, JPEG, TIFF rasterisation
     "Pillow",        # image format handling
