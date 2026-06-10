@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PieTree"
-version = "0.0.1"
+version = "0.1.0b"
 description = "Metadata-aware phylogenetic tree analysis and rendering engine"
 readme = "README.md"
 license = {text = "MIT"}

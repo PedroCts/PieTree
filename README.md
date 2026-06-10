@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Current Release](https://img.shields.io/badge/Current%20Release-0.1.0-teal.svg)](package.json) 
+[![Current Release](https://img.shields.io/badge/Current%20Release-0.1.0b-teal.svg)](package.json) 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
 [![Tests](https://img.shields.io/badge/Tests-111%20passing-success.svg)]()
 [![Coverage](https://img.shields.io/badge/Coverage-50%25-orange.svg)]()
@@ -307,7 +307,7 @@ Key design principles:
 
 ## Project Status
 
-**Current Version:** 0.1.0  
+**Current Version:** 0.1.0b (beta)  
 **Status:** Active development
 
 ### Roadmap
