@@ -41,7 +41,7 @@ pip install -e .
 
 ### Requirements
 
-- Python 3.9+
+- Python 3.10+
 - numpy, pandas, svgwrite, biopython, cairosvg
 
 ---
@@ -64,8 +64,8 @@ tree.annotate(metadata, on="name")
 # Query and select
 brazil_tips = tree.nodes(country="Brazil")
 
-# Visualize
-tree.to_svg(path="tree.svg", mode="phylogram")
+# Visualize (format auto-detected from extension)
+tree.savefig("tree.svg", mode="phylogram")
 ```
 
 ### Command Line

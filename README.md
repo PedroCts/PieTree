@@ -183,9 +183,9 @@ tree.metadata("group").panel(values=["Outgroup"])
 ### Layout Modes
 
 ```python
-tree.to_svg("out.svg", mode="phylogram")    # branch-length proportional
-tree.to_svg("out.svg", mode="cladogram")    # equal branch lengths
-tree.to_svg("out.svg", mode="ultrametric")  # tips aligned to present
+tree.savefig("tree.svg", mode="phylogram")    # branch-length proportional
+tree.savefig("tree.png", mode="cladogram")    # equal branch lengths, PNG format
+tree.savefig("tree.pdf", mode="ultrametric")  # tips aligned to present, PDF format
 ```
 
 ---
@@ -235,8 +235,8 @@ Contributions, bug reports, and feature requests are welcome. If you have ideas 
 
 MIT License.
 
-# Render tree
-tree.to_svg(path="tree.svg", mode="phylogram")
+# Render tree (format auto-detected from extension)
+tree.savefig("tree.svg", mode="phylogram")
 ```
 
 ### Command Line
