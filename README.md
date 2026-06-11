@@ -9,7 +9,7 @@
 
 </div>
 
-**Metadata-aware phylogenetic tree analysis and visualization for Python.**
+**Metadata-first phylogenetic tree analysis and visualization for Python.**
 
 > _"Work with trees the way you think about them."_
 
@@ -353,7 +353,7 @@ If you use PieTree in your research, please cite:
 ```bibtex
 @software{pietree,
   author = {Pedro Côrtes-Barros},
-  title = {PieTree: Metadata-aware phylogenetic tree visualization},
+  title = {PieTree: Metadata-first phylogenetic tree visualization},
   year = {2026},
   url = {https://github.com/PedroCts/pietree}
 }
