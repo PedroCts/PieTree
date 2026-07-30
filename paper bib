@@ -1,0 +1,39 @@
+@article{huerta-cepas2016ete3,
+  title={ETE 3: reconstruction, analysis, and visualization of phylogenomic data},
+  author={Huerta-Cepas, Jaime and Serra, Fran{\c{c}}ois and Bork, Peer},
+  journal={Molecular Biology and Evolution},
+  volume={33},
+  number={6},
+  pages={1635--1638},
+  year={2016},
+  publisher={Oxford University Press}
+}
+
+@article{cock2009biopython,
+  title={Biopython: freely available Python tools for computational molecular biology and bioinformatics},
+  author={Cock, Peter J A and Antao, Tiago and Chang, Jeffrey T and Chapman, Brad A and Cox, Cymon J and Dalke, Andrew and Friedberg, Iddo and Hamelryck, Thomas and Kauff, Frank and Wilczynski, Bartek and de Hoon, Michiel J L},
+  journal={Bioinformatics},
+  volume={25},
+  number={11},
+  pages={1422--1423},
+  year={2009},
+  publisher={Oxford University Press}
+}
+
+@misc{eaton2020toytree,
+  title={toytree: A minimalist tree visualization and manipulation library for Python},
+  author={Eaton, Deren A R},
+  year={2020},
+  howpublished={\url{https://github.com/eaton-lab/toytree}}
+}
+
+@article{yu2017ggtree,
+  title={ggtree: an r package for visualization and annotation of phylogenetic trees with their covariates and other associated data},
+  author={Yu, Guangchuang and Smith, David K and Zhu, Huachen and Guan, Yi and Lam, Tommy Tsan-Yuk},
+  journal={Methods in Ecology and Evolution},
+  volume={8},
+  number={1},
+  pages={28--36},
+  year={2017},
+  publisher={Wiley Online Library}
+}
