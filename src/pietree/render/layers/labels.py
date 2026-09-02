@@ -36,6 +36,7 @@ Tip labels are exempt: they live in clear whitespace to the right.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import List, Optional, Tuple
 from xml.etree.ElementTree import SubElement
@@ -486,6 +487,147 @@ def _collect_branch_labels(
 
 
 # ---------------------------------------------------------------------------
+# Circular tip labels
+# ---------------------------------------------------------------------------
+
+def _render_circular_tip_labels(context):
+    """
+    Draw tip labels for circular trees.
+
+    Each label is positioned radially outward from the tip node, rotated
+    so it reads outward along the tip's angle.  Labels in the left half
+    of the circle (90° < angle ≤ 270°) are flipped 180° so they never
+    appear upside-down, with text-anchor adjusted to "end" so they still
+    read away from the tree.
+
+    When circular_align_tips is True (default), all labels are anchored at
+    the perimeter radius (max tip depth), so they form a clean outer ring.
+    Tips themselves stay at their true branch-length positions.  A radial
+    dashed guide line is drawn from the tip node outward to the perimeter
+    for any tip that falls short.
+    """
+    spec    = context.spec
+    svg     = context.svg
+    pos     = context.pos
+    resolver = context.resolver
+    sources = context.sources
+    options = spec.options
+    meta    = spec.circular_meta or {}
+
+    cx    = context.circular_cx
+    cy    = context.circular_cy
+    scale = context.circular_scale
+
+    if cx is None:
+        return
+
+    align_tips = options.circular_align_tips
+
+    # Perimeter pixel radius = max data-radius * scale
+    if meta and scale:
+        max_r_data  = max(m["r"] for m in meta.values()) or 1.0
+        perimeter_r = max_r_data * scale
+    else:
+        perimeter_r = context.tip_edge
+
+    label_gap = 10.0  # px gap between perimeter (or tip) and label start
+
+    # Circular guide line style — white dashes so they read against branches
+    guide_color = options.circular_guide_color
+    guide_width = str(options.tip_label_guide_width)
+    guide_style = options.tip_label_guide_style
+    dasharray = (
+        "4,4" if guide_style == "dashed"
+        else "2,2" if guide_style == "dotted"
+        else "none"
+    )
+
+    for node in spec.nodes:
+        if node.id in sources:
+            continue
+        if node.id not in meta:
+            continue
+
+        angle_deg = meta[node.id]["angle"]
+        angle_rad = math.radians(angle_deg)
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+
+        tip_x, tip_y = pos[node.id]  # true tip position (branch endpoint)
+
+        if align_tips:
+            # Perimeter point for this tip's angle
+            perim_x = cx + perimeter_r * cos_a
+            perim_y = cy + perimeter_r * sin_a
+            label_origin_x = perim_x
+            label_origin_y = perim_y
+
+            # Gap between true tip and perimeter
+            tip_r_px = math.hypot(tip_x - cx, tip_y - cy)
+            gap_px   = perimeter_r - tip_r_px
+
+            # Draw guide from tip → perimeter when there is a meaningful gap
+            if gap_px > options.tip_label_guide_gap and options.show_tip_labels:
+                guide_attrs = {
+                    "x1": f"{tip_x + options.tip_label_guide_gap * cos_a:.3f}",
+                    "y1": f"{tip_y + options.tip_label_guide_gap * sin_a:.3f}",
+                    "x2": f"{perim_x:.3f}",
+                    "y2": f"{perim_y:.3f}",
+                    "stroke": guide_color,
+                    "stroke-width": guide_width,
+                }
+                if dasharray != "none":
+                    guide_attrs["stroke-dasharray"] = dasharray
+                SubElement(svg, "line", guide_attrs)
+        else:
+            label_origin_x = tip_x
+            label_origin_y = tip_y
+
+        if not options.show_tip_labels:
+            continue
+        if not node.label:
+            continue
+
+        pie_label = node.node.label
+        style = _extract_style(pie_label, resolver, context, "tip", True)
+        if not style["visible"]:
+            continue
+
+        # Label starts label_gap pixels beyond the label origin
+        label_x = label_origin_x + label_gap * cos_a
+        label_y = label_origin_y + label_gap * sin_a
+
+        # Normalise angle to [0, 360)
+        norm_angle = angle_deg % 360
+
+        # Left half: flip so text is never upside-down
+        if 90 < norm_angle <= 270:
+            rotate_deg = angle_deg + 180
+            anchor = "end"
+        else:
+            rotate_deg = angle_deg
+            anchor = "start"
+
+        transform = f"rotate({rotate_deg:.3f}, {label_x:.3f}, {label_y:.3f})"
+
+        SubElement(
+            svg, "text",
+            {
+                "x": f"{label_x:.3f}",
+                "y": f"{label_y + (style['font_size'] or DEFAULT_TIP_FONT_SIZE) * 0.35:.3f}",
+                "font-size": str(style["font_size"] or DEFAULT_TIP_FONT_SIZE),
+                "fill": str(style["font_color"] or DEFAULT_TIP_FONT_COLOR),
+                "font-weight": style["font_weight"],
+                "font-style": style["font_style"],
+                "text-decoration": style["text_decoration"],
+                "text-anchor": anchor,
+                "opacity": str(style["opacity"]),
+                "transform": transform,
+            },
+        ).text = node.node.label.text
+
+
+# ---------------------------------------------------------------------------
 # Guide lines for aligned tip labels
 # ---------------------------------------------------------------------------
 
@@ -546,6 +688,11 @@ def render_labels(context):
     resolver = context.resolver
     sources = context.sources
     options = spec.options
+
+    # Circular mode: tip labels are drawn radially; internal/branch labels skipped for now
+    if spec.mode == "circular":
+        _render_circular_tip_labels(context)
+        return
 
     align = options.align_tip_labels and spec.mode != "ultrametric"
     align_anchor = context.tip_edge if align else None

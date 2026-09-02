@@ -1,3 +1,4 @@
+import math
 from xml.etree.ElementTree import SubElement
 from dataclasses import dataclass
 from typing import Optional, Literal
@@ -94,6 +95,124 @@ def _resolve_label_position(
     return lx, ly, anchor
 
 
+def _circular_sector_path(cx, cy, r_inner, r_outer, theta1_deg, theta2_deg, padding_deg=0.0):
+    """
+    Build an SVG path string for an annular sector (donut slice).
+
+    Parameters
+    ----------
+    cx, cy      : canvas centre
+    r_inner     : inner radius (px) — set to 0 for a pie slice
+    r_outer     : outer radius (px)
+    theta1_deg  : start angle (degrees, SVG convention: 0=right, clockwise)
+    theta2_deg  : end angle (degrees)
+    padding_deg : angular padding added on each side
+    """
+    t1 = math.radians(theta1_deg - padding_deg)
+    t2 = math.radians(theta2_deg + padding_deg)
+
+    # Clamp so t2 > t1
+    if t2 <= t1:
+        t2 += 2 * math.pi
+
+    large_arc = 1 if (t2 - t1) > math.pi else 0
+
+    # Outer arc corners
+    ox1 = cx + r_outer * math.cos(t1)
+    oy1 = cy + r_outer * math.sin(t1)
+    ox2 = cx + r_outer * math.cos(t2)
+    oy2 = cy + r_outer * math.sin(t2)
+
+    if r_inner <= 0:
+        # Pie slice
+        d = (
+            f"M {cx:.2f} {cy:.2f} "
+            f"L {ox1:.2f} {oy1:.2f} "
+            f"A {r_outer:.2f} {r_outer:.2f} 0 {large_arc} 1 {ox2:.2f} {oy2:.2f} "
+            f"Z"
+        )
+    else:
+        # Annular sector
+        ix1 = cx + r_inner * math.cos(t1)
+        iy1 = cy + r_inner * math.sin(t1)
+        ix2 = cx + r_inner * math.cos(t2)
+        iy2 = cy + r_inner * math.sin(t2)
+        d = (
+            f"M {ox1:.2f} {oy1:.2f} "
+            f"A {r_outer:.2f} {r_outer:.2f} 0 {large_arc} 1 {ox2:.2f} {oy2:.2f} "
+            f"L {ix2:.2f} {iy2:.2f} "
+            f"A {r_inner:.2f} {r_inner:.2f} 0 {large_arc} 0 {ix1:.2f} {iy1:.2f} "
+            f"Z"
+        )
+    return d
+
+
+def _render_circular_highlight(svg, context, highlight):
+    """Draw a clade highlight as an annular sector for circular trees."""
+    spec    = context.spec
+    pos     = context.pos
+    meta    = spec.circular_meta or {}
+    cx      = context.circular_cx
+    cy      = context.circular_cy
+
+    if cx is None:
+        return
+
+    clade = highlight.clade
+    tips  = clade.tips
+    if not tips:
+        return
+
+    # Collect tip angles
+    tip_angles = [meta[n.id]["angle"] for n in tips if n.id in meta]
+    if not tip_angles:
+        return
+
+    theta_min = min(tip_angles)
+    theta_max = max(tip_angles)
+
+    # Radii
+    clade_root_meta = meta.get(clade.root.id, {})
+    r_inner_data = clade_root_meta.get("r", 0.0)
+    scale = context.circular_scale or 1.0
+    r_inner_px = r_inner_data * scale - highlight.padding
+
+    if highlight.include_labels and spec.options.show_tip_labels:
+        r_outer_px = context.label_edge + highlight.padding
+    else:
+        r_outer_px = context.tip_edge + highlight.padding
+
+    r_inner_px = max(r_inner_px, 0.0)
+
+    d = _circular_sector_path(
+        cx, cy,
+        r_inner_px, r_outer_px,
+        theta_min, theta_max,
+        padding_deg=0.5,
+    )
+
+    SubElement(svg, "path", {
+        "d": d,
+        "fill": highlight.fill,
+        "opacity": str(highlight.opacity),
+    })
+
+    # Label at midpoint of the outer arc
+    if highlight.label:
+        mid_angle = math.radians((theta_min + theta_max) / 2)
+        lx = cx + (r_outer_px + highlight.font_size) * math.cos(mid_angle)
+        ly = cy + (r_outer_px + highlight.font_size) * math.sin(mid_angle)
+        SubElement(svg, "text", {
+            "x": f"{lx:.2f}",
+            "y": f"{ly:.2f}",
+            "font-size": str(highlight.font_size),
+            "fill": highlight.font_color,
+            "font-weight": highlight.font_weight,
+            "text-anchor": "middle",
+            "opacity": "1",
+        }).text = highlight.label
+
+
 def render_highlights(context):
 
     if not context.highlights:
@@ -105,6 +224,10 @@ def render_highlights(context):
     options = spec.options
 
     for highlight in context.highlights:
+
+        if spec.mode == "circular":
+            _render_circular_highlight(svg, context, highlight)
+            continue
 
         clade = highlight.clade
         tips = clade.tips

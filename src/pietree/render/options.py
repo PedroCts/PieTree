@@ -51,3 +51,10 @@ class RenderOptions:
     # Highlights
     highlight_opacity: float = 0.18         # softer default for print
     highlight_corner_radius: float = 4.0
+
+    # Circular layout
+    circular_arc: float = 360.0             # total arc in degrees (360 = full circle)
+    circular_start_angle: float = -90.0     # start angle in degrees (-90 = 12 o'clock)
+    circular_radius: float | None = None    # tip-circle radius in pixels (None = auto)
+    circular_align_tips: bool = True        # align labels to a common perimeter (tips stay at branch endpoints)
+    circular_guide_color: str = "#888888"   # colour of radial guide lines in circular mode

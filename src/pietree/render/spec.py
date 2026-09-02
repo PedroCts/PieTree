@@ -36,3 +36,6 @@ class RenderSpec:
 
     canvas_size: tuple[int, int] = (1000, 1000)
 
+    # Per-node polar metadata for circular layout: {node_id: {"angle": deg, "r": float}}
+    circular_meta: Optional[dict] = None
+

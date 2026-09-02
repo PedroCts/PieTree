@@ -202,7 +202,8 @@ class PieTree(
         mode: str = "phylogram",
         orientation: str = "horizontal",
         options: Optional[RenderOptions] = None,
-        canvas_size: tuple = (1000, 1000)
+        canvas_size: tuple = (1000, 1000),
+        **kwargs,
     ) -> RenderSpec:
         """
         Build a :class:`RenderSpec` — the intermediate representation used by
@@ -224,8 +225,24 @@ class PieTree(
         RenderSpec
             The render specification containing node positions, edges, and styling.
         """
-        coords: dict = build_layout(self, mode=mode, orientation=orientation)
-        options = options or self.render_options
+        canvas_size = canvas_size or (1000, 1000)
+
+        # If extra kwargs are provided (e.g. circular_arc, circular_start_angle),
+        # apply them as overrides on a copy of the current render options.
+        if kwargs:
+            import dataclasses
+            base = options or self.render_options
+            options = dataclasses.replace(base, **{
+                k: v for k, v in kwargs.items()
+                if hasattr(base, k)
+            })
+        else:
+            options = options or self.render_options
+
+        coords: dict = build_layout(self, mode=mode, orientation=orientation, options=options)
+
+        # Extract circular metadata before iterating over coords
+        circular_meta = coords.pop("_circular_meta", None)
 
         nodes = [
             RenderNode(
@@ -266,7 +283,8 @@ class PieTree(
             panels=self._panels,
             meta_labels=self._meta_labels,
             registry=self._meta_registry,
-            canvas_size=canvas_size
+            canvas_size=canvas_size,
+            circular_meta=circular_meta,
         )
 
     def to_svg(

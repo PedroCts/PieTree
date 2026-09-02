@@ -55,6 +55,10 @@ def render_svg(spec, resolver=None):
 
         tip_edge=canvas["tip_edge"],
         label_edge=canvas["label_edge"],
+
+        circular_cx=canvas.get("_circular_cx"),
+        circular_cy=canvas.get("_circular_cy"),
+        circular_scale=canvas.get("_circular_scale"),
     )
 
     render_background(context)

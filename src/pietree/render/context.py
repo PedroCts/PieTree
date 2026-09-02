@@ -30,3 +30,8 @@ class RenderContext:
 
     registry: object = None
     highlights: list | None = None
+
+    # Circular-mode extras (None for non-circular layouts)
+    circular_cx:    float | None = None   # canvas centre x
+    circular_cy:    float | None = None   # canvas centre y
+    circular_scale: float | None = None   # data-radius → pixel-radius scale

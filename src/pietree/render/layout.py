@@ -250,7 +250,89 @@ def compute_repulsion_vector(collisions):
 
     return dx, dy
 
-def build_layout(tree, mode="phylogram", orientation="horizontal"):
+def compute_circular_positions(
+    tree,
+    use_branch_lengths=False,
+    ultrametric=False,
+    arc=360.0,
+    start_angle=-90.0,
+):
+    """
+    Compute polar-then-Cartesian positions for a circular tree layout.
+
+    Tips are evenly distributed around `arc` degrees starting from
+    `start_angle`.  Branch depth becomes the radius.  Internal nodes
+    are centred angularly on their descendants.
+
+    Returns {node_id: (x, y)} where (x, y) are Cartesian coordinates
+    centred at (0, 0); canvas.py re-centres them onto the SVG canvas.
+    Also stores per-node angles and radii on the returned dict as a
+    side-channel via the ``_circular_meta`` key:
+        _circular_meta[node_id] = {"angle": float_deg, "r": float}
+    This is used by the branch / label renderers.
+    """
+    import math
+
+    leaf_order = assign_leaf_order(tree.root)
+    n_tips = len(leaf_order)
+
+    # Angular spacing between tips (degrees)
+    if n_tips > 1:
+        step = arc / n_tips
+    else:
+        step = 0.0
+
+    # Angle for each tip (in degrees, measured from start_angle)
+    tip_angles = {}
+    for node_id, order in leaf_order.items():
+        tip_angles[node_id] = start_angle + (order + 0.5) * step
+
+    # Max depth for ultrametric
+    max_distance = 0.0
+    if ultrametric:
+        distances = compute_root_to_tip_distances(tree)
+        if distances:
+            max_distance = max(distances.values())
+
+    coords = {}
+    _circular_meta = {}  # node_id → {"angle": deg, "r": float, "r_true": float}
+
+    def dfs(node, acc):
+        if node.is_tip:
+            r_true = acc  # actual accumulated depth (before any alignment)
+            if ultrametric:
+                r = max_distance
+            else:
+                r = acc
+            angle_deg = tip_angles[node.id]
+            angle_rad = math.radians(angle_deg)
+            coords[node.id] = (r * math.cos(angle_rad), r * math.sin(angle_rad))
+            _circular_meta[node.id] = {"angle": angle_deg, "r": r, "r_true": r_true}
+            return angle_deg
+
+        child_angles = []
+        for child, branch in node._children:
+            if use_branch_lengths:
+                length = (branch.length if branch and branch.length is not None else 1.0)
+            else:
+                length = 1.0
+            child_angles.append(dfs(child, acc + length))
+
+        angle_deg = sum(child_angles) / len(child_angles)
+        angle_rad = math.radians(angle_deg)
+        r = acc
+        coords[node.id] = (r * math.cos(angle_rad), r * math.sin(angle_rad))
+        _circular_meta[node.id] = {"angle": angle_deg, "r": r, "r_true": acc}
+        return angle_deg
+
+    dfs(tree.root, 0.0)
+
+    # Attach meta as a special key so canvas.py can read it
+    coords["_circular_meta"] = _circular_meta  # type: ignore[assignment]
+    return coords
+
+
+def build_layout(tree, mode="phylogram", orientation="horizontal", options=None):
 
     if mode == "cladogram":
 
@@ -277,6 +359,17 @@ def build_layout(tree, mode="phylogram", orientation="horizontal"):
             use_branch_lengths=True,
             ultrametric=True,
             orientation=orientation,
+        )
+
+    elif mode == "circular":
+        arc   = getattr(options, "circular_arc",         360.0) if options else 360.0
+        start = getattr(options, "circular_start_angle", -90.0) if options else -90.0
+        return compute_circular_positions(
+            tree,
+            use_branch_lengths=True,
+            ultrametric=False,
+            arc=arc,
+            start_angle=start,
         )
 
     else:

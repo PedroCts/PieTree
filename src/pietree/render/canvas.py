@@ -56,6 +56,9 @@ def _estimate_panel_budget(spec) -> float:
 
 def build_canvas(spec):
 
+    if spec.mode == "circular":
+        return _build_circular_canvas(spec)
+
     canvas_width, canvas_height = spec.canvas_size
 
     padding_left   = 50.0
@@ -142,7 +145,104 @@ def build_canvas(spec):
         "padding_top":    padding_top,
         "padding_bottom": padding_bottom,
 
-        # NEW — used by panels, highlights, and labels
+        # used by panels, highlights, and labels
         "tip_edge":   tip_edge,
         "label_edge": label_edge,
+    }
+
+
+def _build_circular_canvas(spec):
+    """
+    Build an SVG canvas for circular tree mode.
+
+    The layout coordinates are Cartesian centred at (0, 0).  We fit them
+    into a square draw area, then offset to the canvas centre.  The label
+    budget is added as extra radius beyond the tip circle so labels do not
+    get clipped.
+    """
+    import math
+
+    canvas_width, canvas_height = spec.canvas_size
+    padding = 30.0  # uniform padding around the circular plot area
+
+    label_budget = _estimate_label_budget(spec)
+    panel_budget = _estimate_panel_budget(spec)
+
+    outer_budget = label_budget + panel_budget + padding
+
+    user_radius = spec.options.circular_radius if spec.options else None
+
+    if user_radius is not None:
+        # User explicitly set the tip-circle radius.
+        # Expand the canvas if necessary so the full circle (tree + labels) fits.
+        draw_r = float(user_radius)
+        needed = (draw_r + outer_budget) * 2
+        canvas_width  = max(canvas_width,  needed)
+        canvas_height = max(canvas_height, needed)
+    else:
+        # Auto: fill the canvas, reserving space for labels outside the circle.
+        draw_r = (min(canvas_width, canvas_height) / 2) - outer_budget
+        draw_r = max(draw_r, 50.0)
+
+    cx = canvas_width  / 2
+    cy = canvas_height / 2
+
+    # Scale factor: map the max data-space radius to draw_r pixels
+    all_meta = spec.circular_meta or {}
+    if all_meta:
+        max_r_data = max(m["r"] for m in all_meta.values()) or 1.0
+    else:
+        # Fallback: use raw node coordinate magnitude
+        all_x = [n.x for n in spec.nodes]
+        all_y = [n.y for n in spec.nodes]
+        max_r_data = max(
+            (x**2 + y**2) ** 0.5 for x, y in zip(all_x, all_y)
+        ) or 1.0
+
+    scale = draw_r / max_r_data
+
+    def to_px(nx, ny):
+        return cx + nx * scale, cy + ny * scale
+
+    pos = {n.id: to_px(n.x, n.y) for n in spec.nodes}
+
+    svg = Element(
+        "svg",
+        {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "width":  str(canvas_width),
+            "height": str(canvas_height),
+            "viewBox": f"0 0 {canvas_width} {canvas_height}",
+        },
+    )
+
+    # For circular mode, tip_edge and label_edge are the pixel radius of
+    # the tip circle and the label-end circle respectively.  Downstream
+    # circular renderers use context.tip_edge as the tip pixel radius and
+    # context.label_edge as the label-end pixel radius.
+    tip_edge_r  = draw_r
+    label_edge_r = draw_r + label_budget
+
+    return {
+        "svg": svg,
+        "pos": pos,
+
+        "canvas_width":  canvas_width,
+        "canvas_height": canvas_height,
+
+        "padding_left":   padding,
+        "padding_right":  padding,
+        "padding_top":    padding,
+        "padding_bottom": padding,
+
+        # For circular mode these carry pixel-radius semantics:
+        #   tip_edge   = radius to the outermost tip node
+        #   label_edge = radius to the end of tip labels
+        "tip_edge":   tip_edge_r,
+        "label_edge": label_edge_r,
+
+        # Extra keys used only by circular renderers
+        "_circular_cx":    cx,
+        "_circular_cy":    cy,
+        "_circular_scale": scale,
     }

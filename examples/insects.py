@@ -5,20 +5,19 @@ samples = pd.read_csv("data/insects_samples.csv", sep=";")
 tree = PieTree.from_newick(path="data/insects.newick", 
                            support_format="{bootstrap}/{alrt}")
 
-
 tree.annotate(samples, on="mitogenome_id")
 tree.tips.rename("{species} {mitogenome_id}")
 
 
 # tree.metadata("taxonomy").highlight(values=["Apis"], allow_single_tip=True, label_position="center_right", palette="tab10")
 # tree.metadata("taxonomy").highlight(values=["Pheidole"], label_position="center_right", palette="tab10")
-tree.metadata("geo").highlight(label_position="center_right", palette="tab10", allow_single_tip=True)
+# tree.metadata("geo").highlight(label_position="center_right", palette="tab10", allow_single_tip=True)
 
-tree.metadata("taxonomy").label_nodes(show_duplicates=False)
+# tree.metadata("taxonomy").label_nodes(show_duplicates=False)
 
-tree.metadata("group").panel(values=["control"])
+# tree.metadata("group").panel(values=["control"])
 
-tree.savefig("insects_tree.png", size=(1000, 1200))
+tree.savefig("insects_tree.svg", mode="phylogram")
 
 tree.to_dataframe().to_csv("insects_tree.csv", index=False)
 

@@ -124,6 +124,9 @@ def _render_single_layer(spec: "RenderSpec", layer_name: str) -> str:
         highlights=spec.highlights,
         tip_edge=canvas["tip_edge"],
         label_edge=canvas["label_edge"],
+        circular_cx=canvas.get("_circular_cx"),
+        circular_cy=canvas.get("_circular_cy"),
+        circular_scale=canvas.get("_circular_scale"),
     )
 
     _renderers[layer_name](ctx)
@@ -273,6 +276,8 @@ def savefig(
 
     # Build or reuse the render spec
     if spec is None:
+        # canvas_size comes from `size`; remove it from render_kwargs to avoid duplicate
+        render_kwargs.pop("canvas_size", None)
         spec = tree.to_render_spec(canvas_size=size, **render_kwargs)
 
     # --- SVG -----------------------------------------------------------------

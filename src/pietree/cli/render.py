@@ -39,7 +39,7 @@ def register_parser(subparsers):
     # Layout options
     p.add_argument(
         "-m", "--mode",
-        choices=["phylogram", "cladogram", "ultrametric"],
+        choices=["phylogram", "cladogram", "ultrametric", "circular"],
         default="phylogram",
         help="Layout mode [default: phylogram]"
     )
